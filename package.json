@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "esbuild --watch --serve 'src/**/*.js' --servedir=src",
-    "build": "esbuild --bundle 'src/**/*.js' --minify --outdir=dist "
+    "build": "esbuild --bundle './src/home/index.js' --minify --outdir=dist "
   },
   "keywords": [],
   "author": "Maksym Chechel",
