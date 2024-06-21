@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "parcel 'src/**/*.js' 'src/index.html' --open",
-    "build": "NODE_ENV=production parcel build 'src/**/*.js' 'src/index.html'"
+    "build": "parcel build 'src/**/*.js' 'src/index.html'"
   },
   "keywords": [],
   "author": "Maksym Chechel",
