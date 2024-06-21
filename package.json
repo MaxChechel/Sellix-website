@@ -1,16 +1,19 @@
 {
-  "name": "template",
+  "name": "Sellix",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "parcel build 'src/**/*.js' 'src/index.html' --public-url ./",
-    "dev": "parcel 'src/**/*.js' 'src/index.html' --open"
+    "dev": "parcel 'src/**/*.js' 'src/index.html' --open",
+    "build": "NODE_ENV=production parcel build 'src/**/*.js' 'src/index.html' --dist-dir 'dist'"
   },
   "keywords": [],
   "author": "Maksym Chechel",
   "license": "ISC",
   "dependencies": {
     "gsap": "npm:@gsap/shockingly@^3.12.5",
-    "parcel": "latest"
+    "split-type": "^0.3.4"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
   }
 }
