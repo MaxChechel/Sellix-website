@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "esbuild --watch --serve 'src/**/*.js' --servedir=src",
+    "dev": "serve",
     "build": "esbuild './src/home/*' './src/home-animations/*' --bundle --sourcemap --minify --outdir=dist"
   },
   "keywords": [],
