@@ -6,11 +6,7 @@ export default function Embed() {
     ".embed-anim_process-icon path"
   );
 
-  gsap.set(embedProcess, {
-    opacity: 0.1,
-  });
-
-  const embedTl = gsap.timeline();
+  const embedTl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 1 });
 
   embedTl
     .to(".embed-anim_cursor", {
@@ -33,7 +29,7 @@ export default function Embed() {
     .to(
       ".embed-anim_product-added",
       {
-        height: "100%",
+        height: "auto",
         opacity: 1,
       },
       "<0%"
@@ -143,4 +139,5 @@ export default function Embed() {
     .to(".embed-anim_third-scene-wrap", {
       opacity: 1,
     });
+  return embedTl;
 }

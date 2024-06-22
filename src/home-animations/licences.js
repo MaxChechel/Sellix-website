@@ -3,9 +3,28 @@ import TextPlugin from "gsap/TextPlugin";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 gsap.registerPlugin(TextPlugin, DrawSVGPlugin);
 export default function Licences() {
-  const licencesTl = gsap.timeline();
+  const mainTl = gsap.timeline({
+    repeat: -1,
+    paused: true,
+    repeatDelay: 1,
+  });
 
+  const initialStyles = gsap.timeline();
+  initialStyles
+    .set(".lic-anim_card", {
+      height: "auto",
+      padding: "0.75rem",
+    })
+    .set(".lic-anim_cards-wrap", {
+      height: "auto",
+    });
+
+  const licencesTl = gsap.timeline();
   licencesTl
+    .to(".lic-anim_card, .lic-anim_cards-wrap", {
+      opacity: 1,
+      duration: 1,
+    })
     .to(".lic-anim_cursor", {
       opacity: 1,
       duration: 0.5,
@@ -168,4 +187,7 @@ export default function Licences() {
       },
       "<30%"
     );
+
+  mainTl.add(initialStyles).add(licencesTl);
+  return mainTl;
 }

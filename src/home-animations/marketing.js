@@ -2,7 +2,11 @@ import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 gsap.registerPlugin(DrawSVGPlugin);
 export default function Marketing() {
-  const marketingTl = gsap.timeline();
+  const marketingTl = gsap.timeline({
+    paused: true,
+    repeat: -1,
+    repeatDelay: 1,
+  });
 
   marketingTl
     .to(".market-anim_cursor", {
@@ -91,4 +95,5 @@ export default function Marketing() {
       delay: 0.4,
       opacity: 1,
     });
+  return marketingTl;
 }

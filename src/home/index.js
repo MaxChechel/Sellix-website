@@ -1,85 +1,56 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { Flip } from "gsap/Flip";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 import Licences from "../home-animations/licences";
 import Marketing from "../home-animations/marketing";
 import Embed from "../home-animations/embed";
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+import Communities from "../home-animations/communities";
+import navLinkShapePosition from "../utils/navLinkShapePosition";
+import HeroTicker from "../home-animations/heroTicker";
 
-Licences();
-Marketing();
-Embed();
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
-// Select the main track and its containers
-const textTrack = document.querySelector(".home-hero_text-track");
-const numTrack = document.querySelector(".home-hero_num-wrap");
-const container = document.querySelector(".home-hero_text-wrap.is-middle");
+let mm = gsap.matchMedia();
+const navLinks = document.querySelectorAll(
+  ".navbar_dropdown-toggle, .navbar_link"
+);
+const navDdLinks = document.querySelectorAll(".navbar_dropdown-link-2");
+const navLinkShape = document.querySelector(".navbar_link-shape");
+const navMenu = document.querySelector(".navbar_menu");
+const navDdLinkShape = document.querySelector(".navbar_dd-link-shape");
+const navDdMenu = document.querySelector(".navbar_container-2");
 
-// Calculate the total number of steps (containers)
-const totalSteps = 6;
-const textDistancePerStep = 14; // Adjust as needed
-const numDistancePerStep = 8; // Adjust as needed
+mm.add("(hover:hover)", () => {
+  navLinkShapePosition(navLinks, navMenu, navLinkShape);
+  navLinkShapePosition(navDdLinks, navDdMenu, navDdLinkShape);
+});
 
-// Create GSAP timeline for the main track
-const trackTl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
-
-// Define animation steps for the main track
-for (let i = 0; i <= totalSteps; i++) {
-  // Animate the text track
-  trackTl.to(textTrack, {
-    y: `-${i * textDistancePerStep}rem`,
-    ease: "none",
-    duration: 0.4,
-  });
-
-  // Animate the number track
-  trackTl.to(
-    numTrack,
-    {
-      y: `-${i * numDistancePerStep}rem`,
-      ease: "none",
-      duration: 0.4,
-    },
-    `<` // Sync with text track
-  );
-
-  const items = container.querySelectorAll(".home-hero_text-inner-wrap");
-  const currentItem = items[i];
-  trackTl
-    .to(items, { opacity: 0.1, duration: 1, delay: 0 }, `<${1 / totalSteps}`)
-    .to(currentItem, { opacity: 1, duration: 1 }, "<0%");
-}
-
-// Function to reset the main track
-function resetMainTrack() {
-  gsap.set(textTrack, { y: 0 });
-  gsap.set(numTrack, { y: 0 });
-}
-
-// Add onComplete callback to reset the main track
-trackTl.eventCallback("onComplete", resetMainTrack);
-
-// Start the animation
-trackTl.play();
+////////////
+HeroTicker();
+Communities();
 
 ////Sticky section
 const timelineContent = document.querySelectorAll(".timeline_row");
 const timelineImages = document.querySelectorAll(".timeline_img");
 
-function animateElements(icon, index, iconOpacity, imageOpacity) {
+function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
     opacity: iconOpacity,
     duration: 1,
     ease: "power4.out",
   });
 
-  timelineImages.forEach((image, i) => {
-    gsap.to(image, {
-      opacity: i === index ? imageOpacity : 1 - imageOpacity,
-      duration: 1,
-      ease: "power4.out",
-    });
+  gsap.to(timelineImages, {
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out",
+  });
+  gsap.to(timelineImages[index], {
+    opacity: 1,
+    duration: 1,
+    ease: "power4.out",
   });
 }
 
@@ -90,10 +61,10 @@ timelineContent.forEach((content, index) => {
     trigger: content,
     start: "top 60%",
     end: "top 0%",
-    onEnter: () => animateElements(icon, index, 1, 1),
-    onEnterBack: () => animateElements(icon, index, 1, 1),
-    onLeave: () => animateElements(icon, index, 0.3, 0),
-    onLeaveBack: () => animateElements(icon, index, 0.3, 0),
+    onEnter: () => animateElements(icon, index, 1),
+    onEnterBack: () => animateElements(icon, index, 1),
+    onLeave: () => animateElements(icon, index, 0.3),
+    onLeaveBack: () => animateElements(icon, index, 0.3),
   });
 });
 
@@ -114,7 +85,6 @@ ScrollTrigger.create({
 const slider = document.querySelector(".horizontal-scroll_track");
 
 const sliderCards = slider.querySelectorAll(".horizontal-scroll_card");
-let mm = gsap.matchMedia();
 
 const horizontalScrollTween = gsap.to(slider, {
   x: () => slider.scrollWidth * -1,
@@ -127,7 +97,7 @@ ScrollTrigger.create({
   trigger: horizTrigger,
   start: "top 0",
   end: () =>
-    "+=" + document.querySelector(".horizontal-scroll_track").offsetWidth * 2,
+    "+=" + document.querySelector(".horizontal-scroll_track").offsetWidth * 1,
   animation: horizontalScrollTween,
   scrub: 1.1,
   invalidateOnRefresh: true,
@@ -174,16 +144,102 @@ pathSvgs.forEach((svg, i) => {
 //////Fraud shield
 
 //fraud_anim-img
-const fraudLoopTl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+const fraudLoopTl = gsap.timeline({
+  repeat: -1,
+  //repeatDelay: 1,
+  immediateRender: true,
+});
 
 const fraudLoop = document.querySelectorAll(".fraud_anim-img");
-const fraudCardWidth = fraudLoop[0].offsetWidth;
+const fraudCardWidth = fraudLoop[1].offsetWidth;
+gsap.set(".fraud_anim-wrapper", { x: 0, width: fraudCardWidth * 4 + 120 });
 //Marquee loop
 for (let i = 1; i <= 3; i++) {
-  fraudLoopTl.to(".fraud_anim-wrapper", {
-    x: `-${i * fraudCardWidth + i * 40}px + `,
-    ease: "none",
-    duration: 1,
-    delay: 1,
-  });
+  fraudLoopTl
+    .to(".fraud_anim-wrapper", {
+      translateX: `-${Math.round(i * fraudCardWidth + i * 40)}`,
+      ease: "power2.out",
+      duration: 1.4,
+      delay: 1,
+    })
+    .to(
+      fraudLoop[i],
+      {
+        scale: 1,
+        duration: 1,
+        ease: "none",
+      },
+      "<0%"
+    )
+    .to(
+      [fraudLoop[i - 1], fraudLoop[i + 1]],
+      {
+        scale: 0.9,
+        duration: 1,
+        ease: "none",
+      },
+      "<0%"
+    );
 }
+
+const mainLicencesTl = Licences();
+ScrollTrigger.create({
+  trigger: ".features-gallery_card.is-lic",
+  start: "top 50%",
+  end: "bottom 50%",
+  invalidateOnRefresh: true,
+  onEnter: () => mainLicencesTl.play(),
+  onLeave: () => mainLicencesTl.pause(),
+  onEnterBack: () => mainLicencesTl.play(),
+  onLeaveBack: () => mainLicencesTl.pause(),
+});
+
+const mainEmbedTl = Embed();
+ScrollTrigger.create({
+  trigger: ".features-gallery_card.is-embed",
+  start: "top 50%",
+  end: "bottom 50%",
+  invalidateOnRefresh: true,
+  onEnter: () => mainEmbedTl.play(),
+  onLeave: () => mainEmbedTl.pause(),
+  onEnterBack: () => mainEmbedTl.play(),
+  onLeaveBack: () => mainEmbedTl.pause(),
+});
+
+const mainMarketTl = Marketing();
+ScrollTrigger.create({
+  trigger: ".features-gallery_card.is-marketing",
+  start: "top 50%",
+  end: "bottom 50%",
+  invalidateOnRefresh: true,
+  onEnter: () => mainMarketTl.play(),
+  onLeave: () => mainMarketTl.pause(),
+  onEnterBack: () => mainMarketTl.play(),
+  onLeaveBack: () => mainMarketTl.pause(),
+});
+
+///
+const formSuccessWrap = document.querySelector(".success-message");
+
+// Callback function to close modal after successfull submit
+const mutationCallback = (mutationsList, observer) => {
+  for (let mutation of mutationsList) {
+    if (mutation.type === "attributes" && mutation.attributeName === "style") {
+      // Check if the style of success has been changed
+      if (formSuccessWrap.style.getPropertyValue("display") === "block") {
+        setTimeout(() => {
+          contactSaleModal.classList.remove("is-active");
+        }, 1000);
+        observer.disconnect();
+      }
+    }
+  }
+};
+const observer = new MutationObserver(mutationCallback);
+
+// Options for the observer (which mutations to observe)
+const observerOptions = {
+  attributes: true,
+  attributeOldValue: true,
+  attributeFilter: ["style"],
+};
