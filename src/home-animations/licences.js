@@ -9,22 +9,8 @@ export default function Licences() {
     repeatDelay: 1,
   });
 
-  const initialStyles = gsap.timeline();
-  initialStyles
-    .set(".lic-anim_card", {
-      height: "auto",
-      padding: "0.75rem",
-    })
-    .set(".lic-anim_cards-wrap", {
-      height: "auto",
-    });
-
   const licencesTl = gsap.timeline();
   licencesTl
-    .to(".lic-anim_card, .lic-anim_cards-wrap", {
-      opacity: 1,
-      duration: 1,
-    })
     .to(".lic-anim_cursor", {
       opacity: 1,
       duration: 0.5,
@@ -99,7 +85,7 @@ export default function Licences() {
       "<75%"
     )
     .to(".lic-anim_card-btn", {
-      scale: 1.01,
+      scale: 1.02,
       duration: 0.15,
     })
     .to(".lic-anim_card-btn", {
@@ -107,8 +93,8 @@ export default function Licences() {
       duration: 0.1,
     })
     .to(".lic-anim_cards-wrap", {
+      delay: 0.2,
       opacity: 0,
-      height: 0,
     })
     .to(
       ".lic-anim-input",
@@ -186,8 +172,57 @@ export default function Licences() {
         ease: "power4.out",
       },
       "<30%"
-    );
+    )
+    .to(".lic-anim_success-svg", {
+      opacity: 0,
+      scale: 0,
+      duration: 0.6,
+      ease: "power4.out",
+    })
+    .to(".lic-anim_card.is-first .lic-anim_card-img", {
+      width: "3rem",
+      height: "3rem",
+      duration: 0,
+    })
+    .to(" .lic-anim_card.is-first .lic-anim_active-badge", {
+      width: "0",
+      height: "0",
+      opacity: 0,
+      duration: 0,
+    })
+    .to(".lic-anim_card-inner-right-wrap .icon-embed-xsmall", {
+      opacity: 1,
+      height: "1.5rem",
+      width: "1.5rem",
+      duration: 0,
+    })
+    .to(".lic-anim_card-btn", {
+      height: 0,
+      opacity: 0,
+      duration: 0,
+    })
+    .to(".lic-anim_cursor", {
+      opacity: 0,
+      duration: 0,
+    })
+    .to(".lic-anim_card:not(.is-first)", {
+      height: "auto",
+      padding: "0.75rem",
+      opacity: 1,
+      duration: 0,
+    })
+    .to(".lic-anim_cursor", {
+      opacity: 1,
+      bottom: "-6rem",
+      right: "-10rem",
+      duration: 0,
+    })
+    .to(".lic-anim_cards-wrap", {
+      delay: 1,
+      height: "100%",
+      opacity: 1,
+    });
 
-  mainTl.add(initialStyles).add(licencesTl);
+  mainTl.add(licencesTl);
   return mainTl;
 }

@@ -138,6 +138,32 @@ export default function Embed() {
     })
     .to(".embed-anim_third-scene-wrap", {
       opacity: 1,
+    })
+    .to(".embed-anim_third-scene-wrap", {
+      delay: 0.5,
+      opacity: 0,
+    })
+    .to(".embed-anim_product-add", {
+      height: "auto",
+      opacity: 1,
+      duration: 0,
+    })
+    .to(".embed-anim_product-added", {
+      height: 0,
+      opacity: 0,
+      duration: 0,
+    })
+    .to(".embed-anim_cursor", {
+      bottom: "10%",
+      right: "10%",
+      duration: 0,
+    })
+    .to(".embed-anim_process-h-step", {
+      text: { value: "0" },
+      duration: 0,
+    })
+    .to(".embed-anim_top-wrap, .embed-anim_bottom-bar", {
+      opacity: 1,
     });
   return embedTl;
 }

@@ -1,16 +1,17 @@
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 gsap.registerPlugin(DrawSVGPlugin);
+
 export default function Marketing() {
-  const marketingTl = gsap.timeline({
+  const mainTl = gsap.timeline({
     paused: true,
     repeat: -1,
     repeatDelay: 1,
   });
 
+  const marketingTl = gsap.timeline({});
   marketingTl
     .to(".market-anim_cursor", {
-      delay: 1,
       bottom: "1rem",
     })
     .to(".market-anim_card-btn", {
@@ -24,6 +25,7 @@ export default function Marketing() {
     .to(".market-anim_cards-wrap", {
       delay: 0.4,
       opacity: 0,
+      ease: "power2.out",
     })
     .to(".market-anim_btn-add", {
       delay: 0.2,
@@ -94,6 +96,23 @@ export default function Marketing() {
     .to(".market-anim_rating-success-wrap", {
       delay: 0.4,
       opacity: 1,
+    })
+    .to(".market-anim_scene-2", {
+      delay: 0.4,
+      opacity: 0,
+    })
+    .set(".market-anim_btn-add", {
+      opacity: 0,
+      duration: 0,
+    })
+    .set(".market-anim_cursor", {
+      bottom: "-6rem",
+    })
+    .to(".market-anim_cards-wrap,.market-anim_scene-1", {
+      opacity: 1,
+      ease: "power2.out",
     });
-  return marketingTl;
+
+  mainTl.add(marketingTl);
+  return mainTl;
 }

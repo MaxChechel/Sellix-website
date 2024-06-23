@@ -201,29 +201,3 @@ ScrollTrigger.create({
   onEnterBack: () => mainMarketTl.play(),
   onLeaveBack: () => mainMarketTl.pause(),
 });
-
-///
-const formSuccessWrap = document.querySelector(".success-message");
-
-// Callback function to close modal after successfull submit
-const mutationCallback = (mutationsList, observer) => {
-  for (let mutation of mutationsList) {
-    if (mutation.type === "attributes" && mutation.attributeName === "style") {
-      // Check if the style of success has been changed
-      if (formSuccessWrap.style.getPropertyValue("display") === "block") {
-        setTimeout(() => {
-          contactSaleModal.classList.remove("is-active");
-        }, 1000);
-        observer.disconnect();
-      }
-    }
-  }
-};
-const observer = new MutationObserver(mutationCallback);
-
-// Options for the observer (which mutations to observe)
-const observerOptions = {
-  attributes: true,
-  attributeOldValue: true,
-  attributeFilter: ["style"],
-};
