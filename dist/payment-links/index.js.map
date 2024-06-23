@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/payment-links/index.js"],
+  "sourcesContent": ["const paymentLinksTl = gsap.timeline();\n\npaymentLinksTl\n  .to(\".paylinks-anim_chat-1, .paylinks-anim_chat-2, .paylinks-anim_chat-3\", {\n    delay: 0.5,\n    opacity: 1,\n    y: 0,\n    duration: 0.4,\n    ease: \"circ.out\",\n    stagger: { each: 0.5 },\n  })\n  .to(\".paylinks-anim_right\", {\n    delay: 0.2,\n    width: \"50%\",\n    duration: 1,\n    ease: \"circ.out\",\n  })\n  .to(\n    \".paylinks-anim_right-img\",\n    {\n      opacity: 1,\n      y: 0,\n      duration: 0.5,\n      ease: \"circ.out\",\n    },\n    \"<70%\"\n  );\n"],
+  "mappings": "MAAA,IAAMA,EAAiB,KAAK,SAAS,EAErCA,EACG,GAAG,sEAAuE,CACzE,MAAO,GACP,QAAS,EACT,EAAG,EACH,SAAU,GACV,KAAM,WACN,QAAS,CAAE,KAAM,EAAI,CACvB,CAAC,EACA,GAAG,uBAAwB,CAC1B,MAAO,GACP,MAAO,MACP,SAAU,EACV,KAAM,UACR,CAAC,EACA,GACC,2BACA,CACE,QAAS,EACT,EAAG,EACH,SAAU,GACV,KAAM,UACR,EACA,MACF",
+  "names": ["paymentLinksTl"]
+}

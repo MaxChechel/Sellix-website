@@ -7,25 +7,9 @@ import Licences from "../home-animations/licences";
 import Marketing from "../home-animations/marketing";
 import Embed from "../home-animations/embed";
 import Communities from "../home-animations/communities";
-import navLinkShapePosition from "../utils/navLinkShapePosition";
 import HeroTicker from "../home-animations/heroTicker";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
-
-let mm = gsap.matchMedia();
-const navLinks = document.querySelectorAll(
-  ".navbar_dropdown-toggle, .navbar_link"
-);
-const navDdLinks = document.querySelectorAll(".navbar_dropdown-link-2");
-const navLinkShape = document.querySelector(".navbar_link-shape");
-const navMenu = document.querySelector(".navbar_menu");
-const navDdLinkShape = document.querySelector(".navbar_dd-link-shape");
-const navDdMenu = document.querySelector(".navbar_container-2");
-
-mm.add("(hover:hover)", () => {
-  navLinkShapePosition(navLinks, navMenu, navLinkShape);
-  navLinkShapePosition(navDdLinks, navDdMenu, navDdLinkShape);
-});
 
 ////////////
 HeroTicker();

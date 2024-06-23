@@ -1,8 +1,6 @@
 import gsap from "gsap";
 
 export default function Communities() {
-  console.log("Communities");
-
   const items = document.querySelectorAll(".comm-anim_item-wrap");
   const emptyItems = document.querySelectorAll(".comm-anim_item-blank");
   const container = document.querySelector(".comm-anim");

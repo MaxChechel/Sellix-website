@@ -1,0 +1,2 @@
+(()=>{var i=gsap.timeline();i.to(".licenses_anim-input-wrap",{delay:.2,opacity:1,y:0,duration:.6,ease:"circ.out"}).to(".licenses_anim-cards-wrap",{opacity:1,duration:.4,ease:"circ.out"},"<30%").to(".licenses_anim-cards-img",{y:0,duration:.6,ease:"circ.out",stagger:{each:.025,from:"start"},onComplete:()=>{let e=gsap.timeline({repeat:-1}).to(".licenses_anim-input-glow",{opacity:1,duration:1.4}).to(".licenses_anim-input-glow",{opacity:0,duration:.8})}},"<0%");})();
+//# sourceMappingURL=index.js.map
