@@ -82,7 +82,7 @@ let horizTrigger = document.querySelector(".section.is-horiz-scroll");
 ScrollTrigger.create({
   trigger: horizTrigger,
   start: "top 0",
-  end: () => "+=" + horizSectionInitHeight + slider.scrollWidth * 1,
+  end: () => "+=" + slider.scrollWidth * 1.5,
   animation: horizontalScrollTween,
   scrub: 1.1,
   invalidateOnRefresh: true,
