@@ -81,7 +81,7 @@ ScrollTrigger.create({
   trigger: horizTrigger,
   start: "top 0",
   end: () =>
-    "+=" + document.querySelector(".horizontal-scroll_track").offsetWidth * 1,
+    "+=" + document.querySelector(".horizontal-scroll_track").scrollWidth * 1,
   animation: horizontalScrollTween,
   scrub: 1.1,
   invalidateOnRefresh: true,
