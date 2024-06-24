@@ -13,7 +13,7 @@ export default function HeroTicker() {
 
   mm.add("(max-width: 767px)", () => {
     textDistancePerStep = 7;
-    numDistancePerStep = 2.4;
+    numDistancePerStep = 2.3;
   });
 
   // Create GSAP timeline for the main track
