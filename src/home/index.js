@@ -70,7 +70,7 @@ const slider = document.querySelector(".horizontal-scroll_track");
 const horizScrollSection = document.querySelector(".section.is-horiz-scroll");
 const sliderCards = slider.querySelectorAll(".horizontal-scroll_card");
 const horizSectionInitHeight = horizScrollSection.offsetHeight;
-horizScrollSection.setAttribute("style", `height:${slider.scrollWidth}px`);
+//horizScrollSection.setAttribute("style", `height:${slider.scrollWidth}px`);
 
 const horizontalScrollTween = gsap.to(slider, {
   x: () => slider.scrollWidth * -1,
