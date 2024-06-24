@@ -70,10 +70,7 @@ const slider = document.querySelector(".horizontal-scroll_track");
 const horizScrollSection = document.querySelector(".section.is-horiz-scroll");
 const sliderCards = slider.querySelectorAll(".horizontal-scroll_card");
 const horizSectionInitHeight = horizScrollSection.offsetHeight;
-horizScrollSection.setAttribute(
-  "style",
-  `height:${horizSectionInitHeight + slider.scrollWidth}px`
-);
+horizScrollSection.setAttribute("style", `height:${slider.scrollWidth}px`);
 
 const horizontalScrollTween = gsap.to(slider, {
   x: () => slider.scrollWidth * -1,
@@ -85,7 +82,7 @@ let horizTrigger = document.querySelector(".section.is-horiz-scroll");
 ScrollTrigger.create({
   trigger: horizTrigger,
   start: "top 0",
-  end: () => "+=" + slider.scrollWidth * 1,
+  end: () => "+=" + horizSectionInitHeight + slider.scrollWidth * 1,
   animation: horizontalScrollTween,
   scrub: 1.1,
   invalidateOnRefresh: true,
