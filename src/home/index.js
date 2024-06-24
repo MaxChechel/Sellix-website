@@ -77,16 +77,16 @@ const horizontalScrollTween = gsap.to(slider, {
   xPercent: 100,
   ease: "none",
 });
-let horizTrigger = document.querySelector(".section.is-horiz-scroll");
 
 ScrollTrigger.create({
-  trigger: horizTrigger,
+  trigger: horizScrollSection,
   start: "top 0",
   end: () => "+=" + slider.scrollWidth - window.innerWidth,
   animation: horizontalScrollTween,
   scrub: 1.1,
   invalidateOnRefresh: true,
   pin: true,
+  markers: true,
 });
 
 ////Platforms
