@@ -5,10 +5,16 @@ export default function HeroTicker() {
   const numTrack = document.querySelector(".home-hero_num-wrap");
   const container = document.querySelector(".home-hero_text-wrap.is-middle");
 
-  // Calculate the total number of steps (containers)
+  const mm = gsap.matchMedia();
+
   const totalSteps = 6;
-  const textDistancePerStep = 14; // Adjust as needed
-  const numDistancePerStep = 8; // Adjust as needed
+  let textDistancePerStep = 14; // Adjust as needed
+  let numDistancePerStep = 8; // Adjust as needed
+
+  mm.add("(max-width: 767px)", () => {
+    textDistancePerStep = 7;
+    numDistancePerStep = 3.2;
+  });
 
   // Create GSAP timeline for the main track
   const trackTl = gsap.timeline({
