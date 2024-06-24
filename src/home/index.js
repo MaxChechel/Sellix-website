@@ -67,9 +67,11 @@ ScrollTrigger.create({
 
 ////Horizontal scroll cards
 const slider = document.querySelector(".horizontal-scroll_track");
-
+const horizScrollSection = document.querySelector(".section.is-horiz-scroll");
 const sliderCards = slider.querySelectorAll(".horizontal-scroll_card");
-
+horizScrollSection.height = document.querySelector(
+  ".horizontal-scroll_track"
+).scrollWidth;
 const horizontalScrollTween = gsap.to(slider, {
   x: () => slider.scrollWidth * -1,
   xPercent: 100,
