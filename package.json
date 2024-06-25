@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "serve",
-    "build": "esbuild './src/home/*' './src/home-animations/*' './src/communities/*' './src/utils/*' './src/payment-links/*' './src/licences/*'  './src/commerce/*' './src/fraud/*' './src/wallet/*' --bundle --sourcemap --minify --outdir=dist "
+    "build": "esbuild './src/home/*' './src/home-animations/*' './src/communities/*' './src/utils/*' './src/payment-links/*' './src/licences/*'  './src/commerce/*' './src/fraud/*' './src/wallet/*' --bundle --sourcemap --minify --outdir=dist --watch"
   },
   "keywords": [],
   "author": "Maksym Chechel",
