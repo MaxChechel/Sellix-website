@@ -1,10 +1,12 @@
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import Splitting from "splitting";
 export default function HeroTicker() {
+  gsap.registerPlugin(ScrollTrigger);
   // Select the main track and its containers
-  const textTrack = document.querySelector(".home-hero_text-track");
-  const numTrack = document.querySelector(".home-hero_num-wrap");
-  const container = document.querySelector(".home-hero_text-wrap.is-middle");
-
+  const navbar = document.querySelector(".navbar_component");
+  const nums = document.querySelectorAll(".home-hero_num");
+  const results = Splitting({ target: nums, by: "chars" });
   const mm = gsap.matchMedia();
 
   const totalSteps = 6;
@@ -16,35 +18,93 @@ export default function HeroTicker() {
     numDistancePerStep = 3.125;
   });
 
-  // Create GSAP timeline for the main track
-  const trackTl = gsap.timeline({
-    repeat: -1,
-    repeatDelay: 0,
-    delay: 2,
-    onComplete: () => {
-      trackTl.delay(0); // Reset delay after the first cycle
-    },
-  });
-  const items = container.querySelectorAll(".home-hero_text-inner-wrap");
+  const heroSection = document.querySelector(".section_home-hero");
 
-  for (let i = 1; i <= totalSteps; i++) {
-    // Animate the text track
-    trackTl
-      .to(textTrack, {
-        y: `-${i * textDistancePerStep}rem`,
-        ease: "circ.out",
-        duration: 0.8,
-      })
-      .to(
-        numTrack,
-        {
-          y: `-${i * numDistancePerStep}rem`,
-          ease: "circ.out",
-          duration: 0.8,
-        },
-        `<0%` // Sync with text track
-      )
-      .to([items[i - 1], items[i + 1]], { opacity: 0.1, duration: 1.6 }, "<0%")
-      .to(items[i], { opacity: 1, duration: 1.6 }, "<0%");
-  }
+  const heroScrollTl = gsap.timeline({});
+  // heroScrollTl.to(".home-hero_text-wrap", {
+  //   y: "-30%",
+  // });
+
+  heroScrollTl
+    .to(
+      ".home-hero_text-row:first-child .home-hero_num .char",
+      {
+        y: `-${numDistancePerStep}rem`,
+        duration: 0.6,
+        opacity: 0,
+        ease: "power4.out",
+        stagger: { each: 0.05 },
+      },
+      "10%"
+    )
+    .to(
+      ".home-hero_text-row:first-child .home-hero_text",
+      {
+        opacity: 0.1,
+      },
+      "10%"
+    )
+    .to(
+      ".home-hero_text-row:nth-child(2) .home-hero_text",
+      {
+        opacity: 1,
+      },
+      "10%"
+    )
+    .to(
+      ".home-hero_text-row:nth-child(2) .home-hero_num .char",
+      {
+        y: `-${numDistancePerStep}rem`,
+        duration: 0.6,
+        opacity: 1,
+        ease: "power4.out",
+        stagger: { each: 0.05 },
+      },
+      "10%"
+    )
+    .to(
+      ".home-hero_text-row:nth-child(2) .home-hero_text",
+      {
+        opacity: 0.1,
+      },
+      "40%"
+    )
+    .to(
+      ".home-hero_text-row:nth-child(2) .home-hero_num .char",
+      {
+        y: `-=${numDistancePerStep}rem`,
+        duration: 0.6,
+        opacity: 0,
+        ease: "power4.out",
+        stagger: { each: 0.05 },
+      },
+      "40%"
+    )
+    .to(
+      ".home-hero_text-row:nth-child(3) .home-hero_text",
+      {
+        opacity: 1,
+      },
+      "40%"
+    )
+    .to(
+      ".home-hero_text-row:nth-child(3) .home-hero_num .char",
+      {
+        y: `-=${numDistancePerStep}rem`,
+        duration: 0.6,
+        opacity: 1,
+        ease: "power4.out",
+        stagger: { each: 0.05 },
+      },
+      "40%"
+    );
+
+  ScrollTrigger.create({
+    trigger: heroSection,
+    start: `top ${navbar.offsetHeight}`,
+    end: `+=${window.innerHeight * 2}`,
+    scrub: 1.1,
+    pin: true,
+    animation: heroScrollTl,
+  });
 }

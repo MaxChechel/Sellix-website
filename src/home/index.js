@@ -1,8 +1,8 @@
 import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-
+import Splitting from "splitting";
 import Licences from "../home-animations/licences";
 import Marketing from "../home-animations/marketing";
 import Embed from "../home-animations/embed";
@@ -14,6 +14,56 @@ gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 ////////////
 HeroTicker();
 Communities();
+
+//Sellix heading section
+const splitText = Splitting({ target: ".home-intro_h", by: "chars" });
+const introScrollTl = gsap.timeline({});
+introScrollTl
+  .to(".home-intro_h.is-1 .word", {
+    opacity: 0,
+  })
+  .to(
+    ".home-intro_h.is-2 .char",
+    {
+      y: "0%",
+      opacity: 1,
+      ease: "power4.out",
+      stagger: { each: 0.05 },
+    },
+    "30%"
+  );
+ScrollTrigger.create({
+  trigger: ".section_home-intro",
+  start: "top 0",
+  end: `+=${window.innerHeight * 2}`,
+  scrub: 1.1,
+  pin: true,
+  animation: introScrollTl,
+});
+
+//Logo garden
+ScrollTrigger.create({
+  trigger: ".section_logo-garden",
+  start: "top 60%",
+  end: "top 40%",
+  invalidateOnRefresh: true,
+  onEnter: () => {
+    const tl = gsap
+      .timeline()
+      .to(".logo-garden_heading", { opacity: 1 })
+      .to(
+        ".logo_logo",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power4.out",
+          stagger: { each: 0.02, from: "center" },
+        },
+        "<20%"
+      );
+  },
+});
 
 ////Sticky section
 const timelineContent = document.querySelectorAll(".timeline_row");
@@ -54,7 +104,7 @@ timelineContent.forEach((content, index) => {
 
 ScrollTrigger.create({
   trigger: ".timeline_component",
-  start: "top 0%",
+  start: "top 30%",
   end: "bottom 100%",
   scrub: 1,
   onUpdate: (self) => {
@@ -200,4 +250,39 @@ ScrollTrigger.create({
   onLeave: () => mainMarketTl.pause(),
   onEnterBack: () => mainMarketTl.play(),
   onLeaveBack: () => mainMarketTl.pause(),
+});
+
+//Section headers
+const sectionHeaders = document.querySelectorAll(".section-header");
+sectionHeaders.forEach((header) => {
+  const tag = header.querySelector(".section-tag");
+  const heading = header.querySelector("h2");
+  const text = header.querySelector("p");
+
+  ScrollTrigger.create({
+    trigger: header,
+    start: "top 60%",
+    end: "top 40%",
+    invalidateOnRefresh: true,
+    onEnter: () => {
+      const tl = gsap
+        .timeline()
+        .to(tag, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" })
+        .to(
+          heading,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power4.out",
+          },
+          "<15%"
+        )
+        .to(
+          text,
+          { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" },
+          "<15%"
+        );
+    },
+  });
 });

@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "gsap": "npm:@gsap/shockingly@^3.12.5",
-    "split-type": "^0.3.4"
+    "split-type": "^0.3.4",
+    "splitting": "^1.1.0"
   },
   "devDependencies": {
     "esbuild": "^0.21.5",
