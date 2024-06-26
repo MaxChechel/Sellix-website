@@ -3,7 +3,7 @@ import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 gsap.registerPlugin(DrawSVGPlugin);
 
 const graphBars = document.querySelectorAll(".graphs-group path");
-
+const mm = gsap.matchMedia();
 const barHeights = [];
 const barYs = [];
 
