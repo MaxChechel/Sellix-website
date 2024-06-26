@@ -111,5 +111,5 @@ function spinTween() {
       { y: `-=${(distance / 10) * 5}vw`, duration: maxTime / 50 },
       "<0%"
     );
-  gsap.to(animTl, 5, { progress: 1, ease: "power3.inOut" });
+  gsap.to(animTl, 3, { progress: 1, ease: "power3.inOut" });
 }
