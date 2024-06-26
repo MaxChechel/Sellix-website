@@ -83,32 +83,39 @@ const animTl = gsap.timeline({
 function spinTween() {
   const maxTime = 2;
   const distance = "15";
-  animTl
+  let measure = "rem";
+  mm.add("(max-width: 991px)", () => {
+    measure = "vw";
+  });
 
-    .to(".n-1", { y: `-=${(distance / 10) * 5}vw`, duration: maxTime / 5 })
+  animTl
+    .to(".n-1", {
+      y: `-=${(distance / 10) * 5}${measure}`,
+      duration: maxTime / 5,
+    })
     .to(
       ".n-2",
-      { y: `-=${(distance / 10) * 6}vw`, duration: maxTime / 10 },
+      { y: `-=${(distance / 10) * 6}${measure}`, duration: maxTime / 10 },
       "<0%"
     )
     .to(
       ".n-3",
-      { y: `-=${(distance / 10) * 8}vw`, duration: maxTime / 20 },
+      { y: `-=${(distance / 10) * 8}${measure}`, duration: maxTime / 20 },
       "<0%"
     )
     .to(
       ".n-4",
-      { y: `-=${(distance / 10) * 9}vw`, duration: maxTime / 30 },
+      { y: `-=${(distance / 10) * 9}${measure}`, duration: maxTime / 30 },
       "<0%"
     )
     .to(
       ".n-5",
-      { y: `-=${(distance / 10) * 6}vw`, duration: maxTime / 40 },
+      { y: `-=${(distance / 10) * 6}${measure}`, duration: maxTime / 40 },
       "<0%"
     )
     .to(
       ".n-6",
-      { y: `-=${(distance / 10) * 5}vw`, duration: maxTime / 50 },
+      { y: `-=${(distance / 10) * 5}${measure}`, duration: maxTime / 50 },
       "<0%"
     );
   gsap.to(animTl, 3, { progress: 1, ease: "power3.inOut" });
