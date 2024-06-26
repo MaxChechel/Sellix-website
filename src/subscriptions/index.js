@@ -66,7 +66,7 @@ animTl1
   )
   .to(
     card1.querySelector(".n-3"),
-    { y: `-=${(distance / 10) * 5}${measure}`, duration: maxTime / 20 },
+    { y: `-=${(distance / 10) * 4}${measure}`, duration: maxTime / 20 },
     "<0%"
   );
 
