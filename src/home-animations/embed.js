@@ -11,6 +11,7 @@ export default function Embed() {
   embedTl
     .to(".embed-anim_cursor", {
       delay: 1,
+      duration: 0.6,
       bottom: "45%",
     })
     .to(".embed-add-btn", {
@@ -36,6 +37,7 @@ export default function Embed() {
     )
     .to(".embed-anim_cursor", {
       bottom: "45%",
+      duration: 0.6,
     })
     .to(".embed-anim_cursor", {
       delay: 0.4,
