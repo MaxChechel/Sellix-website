@@ -45,6 +45,7 @@ export default function Marketing() {
       "<0%"
     )
     .to(".market-anim_btn-add-load", {
+      delay: 0.4,
       width: "0rem",
       opacity: 0,
     })
