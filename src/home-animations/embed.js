@@ -55,7 +55,7 @@ export default function Embed() {
       opacity: 0,
     })
     .to(".embed-anim_seconds-scene-wrap", {
-      delay: 0.4,
+      delay: 0.6,
       opacity: 1,
     })
     .to(embedProcess, {
@@ -133,14 +133,14 @@ export default function Embed() {
       "<0%"
     )
     .to(".embed-anim_seconds-scene-wrap", {
-      delay: 0.6,
+      delay: 0.8,
       opacity: 0,
     })
     .to(".embed-anim_third-scene-wrap", {
       opacity: 1,
     })
     .to(".embed-anim_third-scene-wrap", {
-      delay: 0.5,
+      delay: 0.8,
       opacity: 0,
     })
     .to(".embed-anim_product-add", {
