@@ -15,6 +15,35 @@ gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 HeroTicker();
 Communities();
 
+//Hero logo
+
+const heroLogo = document.querySelector(".home-hero_logo-wrap");
+const logoParent = document.querySelector(".home-hero_left-anim-wrap");
+const logoParent1 = document.querySelector(".home-logo_parent-1");
+const logoParent2 = document.querySelector(".home-logo_parent-2"); // The second container
+
+let flipTween;
+
+const doFlip = (target) => {
+  flipTween && flipTween.kill();
+  const state = Flip.getState(heroLogo);
+  target.appendChild(heroLogo);
+  flipTween = Flip.from(state, { duration: 0.6 });
+};
+
+ScrollTrigger.create({
+  trigger: ".section_home-hero",
+  start: "bottom 75%",
+  end: "top 50%",
+  scrub: true,
+  onEnter: () => {
+    doFlip(logoParent1);
+  },
+  onLeaveBack: () => {
+    doFlip(logoParent);
+  },
+});
+
 //Sellix heading section
 const splitText = Splitting({ target: ".home-intro_h", by: "chars" });
 const introScrollTl = gsap.timeline({});
@@ -39,6 +68,14 @@ ScrollTrigger.create({
   scrub: 1.1,
   pin: true,
   animation: introScrollTl,
+  onUpdate: (self) => {
+    if (self.progress > 0.3) {
+      doFlip(logoParent2);
+    }
+    if (self.progress < 0.3) {
+      doFlip(logoParent1);
+    }
+  },
 });
 
 //Logo garden
@@ -250,39 +287,4 @@ ScrollTrigger.create({
   onLeave: () => mainMarketTl.pause(),
   onEnterBack: () => mainMarketTl.play(),
   onLeaveBack: () => mainMarketTl.pause(),
-});
-
-//Section headers
-const sectionHeaders = document.querySelectorAll(".section-header");
-sectionHeaders.forEach((header) => {
-  const tag = header.querySelector(".section-tag");
-  const heading = header.querySelector("h2");
-  const text = header.querySelector("p");
-
-  ScrollTrigger.create({
-    trigger: header,
-    start: "top 60%",
-    end: "top 40%",
-    invalidateOnRefresh: true,
-    onEnter: () => {
-      const tl = gsap
-        .timeline()
-        .to(tag, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" })
-        .to(
-          heading,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: "power4.out",
-          },
-          "<15%"
-        )
-        .to(
-          text,
-          { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" },
-          "<15%"
-        );
-    },
-  });
 });
