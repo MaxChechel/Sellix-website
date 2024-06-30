@@ -89,7 +89,7 @@ ScrollTrigger.create({
       .timeline()
       .to(".logo-garden_heading", { opacity: 1 })
       .to(
-        ".logo_logo",
+        ".marquee-image",
         {
           opacity: 1,
           y: 0,
@@ -105,40 +105,41 @@ ScrollTrigger.create({
 ////Sticky section
 const timelineContent = document.querySelectorAll(".timeline_row");
 const timelineImages = document.querySelectorAll(".timeline_img");
+let timelineMm = gsap.matchMedia();
+timelineMm.add("(min-width: 768px)", () => {
+  function animateElements(icon, index, iconOpacity = 1) {
+    gsap.to(icon, {
+      opacity: iconOpacity,
+      duration: 1,
+      ease: "power4.out",
+    });
 
-function animateElements(icon, index, iconOpacity = 1) {
-  gsap.to(icon, {
-    opacity: iconOpacity,
-    duration: 1,
-    ease: "power4.out",
-  });
+    gsap.to(timelineImages, {
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out",
+    });
+    gsap.to(timelineImages[index], {
+      opacity: 1,
+      duration: 1,
+      ease: "power4.out",
+    });
+  }
 
-  gsap.to(timelineImages, {
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out",
-  });
-  gsap.to(timelineImages[index], {
-    opacity: 1,
-    duration: 1,
-    ease: "power4.out",
-  });
-}
+  timelineContent.forEach((content, index) => {
+    const icon = content.querySelector(".timeline_icon-wrap");
 
-timelineContent.forEach((content, index) => {
-  const icon = content.querySelector(".timeline_icon-wrap");
-
-  ScrollTrigger.create({
-    trigger: content,
-    start: "top 60%",
-    end: "top 0%",
-    onEnter: () => animateElements(icon, index, 1),
-    onEnterBack: () => animateElements(icon, index, 1),
-    onLeave: () => animateElements(icon, index, 0.3),
-    onLeaveBack: () => animateElements(icon, index, 0.3),
+    ScrollTrigger.create({
+      trigger: content,
+      start: "top 60%",
+      end: "top 0%",
+      onEnter: () => animateElements(icon, index, 1),
+      onEnterBack: () => animateElements(icon, index, 1),
+      onLeave: () => animateElements(icon, index, 0.3),
+      onLeaveBack: () => animateElements(icon, index, 0.3),
+    });
   });
 });
-
 ScrollTrigger.create({
   trigger: ".timeline_component",
   start: "top 30%",
