@@ -104,7 +104,7 @@ ScrollTrigger.create({
 
 ////Sticky section
 const timelineContent = document.querySelectorAll(".timeline_row");
-const timelineImages = document.querySelectorAll(".timeline_img");
+const timelineImages = document.querySelectorAll(".timeline_img:not(.is-mob)");
 let timelineMm = gsap.matchMedia();
 
 function animateElements(icon, index, iconOpacity = 1) {
