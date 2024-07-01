@@ -29,7 +29,7 @@ const doFlip = (target, duration) => {
   flipTween && flipTween.kill();
   const state = Flip.getState(heroLogo);
   target.appendChild(heroLogo);
-  flipTween = Flip.from(state, {
+  flipTween = Flip.fit(target, state, {
     duration: duration,
     simple: true,
   });
