@@ -12,7 +12,7 @@ import HeroTicker from "../home-animations/heroTicker";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
 ////////////
-
+ScrollTrigger.normalizeScroll(true);
 Communities();
 HeroTicker();
 
