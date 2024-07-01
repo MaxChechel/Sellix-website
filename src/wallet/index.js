@@ -82,10 +82,13 @@ const animTl = gsap.timeline({
 
 function spinTween() {
   const maxTime = 2;
-  const distance = "15";
+  let distance = "15";
   let measure = "rem";
   mm.add("(max-width: 991px)", () => {
-    measure = "vw";
+    distance = "8.8";
+  });
+  mm.add("(max-width: 479px)", () => {
+    distance = "5";
   });
 
   animTl
