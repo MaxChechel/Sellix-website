@@ -11,13 +11,15 @@ let distance = "15";
 let distanceLarge = "20";
 let measure = "rem";
 mm.add("(max-width: 991px)", () => {
-  distance = "12.5";
+  distanceLarge = "12.5";
+  distance = "8.8";
 });
 mm.add("(max-width: 768px)", () => {
-  distance = "8.5";
+  distanceLarge = "8.5";
 });
 mm.add("(max-width: 479px)", () => {
   distance = "5";
+  distanceLarge = "5";
 });
 
 const card1 = document.querySelector("[data-hero-card='1']");
