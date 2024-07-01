@@ -68,7 +68,7 @@ introScrollTl
       ease: "power4.out",
       stagger: { each: 0.05 },
     },
-    "20%"
+    "30%"
   );
 ScrollTrigger.create({
   trigger: ".section_home-intro",
