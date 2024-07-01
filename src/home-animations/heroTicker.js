@@ -103,7 +103,7 @@ export default function HeroTicker() {
   ScrollTrigger.create({
     trigger: heroSection,
     start: `top ${navbar.offsetHeight}`,
-    end: `+=${window.innerHeight * 2}`,
+    end: `+=2000`,
     scrub: 1.1,
     pin: true,
     pinSpacer: true,
