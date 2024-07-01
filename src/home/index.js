@@ -31,7 +31,7 @@ const doFlip = (target, duration) => {
   target.appendChild(heroLogo);
   flipTween = Flip.from(state, {
     duration: duration,
-    simple: true,
+    //simple: true,
   });
 };
 heroLogoMm.add("(min-width: 768px)", () => {
