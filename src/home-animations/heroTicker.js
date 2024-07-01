@@ -21,7 +21,7 @@ export default function HeroTicker() {
 
   const heroSection = document.querySelector(".section_home-hero ");
   nums.forEach((num) => {
-    num.style.willChange = "transform, opacity";
+    num.style.willChange = "transform, opacity, filter, visibility";
   });
   const heroScrollTl = gsap.timeline({ defaults: { lazy: false } });
 
