@@ -72,7 +72,7 @@ introScrollTl
 ScrollTrigger.create({
   trigger: ".section_home-intro",
   start: "top 0",
-  end: `+=${window.innerHeight * 1.5}`,
+  end: `+=${window.innerHeight * 2}`,
   scrub: 1.1,
   pin: true,
   animation: introScrollTl,
