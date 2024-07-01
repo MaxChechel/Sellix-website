@@ -3,6 +3,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Splitting from "splitting";
 export default function HeroTicker() {
   gsap.registerPlugin(ScrollTrigger);
+
   // Select the main track and its containers
   const navbar = document.querySelector(".navbar_component");
   const nums = document.querySelectorAll(".home-hero_num");
@@ -15,10 +16,10 @@ export default function HeroTicker() {
 
   mm.add("(max-width: 767px)", () => {
     textDistancePerStep = 7;
-    numDistancePerStep = 3.125;
+    numDistancePerStep = 7.5;
   });
 
-  const heroSection = document.querySelector(".section_home-hero");
+  const heroSection = document.querySelector(".section_home-hero ");
 
   const heroScrollTl = gsap.timeline({});
   // heroScrollTl.to(".home-hero_text-wrap", {
@@ -105,6 +106,7 @@ export default function HeroTicker() {
     end: `+=${window.innerHeight * 2}`,
     scrub: 1.1,
     pin: true,
+    pinSpacer: true,
     animation: heroScrollTl,
   });
 }

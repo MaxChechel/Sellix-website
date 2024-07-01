@@ -62,8 +62,7 @@ export default function Marketing() {
       opacity: 1,
     })
     .to(".market-anim_rating-cursor", {
-      bottom: "6rem",
-      right: "0rem",
+      bottom: "50%",
     })
     .to(".market-anim_rating-stars path", {
       stroke: "#FFC403",
@@ -80,8 +79,8 @@ export default function Marketing() {
     })
     .to(".market-anim_rating-cursor", {
       delay: 0.3,
-      bottom: "3rem",
-      right: "4rem",
+      bottom: "-3%",
+      right: "40%",
     })
     .to(".market-anim_rating-btn", {
       scale: 1.02,

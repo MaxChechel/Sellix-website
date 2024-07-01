@@ -1,6 +1,6 @@
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { Flip } from "gsap/Flip";
+//import { gsap } from "gsap";
+//import { ScrollTrigger } from "gsap/ScrollTrigger";
+//import { Flip } from "gsap/Flip";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import Splitting from "splitting";
 import Licences from "../home-animations/licences";
@@ -12,38 +12,47 @@ import HeroTicker from "../home-animations/heroTicker";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
 ////////////
-HeroTicker();
+
 Communities();
+HeroTicker();
 
 //Hero logo
-
+let heroLogoMm = gsap.matchMedia();
 const heroLogo = document.querySelector(".home-hero_logo-wrap");
 const logoParent = document.querySelector(".home-hero_left-anim-wrap");
 const logoParent1 = document.querySelector(".home-logo_parent-1");
-const logoParent2 = document.querySelector(".home-logo_parent-2"); // The second container
+const logoParent2 = document.querySelector(".home-logo_parent-2");
 
 let flipTween;
 
-const doFlip = (target) => {
+const doFlip = (target, duration) => {
   flipTween && flipTween.kill();
   const state = Flip.getState(heroLogo);
   target.appendChild(heroLogo);
-  flipTween = Flip.from(state, { duration: 0.6 });
+  flipTween = Flip.from(state, {
+    duration: duration,
+    scale: true,
+    simple: true,
+  });
 };
-
-ScrollTrigger.create({
-  trigger: ".section_home-hero",
-  start: "bottom 75%",
-  end: "top 50%",
-  scrub: true,
-  onEnter: () => {
-    doFlip(logoParent1);
-  },
-  onLeaveBack: () => {
-    doFlip(logoParent);
-  },
+heroLogoMm.add("(min-width: 768px)", () => {
+  ScrollTrigger.create({
+    trigger: ".section_home-hero",
+    start: "bottom 75%",
+    end: "top 50%",
+    scrub: true,
+    onEnter: () => {
+      heroLogoMm.add("(min-width: 768px)", () => {
+        doFlip(logoParent1, 1.5);
+      });
+    },
+    onLeaveBack: () => {
+      heroLogoMm.add("(min-width: 768px)", () => {
+        doFlip(logoParent, 1.5);
+      });
+    },
+  });
 });
-
 //Sellix heading section
 const splitText = Splitting({ target: ".home-intro_h", by: "chars" });
 const introScrollTl = gsap.timeline({});
@@ -59,21 +68,21 @@ introScrollTl
       ease: "power4.out",
       stagger: { each: 0.05 },
     },
-    "30%"
+    "20%"
   );
 ScrollTrigger.create({
   trigger: ".section_home-intro",
   start: "top 0",
-  end: `+=${window.innerHeight * 2}`,
+  end: `+=${window.innerHeight * 1.5}`,
   scrub: 1.1,
   pin: true,
   animation: introScrollTl,
   onUpdate: (self) => {
     if (self.progress > 0.3) {
-      doFlip(logoParent2);
+      doFlip(logoParent2, 0.6);
     }
     if (self.progress < 0.3) {
-      doFlip(logoParent1);
+      doFlip(logoParent1, 0.6);
     }
   },
 });

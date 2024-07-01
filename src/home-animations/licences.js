@@ -214,7 +214,7 @@ export default function Licences() {
     .to(".lic-anim_cursor", {
       opacity: 1,
       bottom: "-6rem",
-      right: "-10rem",
+      right: "-2rem",
       duration: 0,
     })
     .to(".lic-anim_cards-wrap", {
