@@ -11,7 +11,10 @@ const distance = "15";
 const distanceLarge = "20";
 let measure = "rem";
 mm.add("(max-width: 991px)", () => {
-  measure = "vw";
+  distance = "8.8";
+});
+mm.add("(max-width: 479px)", () => {
+  distance = "5";
 });
 
 const card1 = document.querySelector("[data-hero-card='1']");
