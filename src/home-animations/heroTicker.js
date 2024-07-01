@@ -20,11 +20,10 @@ export default function HeroTicker() {
   });
 
   const heroSection = document.querySelector(".section_home-hero ");
-
-  const heroScrollTl = gsap.timeline({});
-  // heroScrollTl.to(".home-hero_text-wrap", {
-  //   y: "-30%",
-  // });
+  nums.forEach((num) => {
+    num.style.willChange = "transform, opacity";
+  });
+  const heroScrollTl = gsap.timeline({ defaults: { lazy: false } });
 
   heroScrollTl
     .to(
