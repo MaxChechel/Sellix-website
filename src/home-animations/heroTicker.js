@@ -30,6 +30,7 @@ export default function HeroTicker() {
       ".home-hero_text-row:first-child .home-hero_num .char",
       {
         y: `-${numDistancePerStep}rem`,
+        transform: "translate3d(0, 0, 0)",
         duration: 0.6,
         opacity: 0,
         ease: "power4.out",
@@ -55,6 +56,7 @@ export default function HeroTicker() {
       ".home-hero_text-row:nth-child(2) .home-hero_num .char",
       {
         y: `-${numDistancePerStep}rem`,
+        transform: "translate3d(0, 0, 0)",
         duration: 0.6,
         opacity: 1,
         ease: "power4.out",
@@ -73,6 +75,7 @@ export default function HeroTicker() {
       ".home-hero_text-row:nth-child(2) .home-hero_num .char",
       {
         y: `-=${numDistancePerStep}rem`,
+        transform: "translate3d(0, 0, 0)",
         duration: 0.6,
         opacity: 0,
         ease: "power4.out",
@@ -91,6 +94,7 @@ export default function HeroTicker() {
       ".home-hero_text-row:nth-child(3) .home-hero_num .char",
       {
         y: `-=${numDistancePerStep}rem`,
+        transform: "translate3d(0, 0, 0)",
         duration: 0.6,
         opacity: 1,
         ease: "power4.out",
