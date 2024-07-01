@@ -31,7 +31,6 @@ const doFlip = (target, duration) => {
   target.appendChild(heroLogo);
   flipTween = Flip.from(state, {
     duration: duration,
-    scale: true,
     simple: true,
   });
 };
