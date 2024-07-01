@@ -8,10 +8,13 @@ const heroCards = document.querySelectorAll(
 const mm = gsap.matchMedia();
 const maxTime = 2;
 let distance = "15";
-const distanceLarge = "20";
+let distanceLarge = "20";
 let measure = "rem";
 mm.add("(max-width: 991px)", () => {
-  distance = "8.8";
+  distance = "12.5";
+});
+mm.add("(max-width: 768px)", () => {
+  distance = "8.5";
 });
 mm.add("(max-width: 479px)", () => {
   distance = "5";
