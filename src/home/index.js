@@ -17,41 +17,41 @@ Communities();
 HeroTicker();
 
 //Hero logo
-let heroLogoMm = gsap.matchMedia();
-const heroLogo = document.querySelector(".home-hero_logo-wrap");
-const logoParent = document.querySelector(".home-hero_left-anim-wrap");
-const logoParent1 = document.querySelector(".home-logo_parent-1");
-const logoParent2 = document.querySelector(".home-logo_parent-2");
+// let heroLogoMm = gsap.matchMedia();
+// const heroLogo = document.querySelector(".home-hero_logo-wrap");
+// const logoParent = document.querySelector(".home-hero_left-anim-wrap");
+// const logoParent1 = document.querySelector(".home-logo_parent-1");
+// const logoParent2 = document.querySelector(".home-logo_parent-2");
 
-let flipTween;
+// let flipTween;
 
-const doFlip = (target, duration) => {
-  flipTween && flipTween.kill();
-  const state = Flip.getState(heroLogo);
-  target.appendChild(heroLogo);
-  flipTween = Flip.from(state, {
-    duration: duration,
-    //simple: true,
-  });
-};
-heroLogoMm.add("(min-width: 768px)", () => {
-  ScrollTrigger.create({
-    trigger: ".section_home-hero",
-    start: "bottom 75%",
-    end: "top 50%",
-    scrub: true,
-    onEnter: () => {
-      heroLogoMm.add("(min-width: 768px)", () => {
-        doFlip(logoParent1, 1.5);
-      });
-    },
-    onLeaveBack: () => {
-      heroLogoMm.add("(min-width: 768px)", () => {
-        doFlip(logoParent, 1.5);
-      });
-    },
-  });
-});
+// const doFlip = (target, duration) => {
+//   flipTween && flipTween.kill();
+//   const state = Flip.getState(heroLogo);
+//   target.appendChild(heroLogo);
+//   flipTween = Flip.from(state, {
+//     duration: duration,
+//     //simple: true,
+//   });
+// };
+// heroLogoMm.add("(min-width: 768px)", () => {
+//   ScrollTrigger.create({
+//     trigger: ".section_home-hero",
+//     start: "bottom 75%",
+//     end: "top 50%",
+//     scrub: true,
+//     onEnter: () => {
+//       heroLogoMm.add("(min-width: 768px)", () => {
+//         doFlip(logoParent1, 1.5);
+//       });
+//     },
+//     onLeaveBack: () => {
+//       heroLogoMm.add("(min-width: 768px)", () => {
+//         doFlip(logoParent, 1.5);
+//       });
+//     },
+//   });
+// });
 //Sellix heading section
 const splitText = Splitting({ target: ".home-intro_h", by: "chars" });
 const introScrollTl = gsap.timeline({});
@@ -76,14 +76,14 @@ ScrollTrigger.create({
   scrub: 1.1,
   pin: true,
   animation: introScrollTl,
-  onUpdate: (self) => {
-    if (self.progress > 0.3) {
-      doFlip(logoParent2, 0.6);
-    }
-    if (self.progress < 0.3) {
-      doFlip(logoParent1, 0.6);
-    }
-  },
+  // onUpdate: (self) => {
+  //   if (self.progress > 0.3) {
+  //     doFlip(logoParent2, 0.6);
+  //   }
+  //   if (self.progress < 0.3) {
+  //     doFlip(logoParent1, 0.6);
+  //   }
+  // },
 });
 
 //Logo garden

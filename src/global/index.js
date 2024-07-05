@@ -83,3 +83,37 @@ if (productCards.length > 0) {
     },
   });
 }
+///Gateways modal
+const gatewaysLinks = document.querySelectorAll(".gateways_item-link");
+const gatewaysModals = document.querySelectorAll(".modal[data-gateway-modal]");
+
+gatewaysLinks.forEach((link) => {
+  const slug = link.getAttribute("data-gateway");
+  const modal = document.querySelector(`.modal[data-gateway-modal="${slug}"]`);
+
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.classList.add("is-active");
+  });
+});
+
+gatewaysModals.forEach((modal) => {
+  const slug = modal.getAttribute("data-gateway-modal");
+  const cardsContainer = modal.querySelector(".gateway-modal_cards-container");
+  fetch("/gateways/" + slug)
+    .then((response) => response.text())
+    .then(function (data) {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = data;
+      const cards = tempDiv.querySelector(".gateway-modal_cards-wrap");
+      cardsContainer.appendChild(cards);
+    })
+    .catch(function (error) {
+      console.error("Error:", error);
+    });
+
+  const closeBtn = modal.querySelector(".modal_close-btn");
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("is-active");
+  });
+});
