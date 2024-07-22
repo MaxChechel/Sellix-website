@@ -4,16 +4,13 @@
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import Splitting from "splitting";
 import Licences from "../home-animations/licences";
-import Marketing from "../home-animations/marketing";
 import Embed from "../home-animations/embed";
-import Communities from "../home-animations/communities";
 import HeroTicker from "../home-animations/heroTicker";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
 ////////////
 
-Communities();
 HeroTicker();
 
 //Hero logo
@@ -164,9 +161,6 @@ ScrollTrigger.create({
 ////Horizontal scroll cards
 const slider = document.querySelector(".horizontal-scroll_track");
 const horizScrollSection = document.querySelector(".section.is-horiz-scroll");
-const sliderCards = slider.querySelectorAll(".horizontal-scroll_card");
-const horizSectionInitHeight = horizScrollSection.offsetHeight;
-//horizScrollSection.setAttribute("style", `height:${slider.scrollWidth}px`);
 
 const horizontalScrollTween = gsap.to(slider, {
   x: () => slider.scrollWidth * -1,
@@ -221,47 +215,6 @@ pathSvgs.forEach((svg, i) => {
   tween.play();
 });
 
-//////Fraud shield
-
-//fraud_anim-img
-const fraudLoopTl = gsap.timeline({
-  repeat: -1,
-  //repeatDelay: 1,
-  immediateRender: true,
-});
-
-const fraudLoop = document.querySelectorAll(".fraud_anim-img");
-const fraudCardWidth = fraudLoop[1].offsetWidth;
-gsap.set(".fraud_anim-wrapper", { x: 0, width: fraudCardWidth * 4 + 120 });
-//Marquee loop
-for (let i = 1; i <= 3; i++) {
-  fraudLoopTl
-    .to(".fraud_anim-wrapper", {
-      translateX: `-${Math.round(i * fraudCardWidth + i * 40)}`,
-      ease: "power2.out",
-      duration: 1.4,
-      delay: 1,
-    })
-    .to(
-      fraudLoop[i],
-      {
-        scale: 1,
-        duration: 1,
-        ease: "none",
-      },
-      "<0%"
-    )
-    .to(
-      [fraudLoop[i - 1], fraudLoop[i + 1]],
-      {
-        scale: 0.9,
-        duration: 1,
-        ease: "none",
-      },
-      "<0%"
-    );
-}
-
 const mainLicencesTl = Licences();
 ScrollTrigger.create({
   trigger: ".features-gallery_card.is-lic",
@@ -284,16 +237,4 @@ ScrollTrigger.create({
   onLeave: () => mainEmbedTl.pause(),
   onEnterBack: () => mainEmbedTl.play(),
   onLeaveBack: () => mainEmbedTl.pause(),
-});
-
-const mainMarketTl = Marketing();
-ScrollTrigger.create({
-  trigger: ".features-gallery_card.is-marketing",
-  start: "top 50%",
-  end: "bottom 50%",
-  invalidateOnRefresh: true,
-  onEnter: () => mainMarketTl.play(),
-  onLeave: () => mainMarketTl.pause(),
-  onEnterBack: () => mainMarketTl.play(),
-  onLeaveBack: () => mainMarketTl.pause(),
 });
