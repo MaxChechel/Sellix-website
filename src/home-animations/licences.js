@@ -79,7 +79,7 @@ export default function Licences() {
     .to(
       ".lic-anim_btn-fill",
       {
-        fill: "#69707A",
+        fill: "#808080",
         duration: 0.2,
       },
       "<75%"
