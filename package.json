@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "serve",
-    "build": "esbuild './src/**/*' --bundle --sourcemap --minify --outdir=dist  "
+    "dev": "esbuild './src/**/*' --bundle --minify --outdir=dist --watch",
+    "build": "esbuild './src/**/*' --bundle --minify --outdir=dist"
   },
   "keywords": [],
   "author": "Maksym Chechel",

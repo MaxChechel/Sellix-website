@@ -110,8 +110,12 @@ ScrollTrigger.create({
 ////Sticky section
 const timelineContent = document.querySelectorAll(".timeline_row");
 const timelineImages = document.querySelectorAll(".timeline_img:not(.is-mob)");
+const videos = document.querySelectorAll(".timeline_video .video");
+const videosWrap = document.querySelectorAll(".timeline_video");
 let timelineMm = gsap.matchMedia();
-
+videos.forEach((video) => {
+  video.pause();
+});
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
     opacity: iconOpacity,
@@ -119,15 +123,25 @@ function animateElements(icon, index, iconOpacity = 1) {
     ease: "power4.out",
   });
 
-  gsap.to(timelineImages, {
+  gsap.to(videosWrap, {
     opacity: 0,
     duration: 1,
     ease: "power4.out",
   });
-  gsap.to(timelineImages[index], {
+  gsap.to(videosWrap[index], {
     opacity: 1,
     duration: 1,
     ease: "power4.out",
+  });
+
+  // Play current video
+  videos[index].play();
+
+  // Pause all other videos
+  videos.forEach((video, videoIndex) => {
+    if (videoIndex !== index) {
+      video.pause();
+    }
   });
 }
 

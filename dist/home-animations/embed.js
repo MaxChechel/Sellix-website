@@ -45,4 +45,3 @@ gsap/TextPlugin.js:
    * @author: Jack Doyle, jack@greensock.com
   *)
 */
-//# sourceMappingURL=embed.js.map

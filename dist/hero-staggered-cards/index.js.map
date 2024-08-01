@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/hero-staggered-cards/index.js"],
-  "sourcesContent": ["const heroCards = document.querySelectorAll(\n  \".pricing_inner-wrap, .pricing_banner\"\n);\ngsap.to(heroCards, {\n  delay: 0.2,\n  opacity: 1,\n  y: 0,\n  duration: 0.6,\n  ease: \"circ.out\",\n  stagger: { each: 0.075 },\n});\n"],
-  "mappings": "MAAA,IAAMA,EAAY,SAAS,iBACzB,sCACF,EACA,KAAK,GAAGA,EAAW,CACjB,MAAO,GACP,QAAS,EACT,EAAG,EACH,SAAU,GACV,KAAM,WACN,QAAS,CAAE,KAAM,IAAM,CACzB,CAAC",
-  "names": ["heroCards"]
-}

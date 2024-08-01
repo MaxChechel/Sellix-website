@@ -1,2 +1,1 @@
 (()=>{var o=document.querySelectorAll(".graphs-group rect"),s=[],c=[];o.forEach((t,e)=>{let r=parseFloat(t.getAttribute("height")),a=parseFloat(t.getAttribute("y"));s.push(r),c.push(a),gsap.set(t,{attr:{height:0,y:a+r}})});var g=document.querySelectorAll(".fraud_hero-grid-img"),h=gsap.timeline();h.to(g,{delay:.5,opacity:1,y:0,duration:.6,ease:"circ.out",stagger:{each:.075}}).add(()=>{o.forEach((t,e)=>{gsap.to(t,{delay:.025*e,attr:{height:s[e],y:c[e]},duration:.6,ease:"power4.out"})})},"<20%");})();
-//# sourceMappingURL=index.js.map
