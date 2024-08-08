@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
 ////////////
 
-HeroTicker();
+//HeroTicker();
 
 //Hero logo
 // let heroLogoMm = gsap.matchMedia();
@@ -51,37 +51,37 @@ HeroTicker();
 // });
 //Sellix heading section
 const splitText = Splitting({ target: ".home-intro_h", by: "chars" });
-const introScrollTl = gsap.timeline({});
-introScrollTl
-  .to(".home-intro_h.is-1 .word", {
-    opacity: 0,
-  })
-  .to(
-    ".home-intro_h.is-2 .char",
-    {
-      y: "0%",
-      opacity: 1,
-      ease: "power4.out",
-      stagger: { each: 0.05 },
-    },
-    "30%"
-  );
-ScrollTrigger.create({
-  trigger: ".section_home-intro",
-  start: "top 0",
-  end: `+=${window.innerHeight * 2}`,
-  scrub: 1.1,
-  pin: true,
-  animation: introScrollTl,
-  // onUpdate: (self) => {
-  //   if (self.progress > 0.3) {
-  //     doFlip(logoParent2, 0.6);
-  //   }
-  //   if (self.progress < 0.3) {
-  //     doFlip(logoParent1, 0.6);
-  //   }
-  // },
-});
+// const introScrollTl = gsap.timeline({});
+// introScrollTl
+//   .to(".home-intro_h.is-1 .word", {
+//     opacity: 0,
+//   })
+//   .to(
+//     ".home-intro_h.is-2 .char",
+//     {
+//       y: "0%",
+//       opacity: 1,
+//       ease: "power4.out",
+//       stagger: { each: 0.05 },
+//     },
+//     "30%"
+//   );
+// ScrollTrigger.create({
+//   trigger: ".section_home-intro",
+//   start: "top 0",
+//   end: `+=${window.innerHeight * 2}`,
+//   scrub: 1.1,
+//   pin: true,
+//   animation: introScrollTl,
+//   // onUpdate: (self) => {
+//   //   if (self.progress > 0.3) {
+//   //     doFlip(logoParent2, 0.6);
+//   //   }
+//   //   if (self.progress < 0.3) {
+//   //     doFlip(logoParent1, 0.6);
+//   //   }
+//   // },
+// });
 
 //Logo garden
 ScrollTrigger.create({
