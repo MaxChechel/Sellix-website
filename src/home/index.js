@@ -109,9 +109,8 @@ ScrollTrigger.create({
 
 ////Sticky section
 const timelineContent = document.querySelectorAll(".timeline_row");
-const timelineImages = document.querySelectorAll(".timeline_img:not(.is-mob)");
-const videos = document.querySelectorAll(".timeline_video .video");
-const videosWrap = document.querySelectorAll(".timeline_video");
+const videos = document.querySelectorAll(".timeline_videos-cms-item .video");
+const videosWrap = document.querySelectorAll(".timeline_videos-cms-item");
 let timelineMm = gsap.matchMedia();
 videos.forEach((video) => {
   video.pause();
@@ -163,7 +162,7 @@ ScrollTrigger.create({
   trigger: ".timeline_component",
   start: "top 30%",
   end: "bottom 100%",
-  scrub: 1,
+  scrub: 1.2,
   onUpdate: (self) => {
     gsap.to(".timeline_progress-line", {
       height: self.progress * 100 + "%",
