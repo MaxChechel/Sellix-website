@@ -15,7 +15,7 @@ introSections.forEach((section) => {
   ScrollTrigger.create({
     trigger: section,
     start: "top 60%",
-    end: "bottom 100%",
+    end: "bottom 50%",
     invalidateOnRefresh: true,
     onEnter: () => {
       gsap.to(introSections, {
