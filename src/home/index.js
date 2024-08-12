@@ -9,79 +9,28 @@ import HeroTicker from "../home-animations/heroTicker";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
-////////////
-
-//HeroTicker();
-
-//Hero logo
-// let heroLogoMm = gsap.matchMedia();
-// const heroLogo = document.querySelector(".home-hero_logo-wrap");
-// const logoParent = document.querySelector(".home-hero_left-anim-wrap");
-// const logoParent1 = document.querySelector(".home-logo_parent-1");
-// const logoParent2 = document.querySelector(".home-logo_parent-2");
-
-// let flipTween;
-
-// const doFlip = (target, duration) => {
-//   flipTween && flipTween.kill();
-//   const state = Flip.getState(heroLogo);
-//   target.appendChild(heroLogo);
-//   flipTween = Flip.from(state, {
-//     duration: duration,
-//     //simple: true,
-//   });
-// };
-// heroLogoMm.add("(min-width: 768px)", () => {
-//   ScrollTrigger.create({
-//     trigger: ".section_home-hero",
-//     start: "bottom 75%",
-//     end: "top 50%",
-//     scrub: true,
-//     onEnter: () => {
-//       heroLogoMm.add("(min-width: 768px)", () => {
-//         doFlip(logoParent1, 1.5);
-//       });
-//     },
-//     onLeaveBack: () => {
-//       heroLogoMm.add("(min-width: 768px)", () => {
-//         doFlip(logoParent, 1.5);
-//       });
-//     },
-//   });
-// });
-//Sellix heading section
-const splitText = Splitting({ target: ".home-intro_h", by: "chars" });
-// const introScrollTl = gsap.timeline({});
-// introScrollTl
-//   .to(".home-intro_h.is-1 .word", {
-//     opacity: 0,
-//   })
-//   .to(
-//     ".home-intro_h.is-2 .char",
-//     {
-//       y: "0%",
-//       opacity: 1,
-//       ease: "power4.out",
-//       stagger: { each: 0.05 },
-//     },
-//     "30%"
-//   );
-// ScrollTrigger.create({
-//   trigger: ".section_home-intro",
-//   start: "top 0",
-//   end: `+=${window.innerHeight * 2}`,
-//   scrub: 1.1,
-//   pin: true,
-//   animation: introScrollTl,
-//   // onUpdate: (self) => {
-//   //   if (self.progress > 0.3) {
-//   //     doFlip(logoParent2, 0.6);
-//   //   }
-//   //   if (self.progress < 0.3) {
-//   //     doFlip(logoParent1, 0.6);
-//   //   }
-//   // },
-// });
+//Intro sections
+const introSections = document.querySelectorAll(".home-intro_inner-wrap");
+introSections.forEach((section) => {
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top 60%",
+    end: "bottom 100%",
+    invalidateOnRefresh: true,
+    onEnter: () => {
+      gsap.to(introSections, {
+        opacity: 0.6,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+      gsap.to(section, {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    },
+  });
+});
 
 //Logo garden
 ScrollTrigger.create({
