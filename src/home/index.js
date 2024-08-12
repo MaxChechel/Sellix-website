@@ -19,7 +19,19 @@ introSections.forEach((section) => {
     invalidateOnRefresh: true,
     onEnter: () => {
       gsap.to(introSections, {
-        opacity: 0.6,
+        opacity: 0.3,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+      gsap.to(section, {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    },
+    onEnterBack: () => {
+      gsap.to(introSections, {
+        opacity: 0.3,
         duration: 0.6,
         ease: "power2.out",
       });
