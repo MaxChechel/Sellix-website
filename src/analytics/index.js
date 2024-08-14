@@ -112,7 +112,7 @@ animTl1
     "<0%"
   );
 
-gsap.to(animTl1, 5, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl1, 5.4, { progress: 1, ease: "power3.inOut" });
 
 //Spinning nums 2
 const animTl2 = gsap.timeline({
@@ -133,7 +133,7 @@ animTl2
     "<0%"
   );
 
-gsap.to(animTl2, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl2, 5.4, { progress: 1, ease: "power3.inOut" });
 
 //Spinning nums 3
 const animTl3 = gsap.timeline({
@@ -154,7 +154,7 @@ animTl3
     "<0%"
   );
 
-gsap.to(animTl3, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl3, 5.4, { progress: 1, ease: "power3.inOut" });
 
 //Spinning nums 4
 const animTl4 = gsap.timeline({
@@ -175,7 +175,7 @@ animTl4
     "<0%"
   );
 
-gsap.to(animTl4, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl4, 5.4, { progress: 1, ease: "power3.inOut" });
 
 //Spinning nums 5
 const animTl5 = gsap.timeline({
@@ -201,7 +201,7 @@ animTl5
     "<0%"
   );
 
-gsap.to(animTl5, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl5, 5.4, { progress: 1, ease: "power3.inOut" });
 
 //Spinning nums 6
 
@@ -228,7 +228,7 @@ animTl6
     "<0%"
   );
 
-gsap.to(animTl6, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl6, 5.4, { progress: 1, ease: "power3.inOut" });
 
 gsap.to(".rate-line", {
   drawSVG: "0% 100%",
