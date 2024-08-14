@@ -112,7 +112,7 @@ animTl1
     "<0%"
   );
 
-gsap.to(animTl1, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl1, 5, { progress: 1, ease: "power3.inOut" });
 
 //Spinning nums 2
 const animTl2 = gsap.timeline({
