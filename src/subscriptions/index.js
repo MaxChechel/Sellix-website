@@ -2,7 +2,7 @@ import gsap from "gsap";
 
 const heroCards = document.querySelectorAll(".subscr_hero-card");
 gsap.to(heroCards, {
-  delay: 0.2,
+  delay: 3.4,
   opacity: 1,
   y: 0,
   duration: 0.6,
@@ -70,7 +70,7 @@ animTl1
     "<0%"
   );
 
-gsap.to(animTl1, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl1, 6, { progress: 1, ease: "power3.inOut" });
 
 //Spinning nums 2
 const animTl2 = gsap.timeline({
@@ -97,7 +97,7 @@ animTl2
     "<0%"
   );
 
-gsap.to(animTl2, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl2, 6, { progress: 1, ease: "power3.inOut" });
 
 //Spinning nums 3
 const animTl3 = gsap.timeline({
@@ -118,4 +118,4 @@ animTl3
     "<0%"
   );
 
-gsap.to(animTl3, 2, { progress: 1, ease: "power3.inOut" });
+gsap.to(animTl3, 6, { progress: 1, ease: "power3.inOut" });
