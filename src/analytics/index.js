@@ -80,7 +80,7 @@ gsap.set(card6.querySelector(".n-2"), {
 });
 
 gsap.to(heroCards, {
-  delay: 0.2,
+  delay: 3.4,
   opacity: 1,
   y: 0,
   duration: 0.6,
