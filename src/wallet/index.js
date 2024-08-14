@@ -10,7 +10,7 @@ const barYs = [];
 const loadTl = gsap
   .timeline()
   .to(".wallet-hero_asset", {
-    delay: 0.2,
+    delay: 3.2,
     opacity: 1,
     y: 0,
   })
