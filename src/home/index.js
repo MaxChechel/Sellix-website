@@ -147,7 +147,7 @@ ScrollTrigger.create({
   start: "top 0",
   end: () => "+=" + slider.scrollWidth - window.innerWidth,
   animation: horizontalScrollTween,
-  scrub: 1.1,
+  scrub: 1.2,
   invalidateOnRefresh: true,
   pin: true,
 });
