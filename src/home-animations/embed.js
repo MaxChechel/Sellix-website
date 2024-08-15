@@ -12,7 +12,7 @@ export default function Embed() {
     .to(".embed-anim_cursor", {
       delay: 1,
       duration: 0.6,
-      bottom: "50%",
+      bottom: "45%",
     })
     .to(".embed-add-btn", {
       scale: 1.02,
@@ -41,7 +41,7 @@ export default function Embed() {
     })
     .to(".embed-anim_cursor", {
       delay: 0.4,
-      bottom: "5%",
+      bottom: "0%",
       right: "15%",
     })
     .to(".embed-anim_checkout-btn", {
