@@ -150,6 +150,7 @@ ScrollTrigger.create({
   scrub: 1.2,
   invalidateOnRefresh: true,
   pin: true,
+  markers: true,
 });
 
 ////Platforms
