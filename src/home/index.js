@@ -1,13 +1,60 @@
-//import { gsap } from "gsap";
-//import { ScrollTrigger } from "gsap/ScrollTrigger";
-//import { Flip } from "gsap/Flip";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Flip } from "gsap/Flip";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import Splitting from "splitting";
+import { DotLottie } from "@lottiefiles/dotlottie-web";
 import Licences from "../home-animations/licences";
 import Embed from "../home-animations/embed";
-import HeroTicker from "../home-animations/heroTicker";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
+
+// dotLottie
+const canvas = document.querySelector(".dotlottie-canvas");
+const lottieUrl =
+  "https://uploads-ssl.webflow.com/668fb992781d015f5555961f/66bdae719046407196ab6093_sellix_lottie_FIX.lottie";
+
+// Define a function to handle animation loading and ScrollTrigger setup
+const handleLoad = () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initialFrame = 4; // Set the initial frame you want to start from
+
+  ScrollTrigger.create({
+    trigger: ".home-intro_lottie-wrap",
+    start: "top 50%",
+    end: "bottom bottom",
+    scrub: 1.2,
+    onUpdate: (self) => {
+      const totalFrames = dotLottie.totalFrames;
+      const scrollProgress = self.progress;
+      const currentFrame = Math.max(
+        Math.floor(scrollProgress * totalFrames),
+        initialFrame
+      ); // Ensure frame doesn't go below initialFrame
+      dotLottie.setFrame(currentFrame); // Use setFrame instead of goToAndStop
+    },
+  });
+};
+
+const dotLottie = new DotLottie({
+  canvas,
+  src: lottieUrl,
+  autoplay: false,
+});
+
+// Listen for the 'load' event to set up ScrollTrigger
+dotLottie.addEventListener("load", () => {
+  console.log("Lottie loaded");
+  const initialFrame = 4; // Set the initial frame you want to start from
+  dotLottie.setFrame(initialFrame); // Set initial frame
+  handleLoad(); // Call the function, don't just reference it
+  console.log("ScrollTrigger created");
+});
+
+// Handle potential errors during loading
+dotLottie.addEventListener("error", (error) => {
+  console.error("Error loading dotLottie animation:", error);
+});
 
 //Intro sections
 const introSections = document.querySelectorAll(".home-intro_inner-wrap");

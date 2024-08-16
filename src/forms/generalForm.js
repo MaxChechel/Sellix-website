@@ -1,21 +1,24 @@
 const contactForm = document.getElementById("wf-form-General-Contact-Form");
 const contactEndpoint =
   "https://api-internal.sellix.io/v1/sales/general_contact_form";
-const contactFormData = {
-  full_name: document.getElementById("contact_full_name").value,
-  work_email: document.getElementById("contact_work_email").value,
-  website: document.getElementById("contact_website").value,
-  volume: document.getElementById("contact_volume").value,
-  business_type: document.getElementById("contact_business_type").value,
-  message: document.getElementById("contact_message").value,
-};
-function formSubmit(formElement, formDataObject, endpointUrl) {
+function contactFormData() {
+  return {
+    full_name: document.getElementById("contact_full_name").value,
+    work_email: document.getElementById("contact_work_email").value,
+    website: document.getElementById("contact_website").value,
+    volume: document.getElementById("contact_volume").value,
+    business_type: document.getElementById("contact_business_type").value,
+    message: document.getElementById("contact_message").value,
+  };
+}
+
+function formSubmit(formElement, formDataFunc, endpointUrl) {
   formElement.addEventListener("submit", function (event) {
     event.preventDefault();
     const thankYouMessage =
       formElement.parentElement.querySelector(".success-message");
     // Gather the form data
-    const formData = formDataObject;
+    const formData = formDataFunc();
 
     // Define the endpoint URL
     const endpoint = endpointUrl;
