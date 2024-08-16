@@ -38,11 +38,32 @@ const canvas = document.querySelector(".dotlottie-canvas");
 const lottieUrl =
   "https://uploads-ssl.webflow.com/668fb992781d015f5555961f/66bdae719046407196ab6093_sellix_lottie_FIX.lottie";
 
-// Define a function to handle animation loading and ScrollTrigger setup
-const handleLoad = () => {
+// Функция для инициализации Lottie и ScrollTrigger
+const initializeLottie = () => {
+  const dotLottie = new DotLottie({
+    canvas,
+    src: lottieUrl,
+    autoplay: false,
+  });
+
+  dotLottie.addEventListener("load", () => {
+    console.log("Lottie loaded");
+    const initialFrame = 4; // Установка начального кадра
+    dotLottie.setFrame(initialFrame); // Установка начального кадра
+    handleLoad(dotLottie); // Вызов функции для настройки ScrollTrigger
+    console.log("ScrollTrigger created");
+  });
+
+  dotLottie.addEventListener("error", (error) => {
+    console.error("Error loading dotLottie animation:", error);
+  });
+};
+
+// Функция для настройки ScrollTrigger
+const handleLoad = (dotLottie) => {
   gsap.registerPlugin(ScrollTrigger);
 
-  const initialFrame = 4; // Set the initial frame you want to start from
+  const initialFrame = 4; // Установка начального кадра
 
   ScrollTrigger.create({
     trigger: ".home-intro_lottie-wrap",
@@ -55,31 +76,30 @@ const handleLoad = () => {
       const currentFrame = Math.max(
         Math.floor(scrollProgress * totalFrames),
         initialFrame
-      ); // Ensure frame doesn't go below initialFrame
-      dotLottie.setFrame(currentFrame); // Use setFrame instead of goToAndStop
+      ); // Убедитесь, что кадр не ниже начального кадра
+      dotLottie.setFrame(currentFrame); // Используйте setFrame вместо goToAndStop
     },
   });
 };
 
-const dotLottie = new DotLottie({
-  canvas,
-  src: lottieUrl,
-  autoplay: false,
-});
+// Создание Intersection Observer для ленивой загрузки
+const observer = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        initializeLottie(); // Инициализация Lottie при видимости элемента
+        observer.unobserve(entry.target); // Прекращение наблюдения за элементом после загрузки
+      }
+    });
+  },
+  {
+    rootMargin: "0px 0px 200px 0px", // Начало загрузки за 200px до видимости элемента
+  }
+);
 
-// Listen for the 'load' event to set up ScrollTrigger
-dotLottie.addEventListener("load", () => {
-  console.log("Lottie loaded");
-  const initialFrame = 4; // Set the initial frame you want to start from
-  dotLottie.setFrame(initialFrame); // Set initial frame
-  handleLoad(); // Call the function, don't just reference it
-  console.log("ScrollTrigger created");
-});
-
-// Handle potential errors during loading
-dotLottie.addEventListener("error", (error) => {
-  console.error("Error loading dotLottie animation:", error);
-});
+// Наблюдение за элементом
+const targetElement = document.querySelector(".home-intro_lottie-wrap");
+observer.observe(targetElement);
 
 //Intro sections
 const introSections = document.querySelectorAll(".home-intro_inner-wrap");
