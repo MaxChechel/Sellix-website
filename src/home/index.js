@@ -38,8 +38,8 @@ const canvas = document.querySelector(".dotlottie-canvas");
 const lottieUrl =
   "https://uploads-ssl.webflow.com/668fb992781d015f5555961f/66bdae719046407196ab6093_sellix_lottie_FIX.lottie";
 
-// Функция для инициализации Lottie и ScrollTrigger
 const initializeLottie = () => {
+  console.log("Initializing Lottie");
   const dotLottie = new DotLottie({
     canvas,
     src: lottieUrl,
@@ -47,11 +47,9 @@ const initializeLottie = () => {
   });
 
   dotLottie.addEventListener("load", () => {
-    console.log("Lottie loaded");
-    const initialFrame = 4; // Установка начального кадра
-    dotLottie.setFrame(initialFrame); // Установка начального кадра
-    handleLoad(dotLottie); // Вызов функции для настройки ScrollTrigger
-    console.log("ScrollTrigger created");
+    const initialFrame = 4;
+    dotLottie.setFrame(initialFrame);
+    handleLoad(dotLottie);
   });
 
   dotLottie.addEventListener("error", (error) => {
@@ -59,11 +57,10 @@ const initializeLottie = () => {
   });
 };
 
-// Функция для настройки ScrollTrigger
 const handleLoad = (dotLottie) => {
   gsap.registerPlugin(ScrollTrigger);
 
-  const initialFrame = 4; // Установка начального кадра
+  const initialFrame = 4;
 
   ScrollTrigger.create({
     trigger: ".home-intro_lottie-wrap",
@@ -76,28 +73,26 @@ const handleLoad = (dotLottie) => {
       const currentFrame = Math.max(
         Math.floor(scrollProgress * totalFrames),
         initialFrame
-      ); // Убедитесь, что кадр не ниже начального кадра
-      dotLottie.setFrame(currentFrame); // Используйте setFrame вместо goToAndStop
+      );
+      dotLottie.setFrame(currentFrame);
     },
   });
 };
 
-// Создание Intersection Observer для ленивой загрузки
 const observer = new IntersectionObserver(
   (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        initializeLottie(); // Инициализация Lottie при видимости элемента
-        observer.unobserve(entry.target); // Прекращение наблюдения за элементом после загрузки
+        initializeLottie();
+        observer.unobserve(entry.target);
       }
     });
   },
   {
-    rootMargin: "0px 0px 200px 0px", // Начало загрузки за 200px до видимости элемента
+    rootMargin: "0px 0px 50px 0px",
   }
 );
 
-// Наблюдение за элементом
 const targetElement = document.querySelector(".home-intro_lottie-wrap");
 observer.observe(targetElement);
 
