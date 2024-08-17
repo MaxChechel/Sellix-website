@@ -1,3 +1,5 @@
+import gsap from "gsap";
+
 const graphBars = document.querySelectorAll(".graphs-group rect");
 
 const barHeights = [];
@@ -20,7 +22,7 @@ const heroCards = document.querySelectorAll(".fraud_hero-grid-img");
 const cardsTl = gsap.timeline();
 cardsTl
   .to(heroCards, {
-    delay: 0.5,
+    delay: 3.5,
     opacity: 1,
     y: 0,
     duration: 0.6,

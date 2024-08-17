@@ -1,8 +1,10 @@
+import gsap from "gsap";
+
 const licencesTl = gsap.timeline();
 
 licencesTl
   .to(".licenses_anim-input-wrap", {
-    delay: 0.2,
+    delay: 3.4,
     opacity: 1,
     y: 0,
     duration: 0.6,

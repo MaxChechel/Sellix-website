@@ -1,8 +1,9 @@
+import gsap from "gsap";
 const paymentLinksTl = gsap.timeline();
 
 paymentLinksTl
   .to(".paylinks-anim_chat-1, .paylinks-anim_chat-2, .paylinks-anim_chat-3", {
-    delay: 0.5,
+    delay: 3.4,
     opacity: 1,
     y: 0,
     duration: 0.4,
