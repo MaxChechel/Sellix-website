@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+gsap.registerPlugin(ScrollTrigger);
 //Pricing Modal
 const contactPricingBtn = document.querySelector(".pricing_item-head.is-cta a");
 const contactPricingModal = document.querySelector("#contact-modal-pricing");
