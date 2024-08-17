@@ -215,7 +215,7 @@ if (sectionHeaders.length > 0) {
     const tag = header.querySelector(".section-tag");
     const heading = header.querySelector("h2");
     const text = header.querySelector("p");
-
+    const btn = header?.querySelector(".button");
     ScrollTrigger.create({
       trigger: header,
       start: "top 70%",
@@ -237,6 +237,11 @@ if (sectionHeaders.length > 0) {
           )
           .to(
             text,
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            "<15%"
+          )
+          .to(
+            btn,
             { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
             "<15%"
           );
