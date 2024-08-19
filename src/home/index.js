@@ -34,69 +34,69 @@ navTl.to(navbar, {
 });
 
 // dotLottie
-const canvas = document.querySelector(".dotlottie-canvas");
-const lottieUrl =
-  "https://uploads-ssl.webflow.com/668fb992781d015f5555961f/66bdae719046407196ab6093_sellix_lottie_FIX.lottie";
-canvas.style.display = "none";
-const initializeLottie = () => {
-  console.log("Initializing Lottie");
-  const dotLottie = new DotLottie({
-    canvas,
-    src: lottieUrl,
-    autoplay: false,
-  });
+// const canvas = document.querySelector(".dotlottie-canvas");
+// const lottieUrl =
+//   "https://uploads-ssl.webflow.com/668fb992781d015f5555961f/66bdae719046407196ab6093_sellix_lottie_FIX.lottie";
+// canvas.style.display = "none";
+// const initializeLottie = () => {
+//   console.log("Initializing Lottie");
+//   const dotLottie = new DotLottie({
+//     canvas,
+//     src: lottieUrl,
+//     autoplay: false,
+//   });
 
-  dotLottie.addEventListener("load", () => {
-    const initialFrame = 4;
-    dotLottie.setFrame(initialFrame);
-    canvas.style.display = "block";
-    canvas.style.opacity = 1;
-    handleLoad(dotLottie);
-  });
+//   dotLottie.addEventListener("load", () => {
+//     const initialFrame = 4;
+//     dotLottie.setFrame(initialFrame);
+//     canvas.style.display = "block";
+//     canvas.style.opacity = 1;
+//     handleLoad(dotLottie);
+//   });
 
-  dotLottie.addEventListener("error", (error) => {
-    console.error("Error loading dotLottie animation:", error);
-  });
-};
+//   dotLottie.addEventListener("error", (error) => {
+//     console.error("Error loading dotLottie animation:", error);
+//   });
+// };
 
-const handleLoad = (dotLottie) => {
-  gsap.registerPlugin(ScrollTrigger);
+// const handleLoad = (dotLottie) => {
+//   gsap.registerPlugin(ScrollTrigger);
 
-  const initialFrame = 4;
+//   const initialFrame = 4;
 
-  ScrollTrigger.create({
-    trigger: ".home-intro_lottie-wrap",
-    start: "top 50%",
-    end: "bottom bottom",
-    scrub: 1.2,
-    onUpdate: (self) => {
-      const totalFrames = dotLottie.totalFrames;
-      const scrollProgress = self.progress;
-      const currentFrame = Math.max(
-        Math.floor(scrollProgress * totalFrames),
-        initialFrame
-      );
-      dotLottie.setFrame(currentFrame);
-    },
-  });
-};
+//   ScrollTrigger.create({
+//     trigger: ".home-intro_lottie-wrap",
+//     start: "top 50%",
+//     end: "bottom bottom",
+//     scrub: 1.2,
+//     onUpdate: (self) => {
+//       const totalFrames = dotLottie.totalFrames;
+//       const scrollProgress = self.progress;
+//       const currentFrame = Math.max(
+//         Math.floor(scrollProgress * totalFrames),
+//         initialFrame
+//       );
+//       dotLottie.setFrame(currentFrame);
+//     },
+//   });
+// };
 
-const observer = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        initializeLottie();
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    rootMargin: "0px 0px 50px 0px",
-  }
-);
+// const observer = new IntersectionObserver(
+//   (entries, observer) => {
+//     entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//         initializeLottie();
+//         observer.unobserve(entry.target);
+//       }
+//     });
+//   },
+//   {
+//     rootMargin: "0px 0px 50px 0px",
+//   }
+// );
 
-const targetElement = document.querySelector(".home-intro_lottie-wrap");
-observer.observe(targetElement);
+// const targetElement = document.querySelector(".home-intro_lottie-wrap");
+// observer.observe(targetElement);
 
 //Intro sections
 const introSections = document.querySelectorAll(".home-intro_inner-wrap");
