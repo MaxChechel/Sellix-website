@@ -99,20 +99,18 @@ const pricingСontactEndpoint =
   "https://api-internal.sellix.io/v1/sales/custom_pricing_form";
 function pricingContactFormData() {
   return {
-    full_name: pricingContactForm.getElementById("pricing_full_name").value,
-    work_email: pricingContactForm.getElementById("pricing_work_email").value,
-    website: pricingContactForm.getElementById("pricing_website").value,
-    payment_method: pricingContactForm.getElementById("pricing_payment_method")
-      .value,
-    business_description: pricingContactForm.getElementById(
+    full_name: document.getElementById("pricing_full_name").value,
+    work_email: document.getElementById("pricing_work_email").value,
+    website: document.getElementById("pricing_website").value,
+    payment_method: document.getElementById("pricing_payment_method").value,
+    business_description: document.getElementById(
       "pricing_business_description"
     ).value,
-    avg_transaction_amount: pricingContactForm.getElementById(
+    avg_transaction_amount: document.getElementById(
       "pricing_avg_transaction_amount"
     ).value,
-    expected_mrr: pricingContactForm.getElementById("pricing_expected_mrr")
-      .value,
-    store_name: pricingContactForm.getElementById("pricing_store-name").value,
+    expected_mrr: document.getElementById("pricing_expected_mrr").value,
+    store_name: document.getElementById("pricing_store-name").value,
   };
 }
 

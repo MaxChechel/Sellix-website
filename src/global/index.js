@@ -164,12 +164,12 @@ const contactEndpoint =
   "https://api-internal.sellix.io/v1/sales/general_contact_form";
 function contactFormData() {
   return {
-    full_name: contactForm.getElementById("contact_full_name").value,
-    work_email: contactForm.getElementById("contact_work_email").value,
-    website: contactForm.getElementById("contact_website").value,
-    volume: contactForm.getElementById("contact_volume").value,
-    business_type: contactForm.getElementById("contact_business_type").value,
-    message: contactForm.getElementById("contact_message").value,
+    full_name: document.getElementById("contact_full_name").value,
+    work_email: document.getElementById("contact_work_email").value,
+    website: document.getElementById("contact_website").value,
+    volume: document.getElementById("contact_volume").value,
+    business_type: document.getElementById("contact_business_type").value,
+    message: document.getElementById("contact_message").value,
   };
 }
 
