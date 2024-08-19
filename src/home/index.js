@@ -37,7 +37,7 @@ navTl.to(navbar, {
 const canvas = document.querySelector(".dotlottie-canvas");
 const lottieUrl =
   "https://uploads-ssl.webflow.com/668fb992781d015f5555961f/66bdae719046407196ab6093_sellix_lottie_FIX.lottie";
-
+canvas.style.display = "none";
 const initializeLottie = () => {
   console.log("Initializing Lottie");
   const dotLottie = new DotLottie({
@@ -49,6 +49,7 @@ const initializeLottie = () => {
   dotLottie.addEventListener("load", () => {
     const initialFrame = 4;
     dotLottie.setFrame(initialFrame);
+    canvas.style.display = "block";
     handleLoad(dotLottie);
   });
 
