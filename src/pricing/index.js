@@ -92,3 +92,59 @@ gatewaysSections.forEach((section) => {
     },
   });
 });
+
+//Form submission
+const pricingContactForm = document.getElementById("contact-modal-pricing");
+const pricingСontactEndpoint =
+  "https://api-internal.sellix.io/v1/sales/custom_pricing_form";
+function pricingContactFormData() {
+  return {
+    full_name: pricingContactForm.getElementById("pricing_full_name").value,
+    work_email: pricingContactForm.getElementById("pricing_work_email").value,
+    website: pricingContactForm.getElementById("pricing_website").value,
+    payment_method: pricingContactForm.getElementById("pricing_payment_method")
+      .value,
+    business_description: pricingContactForm.getElementById(
+      "pricing_business_description"
+    ).value,
+    avg_transaction_amount: pricingContactForm.getElementById(
+      "pricing_avg_transaction_amount"
+    ).value,
+    expected_mrr: pricingContactForm.getElementById("pricing_expected_mrr")
+      .value,
+    store_name: pricingContactForm.getElementById("pricing_store-name").value,
+  };
+}
+
+function formSubmit(formElement, formDataFunc, endpointUrl) {
+  formElement.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const thankYouMessage =
+      formElement.parentElement.querySelector(".success-message");
+    // Gather the form data
+    const formData = formDataFunc();
+    console.log(formData);
+    // Define the endpoint URL
+    const endpoint = endpointUrl;
+
+    // Make the POST request
+    fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Hide the form and show the thank you message
+        formElement.style.display = "none";
+        thankYouMessage.style.display = "block";
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+}
+formSubmit(pricingContactForm, pricingContactFormData, pricingСontactEndpoint);
