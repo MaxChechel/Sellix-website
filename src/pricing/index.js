@@ -94,7 +94,7 @@ gatewaysSections.forEach((section) => {
 });
 
 //Form submission
-const pricingContactForm = document.getElementById("contact-modal-pricing");
+const pricingContactForm = document.getElementById("Pricing-Contact-Form");
 const pricingСontactEndpoint =
   "https://api-internal.sellix.io/v1/sales/custom_pricing_form";
 function pricingContactFormData() {
