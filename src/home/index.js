@@ -50,6 +50,7 @@ const initializeLottie = () => {
     const initialFrame = 4;
     dotLottie.setFrame(initialFrame);
     canvas.style.display = "block";
+    canvas.style.opacity = 1;
     handleLoad(dotLottie);
   });
 
