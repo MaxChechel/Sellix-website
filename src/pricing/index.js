@@ -9,9 +9,11 @@ const contactPricingClose = document.querySelector(
 );
 contactPricingBtn.addEventListener("click", () => {
   contactPricingModal.classList.add("is-active");
+  document.body.style.overflow = "hidden";
 });
 contactPricingClose.addEventListener("click", () => {
   contactPricingModal.classList.remove("is-active");
+  document.body.style.overflow = "auto";
 });
 
 const heroCards = document.querySelectorAll(
@@ -36,6 +38,7 @@ gatewaysLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     modal.classList.add("is-active");
+    document.body.style.overflow = "hidden";
   });
 });
 gatewaysModals.forEach((modal) => {
@@ -56,6 +59,7 @@ gatewaysModals.forEach((modal) => {
   const closeBtn = modal.querySelector(".modal_close-btn");
   closeBtn.addEventListener("click", () => {
     modal.classList.remove("is-active");
+    document.body.style.overflow = "auto";
   });
 });
 
