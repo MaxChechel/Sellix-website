@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
+import { Lenis } from "lenis";
 
 //Window to top on page refresh
 let isRefreshing = false;
