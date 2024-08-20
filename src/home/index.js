@@ -294,7 +294,7 @@ const horizontalScrollTween = gsap.to(slider, {
 
 ScrollTrigger.create({
   trigger: horizScrollSection,
-  start: "top 0",
+  start: "top top",
   end: () => "+=" + slider.scrollWidth - window.innerWidth,
   animation: horizontalScrollTween,
   scrub: 1.2,
