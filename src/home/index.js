@@ -221,26 +221,6 @@ ScrollTrigger.create({
   },
 });
 
-////Horizontal scroll cards
-const slider = document.querySelector(".horizontal-scroll_track");
-const horizScrollSection = document.querySelector(".section.is-horiz-scroll");
-
-const horizontalScrollTween = gsap.to(slider, {
-  x: () => slider.scrollWidth * -1,
-  xPercent: 100,
-  ease: "none",
-});
-
-ScrollTrigger.create({
-  trigger: horizScrollSection,
-  start: "top 0",
-  end: () => "+=" + slider.scrollWidth - window.innerWidth,
-  animation: horizontalScrollTween,
-  scrub: 1.2,
-  invalidateOnRefresh: true,
-  pin: true,
-});
-
 ////Platforms
 const pathSvgs = document.querySelectorAll(".pulse-group");
 
@@ -300,4 +280,24 @@ ScrollTrigger.create({
   onLeave: () => mainEmbedTl.pause(),
   onEnterBack: () => mainEmbedTl.play(),
   onLeaveBack: () => mainEmbedTl.pause(),
+});
+
+////Horizontal scroll cards
+const slider = document.querySelector(".horizontal-scroll_track");
+const horizScrollSection = document.querySelector(".section.is-horiz-scroll");
+
+const horizontalScrollTween = gsap.to(slider, {
+  x: () => slider.scrollWidth * -1,
+  xPercent: 100,
+  ease: "none",
+});
+
+ScrollTrigger.create({
+  trigger: horizScrollSection,
+  start: "top 0",
+  end: () => "+=" + slider.scrollWidth - window.innerWidth,
+  animation: horizontalScrollTween,
+  scrub: 1.2,
+  invalidateOnRefresh: true,
+  pin: true,
 });
