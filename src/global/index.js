@@ -120,6 +120,7 @@ const mutationCallback = (mutationsList, observer) => {
       if (formSuccessWrap.style.getPropertyValue("display") === "block") {
         setTimeout(() => {
           contactSaleModal.classList.remove("is-active");
+          document.querySelector("body").style.overflow = "auto";
         }, 3000);
         observer.disconnect();
       }
@@ -143,17 +144,20 @@ const contactSaleClose = document.querySelector(
 contactSalesBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
     contactSaleModal.classList.add("is-active");
+    document.querySelector("body").style.overflow = "hidden";
     observer.observe(formSuccessWrap, observerOptions);
   });
 });
 contactSaleClose.addEventListener("click", () => {
   contactSaleModal.classList.remove("is-active");
+  document.querySelector("body").style.overflow = "auto";
 });
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     document.querySelectorAll(".modal").forEach((modal) => {
       modal.classList.remove("is-active");
+      document.querySelector("body").style.overflow = "auto";
     });
   }
 });
