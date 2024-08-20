@@ -7,7 +7,7 @@ import Licences from "../home-animations/licences";
 import Embed from "../home-animations/embed";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
-
+ScrollTrigger.normalizeScroll(true);
 //Nav color change
 const navbar = document.querySelector(".navbar_component");
 const navHeight = navbar.offsetHeight;
@@ -286,20 +286,18 @@ ScrollTrigger.create({
 const slider = document.querySelector(".horizontal-scroll_track");
 const horizScrollSection = document.querySelector(".section.is-horiz-scroll");
 
-setTimeout(() => {
-  const horizontalScrollTween = gsap.to(slider, {
-    x: () => slider.scrollWidth * -1,
-    xPercent: 100,
-    ease: "none",
-  });
+const horizontalScrollTween = gsap.to(slider, {
+  x: () => slider.scrollWidth * -1,
+  xPercent: 100,
+  ease: "none",
+});
 
-  ScrollTrigger.create({
-    trigger: horizScrollSection,
-    start: "top top",
-    end: () => "+=" + slider.scrollWidth - window.innerWidth,
-    animation: horizontalScrollTween,
-    scrub: 1.2,
-    invalidateOnRefresh: true,
-    pin: true,
-  });
-}, 3000);
+ScrollTrigger.create({
+  trigger: horizScrollSection,
+  start: "top top",
+  end: () => "+=" + slider.scrollWidth - window.innerWidth,
+  animation: horizontalScrollTween,
+  scrub: 1.2,
+  invalidateOnRefresh: true,
+  pin: true,
+});
