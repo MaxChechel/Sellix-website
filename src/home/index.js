@@ -299,5 +299,5 @@ ScrollTrigger.create({
   animation: horizontalScrollTween,
   scrub: 1.2,
   invalidateOnRefresh: true,
-  pin: true,
+  //pin: true,
 });
