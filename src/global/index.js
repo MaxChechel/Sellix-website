@@ -1,7 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
-import Lenis from "lenis";
 
 //Window to top on page refresh
 let isRefreshing = false;
@@ -56,14 +55,6 @@ loaderTl
 
 gsap.registerPlugin(Flip, ScrollTrigger);
 
-const lenis = new Lenis();
-
-lenis.on("scroll", ScrollTrigger.update);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
-gsap.ticker.lagSmoothing(0);
 //Nav links
 let hoverMm = gsap.matchMedia();
 function navLinkShapePosition(links, container, shape) {
