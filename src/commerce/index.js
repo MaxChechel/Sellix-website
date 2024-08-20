@@ -27,8 +27,10 @@ const themesCloseBtn = themesModal.querySelector(
 );
 themesBtn.addEventListener("click", () => {
   themesModal.classList.add("is-active");
+  document.body.style.overflow = "hidden";
 });
 
 themesCloseBtn.addEventListener("click", () => {
   themesModal.classList.remove("is-active");
+  document.body.style.overflow = "auto";
 });
