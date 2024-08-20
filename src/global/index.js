@@ -53,8 +53,17 @@ loaderTl
     document.querySelector("body").style.overflow = "auto";
   });
 
-//Nav links
 gsap.registerPlugin(Flip, ScrollTrigger);
+
+const lenis = new Lenis();
+
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+gsap.ticker.lagSmoothing(0);
+//Nav links
 let hoverMm = gsap.matchMedia();
 function navLinkShapePosition(links, container, shape) {
   links.forEach(function (link) {
