@@ -286,18 +286,20 @@ ScrollTrigger.create({
 const slider = document.querySelector(".horizontal-scroll_track");
 const horizScrollSection = document.querySelector(".section.is-horiz-scroll");
 
-const horizontalScrollTween = gsap.to(slider, {
-  x: () => slider.scrollWidth * -1,
-  xPercent: 100,
-  ease: "none",
-});
+setTimeout(() => {
+  const horizontalScrollTween = gsap.to(slider, {
+    x: () => slider.scrollWidth * -1,
+    xPercent: 100,
+    ease: "none",
+  });
 
-ScrollTrigger.create({
-  trigger: horizScrollSection,
-  start: "top top",
-  end: () => "+=" + slider.scrollWidth - window.innerWidth,
-  animation: horizontalScrollTween,
-  scrub: 1.2,
-  invalidateOnRefresh: true,
-  pin: true,
-});
+  ScrollTrigger.create({
+    trigger: horizScrollSection,
+    start: "top top",
+    end: () => "+=" + slider.scrollWidth - window.innerWidth,
+    animation: horizontalScrollTween,
+    scrub: 1.2,
+    invalidateOnRefresh: true,
+    pin: true,
+  });
+}, 3000);
