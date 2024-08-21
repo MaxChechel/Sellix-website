@@ -180,7 +180,6 @@ videos.forEach((video) => {
       quicktimeSource.remove();
     }
   }
-  videojs(video);
   video.pause();
 });
 function animateElements(icon, index, iconOpacity = 1) {
