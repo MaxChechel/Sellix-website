@@ -158,19 +158,22 @@ ScrollTrigger.create({
 });
 
 ////Sticky section with videos
+// Detect browser and device type
 const userAgent = navigator.userAgent.toLowerCase();
 const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
 const isIOS =
   /ipad|iphone|ipod/.test(userAgent) ||
   (userAgent.includes("mac") && "ontouchend" in document); // iOS
 
-const timelineContent = document.querySelectorAll(".timeline_row");
+// Select timeline content and videos
+let timelineContent = document.querySelectorAll(".timeline_row");
 let videos = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video .video"
 );
 let videosWrap = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video"
 );
+
 let timelineMm = gsap.matchMedia();
 timelineMm.add("(max-width: 767px)", () => {
   videos = document.querySelectorAll(
@@ -180,33 +183,37 @@ timelineMm.add("(max-width: 767px)", () => {
     ".timeline_mobile-img-wrap .timeline_video"
   );
 });
+
+// Initial state of videos
 gsap.set(videosWrap, { opacity: 0 });
+
+// Lazy load video function
 const lazyLoadVideo = (video) => {
   const webpSource = video.querySelector("source[type='video/mp4']");
   const quicktimeSource = video.querySelector("source[type='video/quicktime']");
+
   // Set the appropriate source based on the browser or device
   if (isSafari || isIOS) {
-    // Remove the webp source if Safari or iOS
     if (webpSource) {
       webpSource.remove();
     }
   } else {
-    // Remove the quicktime source if not Safari or iOS
     if (quicktimeSource) {
       quicktimeSource.remove();
     }
   }
+
   console.log("Loading video");
-  console.log(video);
   video.load();
 };
 
+// Create an IntersectionObserver to lazy load videos when they come into view
 const observer = new IntersectionObserver(
   (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         lazyLoadVideo(entry.target);
-        observer.unobserve(entry.target);
+        observer.unobserve(entry.target); // Stop observing once the video is loaded
       }
     });
   },
@@ -216,13 +223,13 @@ const observer = new IntersectionObserver(
   }
 );
 
-timelineContent.forEach((content, i) => {
-  observer.observe(videos[i]);
-});
+// Observe each video element
 videos.forEach((video) => {
-  video.pause();
+  observer.observe(video);
+  video.pause(); // Ensure all videos are paused initially
 });
 
+// Function to animate elements and control video playback
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
     opacity: iconOpacity,
@@ -235,15 +242,15 @@ function animateElements(icon, index, iconOpacity = 1) {
     duration: 1,
     ease: "power4.out",
   });
+
   gsap.to(videosWrap[index], {
     opacity: 1,
     duration: 1,
     ease: "power4.out",
   });
 
-  // Play current video
+  // Play the current video and pause others
   videos[index].play();
-  // Pause all other videos
   videos.forEach((video, videoIndex) => {
     if (videoIndex !== index) {
       video.pause();
@@ -251,6 +258,7 @@ function animateElements(icon, index, iconOpacity = 1) {
   });
 }
 
+// Create ScrollTrigger instances for each timeline content
 timelineContent.forEach((content, index) => {
   const icon = content.querySelector(".timeline_icon-wrap");
 
