@@ -101,30 +101,32 @@ navTl.to(navbar, {
 //Intro sections
 const introSections = document.querySelectorAll(".home-intro_inner-wrap");
 introSections.forEach((section) => {
+  const topContent = section.querySelector(".home-intro_heading-wrap");
+  const bottomContent = section.querySelector(".home-intro_bottom-wrap");
   ScrollTrigger.create({
     trigger: section,
     start: "top 60%",
     end: "bottom 50%",
     invalidateOnRefresh: true,
     onEnter: () => {
-      gsap.to(introSections, {
+      gsap.to(".home-intro_heading-wrap, .home-intro_bottom-wrap", {
         opacity: 0.3,
         duration: 0.6,
         ease: "power2.out",
       });
-      gsap.to(section, {
+      gsap.to([topContent, bottomContent], {
         opacity: 1,
         duration: 0.6,
         ease: "power2.out",
       });
     },
     onEnterBack: () => {
-      gsap.to(introSections, {
+      gsap.to(".home-intro_heading-wrap, .home-intro_bottom-wrap", {
         opacity: 0.3,
         duration: 0.6,
         ease: "power2.out",
       });
-      gsap.to(section, {
+      gsap.to([topContent, bottomContent], {
         opacity: 1,
         duration: 0.6,
         ease: "power2.out",
