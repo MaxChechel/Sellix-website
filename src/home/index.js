@@ -158,19 +158,22 @@ ScrollTrigger.create({
 });
 
 ////Sticky section with videos
+// Detect browser and device type
 const userAgent = navigator.userAgent.toLowerCase();
 const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
 const isIOS =
   /ipad|iphone|ipod/.test(userAgent) ||
   (userAgent.includes("mac") && "ontouchend" in document); // iOS
 
-const timelineContent = document.querySelectorAll(".timeline_row");
+// Select timeline content and videos
+let timelineContent = document.querySelectorAll(".timeline_row");
 let videos = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video .video"
 );
 let videosWrap = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video"
 );
+
 let timelineMm = gsap.matchMedia();
 timelineMm.add("(max-width: 767px)", () => {
   videos = document.querySelectorAll(
@@ -180,24 +183,41 @@ timelineMm.add("(max-width: 767px)", () => {
     ".timeline_mobile-img-wrap .timeline_video"
   );
 });
+
+// Initial state of videos
 gsap.set(videosWrap, { opacity: 0 });
-videos.forEach((video) => {
-  const webpSource = video.querySelector("source[type='video/mp4']");
-  const quicktimeSource = video.querySelector("source[type='video/quicktime']");
-  // Set the appropriate source based on the browser or device
-  if (isSafari || isIOS) {
-    // Remove the webp source if Safari or iOS
-    if (webpSource) {
-      webpSource.remove();
+
+// Lazy load and unload video function
+const lazyLoadVideo = (video) => {
+  if (!video.hasAttribute("data-loaded")) {
+    const webpSource = video.querySelector("source[type='video/mp4']");
+    const quicktimeSource = video.querySelector(
+      "source[type='video/quicktime']"
+    );
+
+    if (isSafari || isIOS) {
+      if (webpSource) webpSource.remove();
+    } else {
+      if (quicktimeSource) quicktimeSource.remove();
     }
-  } else {
-    // Remove the quicktime source if not Safari or iOS
-    if (quicktimeSource) {
-      quicktimeSource.remove();
-    }
+
+    console.log("Loading video");
+    video.load();
+    video.setAttribute("data-loaded", "true");
   }
-  video.pause();
-});
+};
+
+const unloadVideo = (video) => {
+  if (video.hasAttribute("data-loaded")) {
+    video.pause();
+    video.removeAttribute("src"); // Unset the source to free memory
+    video.load(); // Reset the video element
+    video.removeAttribute("data-loaded");
+    console.log("Unloading video");
+  }
+};
+
+// Function to animate elements and control video playback
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
     opacity: iconOpacity,
@@ -210,23 +230,25 @@ function animateElements(icon, index, iconOpacity = 1) {
     duration: 1,
     ease: "power4.out",
   });
+
   gsap.to(videosWrap[index], {
     opacity: 1,
     duration: 1,
     ease: "power4.out",
   });
 
-  // Play current video
+  lazyLoadVideo(videos[index]);
   videos[index].play();
 
-  // Pause all other videos
   videos.forEach((video, videoIndex) => {
     if (videoIndex !== index) {
       video.pause();
+      unloadVideo(video); // Unload videos not in view
     }
   });
 }
 
+// Create ScrollTrigger instances for each timeline content
 timelineContent.forEach((content, index) => {
   const icon = content.querySelector(".timeline_icon-wrap");
 
