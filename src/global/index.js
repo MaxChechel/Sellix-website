@@ -17,22 +17,13 @@ window.addEventListener("unload", function () {
 document.querySelector("body").style.overflow = "hidden";
 const loaderTl = gsap.timeline();
 loaderTl
-  .to(".loader_logo", {
+  .to(".loader_logo, .loader_spinner", {
     duration: 0.6,
     opacity: 1,
     ease: "power4.out",
   })
   .to(
-    ".loader-mask-sircle",
-    {
-      strokeDashoffset: 603.2,
-      duration: 1.6,
-      ease: "none",
-    },
-    "<20%"
-  )
-  .to(
-    ".loader_circle",
+    ".loader_spinner",
     {
       rotate: "360deg",
       duration: 1.6,
