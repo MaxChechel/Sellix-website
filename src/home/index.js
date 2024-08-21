@@ -140,20 +140,17 @@ ScrollTrigger.create({
   end: "top 40%",
   invalidateOnRefresh: true,
   onEnter: () => {
-    const tl = gsap
-      .timeline()
-      .to(".logo-garden_heading", { opacity: 1 })
-      .to(
-        ".marquee-image",
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power4.out",
-          stagger: { each: 0.02, from: "center" },
-        },
-        "<20%"
-      );
+    const tl = gsap.timeline().to(
+      ".marquee-image",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power4.out",
+        stagger: { each: 0.02, from: "center" },
+      },
+      "<20%"
+    );
   },
 });
 
