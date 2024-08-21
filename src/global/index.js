@@ -28,8 +28,9 @@ loaderTl
       rotate: "360deg",
       duration: 1.6,
       ease: "none",
+      repeat: -1,
     },
-    "<95%"
+    0
   )
   .to(
     ".loader",
