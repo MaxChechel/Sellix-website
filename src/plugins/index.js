@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
 const circlePath = document.querySelector("#holder");
 const itemsWrapper = document.querySelector(".plugins-anim_icons-wrapper");
