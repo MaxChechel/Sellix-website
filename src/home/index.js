@@ -171,8 +171,10 @@ let videos = document.querySelectorAll(
 let videosWrap = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video"
 );
+
 let timelineMm = gsap.matchMedia();
 timelineMm.add("(max-width: 767px)", () => {
+  document.querySelector(".timeline_videos-inner-wrap").remove();
   videos = document.querySelectorAll(
     ".timeline_mobile-img-wrap .timeline_video .video"
   );
