@@ -203,7 +203,7 @@ function animateElements(icon, index, iconOpacity = 1) {
 
   // Play current video
   videos[index].play();
-
+  console.log(videos[index]);
   // Pause all other videos
   videos.forEach((video, videoIndex) => {
     if (videoIndex !== index) {
