@@ -166,7 +166,7 @@ const videos = document.querySelectorAll(".timeline_video .video");
 const videosWrap = document.querySelectorAll(".timeline_video");
 let timelineMm = gsap.matchMedia();
 videos.forEach((video) => {
-  const webpSource = video.querySelector("source[type='video/webm']");
+  const webpSource = video.querySelector("source[type='video/mp4']");
   const quicktimeSource = video.querySelector("source[type='video/quicktime']");
   // Set the appropriate source based on the browser or device
   if (isSafari || isIOS) {
