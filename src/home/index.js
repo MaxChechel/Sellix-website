@@ -100,15 +100,13 @@ navTl.to(navbar, {
 
 //Intro sections
 const introSections = document.querySelectorAll(".home-intro_inner-wrap");
-
+// Set initial opacity for all sections
+gsap.set(".home-intro_heading-wrap, .home-intro_bottom-wrap", {
+  opacity: 0.3,
+});
 introSections.forEach((section) => {
   const topContent = section.querySelector(".home-intro_heading-wrap");
   const bottomContent = section.querySelector(".home-intro_bottom-wrap");
-
-  // Set initial opacity for all sections
-  gsap.set(".home-intro_heading-wrap, .home-intro_bottom-wrap", {
-    opacity: 0.3,
-  });
 
   ScrollTrigger.create({
     trigger: section,
