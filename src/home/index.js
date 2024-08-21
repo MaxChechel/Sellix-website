@@ -190,7 +190,7 @@ timelineMm.add("(max-width: 767px)", () => {
 gsap.set(videosWrap, { opacity: 0 });
 videos.forEach((video) => {
   const webpSource = video.querySelector("source[type='video/webm']");
-  const quicktimeSource = video.querySelector("source[type='video/mp4']");
+  const quicktimeSource = video.querySelector("source[type='video/quicktime']");
   // Set the appropriate source based on the browser or device
   if (isSafari || isIOS) {
     // Remove the webp source if Safari or iOS
