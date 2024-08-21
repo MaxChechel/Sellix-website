@@ -173,6 +173,11 @@ let videosWrap = document.querySelectorAll(
 );
 
 let timelineMm = gsap.matchMedia();
+timelineMm.add("(min-width: 768px)", () => {
+  document.querySelectorAll(".timeline_mobile-img-wrap").forEach((el) => {
+    el.remove();
+  });
+});
 timelineMm.add("(max-width: 767px)", () => {
   document.querySelector(".timeline_videos-inner-wrap").remove();
   videos = document.querySelectorAll(
