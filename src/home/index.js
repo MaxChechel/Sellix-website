@@ -180,7 +180,7 @@ timelineMm.add("(max-width: 767px)", () => {
     ".timeline_mobile-img-wrap .timeline_video"
   );
 });
-
+gsap.set(videosWrap, { opacity: 0 });
 const lazyLoadVideo = (video) => {
   const webpSource = video.querySelector("source[type='video/mp4']");
   const quicktimeSource = video.querySelector("source[type='video/quicktime']");
