@@ -207,28 +207,6 @@ const lazyLoadVideo = (video) => {
   video.load();
 };
 
-// Create an IntersectionObserver to lazy load videos when they come into view
-const observer = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        lazyLoadVideo(entry.target);
-        observer.unobserve(entry.target); // Stop observing once the video is loaded
-      }
-    });
-  },
-  {
-    rootMargin: "0px 0px 200px 0px",
-    threshold: 0.25,
-  }
-);
-
-// Observe each video element
-videos.forEach((video) => {
-  observer.observe(video);
-  video.pause(); // Ensure all videos are paused initially
-});
-
 // Function to animate elements and control video playback
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
@@ -249,8 +227,14 @@ function animateElements(icon, index, iconOpacity = 1) {
     ease: "power4.out",
   });
 
-  // Play the current video and pause others
+  // Load and play the current video if not already loaded
+  if (!videos[index].hasAttribute("data-loaded")) {
+    lazyLoadVideo(videos[index]);
+    videos[index].setAttribute("data-loaded", "true");
+  }
   videos[index].play();
+
+  // Pause all other videos
   videos.forEach((video, videoIndex) => {
     if (videoIndex !== index) {
       video.pause();
