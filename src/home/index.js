@@ -196,6 +196,8 @@ const lazyLoadVideo = (video) => {
       quicktimeSource.remove();
     }
   }
+  console.log("Loading video");
+  console.log(video);
   video.load();
 };
 
@@ -214,8 +216,10 @@ const observer = new IntersectionObserver(
   }
 );
 
+timelineContent.forEach((content, i) => {
+  observer.observe(videos[i]);
+});
 videos.forEach((video) => {
-  observer.observe(video);
   video.pause();
 });
 
