@@ -192,17 +192,17 @@ videos.forEach((video) => {
   const webpSource = video.querySelector("source[type='video/webm']");
   const quicktimeSource = video.querySelector("source[type='video/mp4']");
   // Set the appropriate source based on the browser or device
-  // if (isSafari || isIOS) {
-  //   // Remove the webp source if Safari or iOS
-  //   if (webpSource) {
-  //     webpSource.remove();
-  //   }
-  // } else {
-  //   // Remove the quicktime source if not Safari or iOS
-  //   if (quicktimeSource) {
-  //     quicktimeSource.remove();
-  //   }
-  // }
+  if (isSafari || isIOS) {
+    // Remove the webp source if Safari or iOS
+    if (webpSource) {
+      webpSource.remove();
+    }
+  } else {
+    // Remove the quicktime source if not Safari or iOS
+    if (quicktimeSource) {
+      quicktimeSource.remove();
+    }
+  }
   video.pause();
 });
 function animateElements(icon, index, iconOpacity = 1) {
