@@ -101,20 +101,24 @@ navTl.to(navbar, {
 //Intro sections
 const introSections = document.querySelectorAll(".home-intro_inner-wrap");
 gsap.set(".home-intro_heading-wrap, .home-intro_bottom-wrap", { opacity: 0.3 });
+
 introSections.forEach((section) => {
   const topContent = section.querySelector(".home-intro_heading-wrap");
   const bottomContent = section.querySelector(".home-intro_bottom-wrap");
+
   ScrollTrigger.create({
     trigger: section,
     start: "top 60%",
     end: "bottom 60%",
     invalidateOnRefresh: true,
     onEnter: () => {
+      // Set opacity for all sections to 0.3
       gsap.to(".home-intro_heading-wrap, .home-intro_bottom-wrap", {
         opacity: 0.3,
         duration: 0.6,
         ease: "power2.out",
       });
+      // Set opacity for the current section to 1
       gsap.to([topContent, bottomContent], {
         opacity: 1,
         duration: 0.6,
@@ -122,11 +126,13 @@ introSections.forEach((section) => {
       });
     },
     onEnterBack: () => {
+      // Set opacity for all sections to 0.3
       gsap.to(".home-intro_heading-wrap, .home-intro_bottom-wrap", {
         opacity: 0.3,
         duration: 0.6,
         ease: "power2.out",
       });
+      // Set opacity for the current section to 1
       gsap.to([topContent, bottomContent], {
         opacity: 1,
         duration: 0.6,
