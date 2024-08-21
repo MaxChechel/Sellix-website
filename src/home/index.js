@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { DotLottie } from "@lottiefiles/dotlottie-web";
+
 import Licences from "../home-animations/licences";
 import Embed from "../home-animations/embed";
 
@@ -157,12 +157,33 @@ ScrollTrigger.create({
   },
 });
 
-////Sticky section
+////Sticky section with videos
+const userAgent = navigator.userAgent.toLowerCase();
+const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
+const isIOS =
+  /ipad|iphone|ipod/.test(userAgent) ||
+  (userAgent.includes("mac") && "ontouchend" in document); // iOS
+
 const timelineContent = document.querySelectorAll(".timeline_row");
-const videos = document.querySelectorAll(".timeline_videos-cms-item .video");
-const videosWrap = document.querySelectorAll(".timeline_videos-cms-item");
+const videos = document.querySelectorAll(".timeline_video .video");
+const videosWrap = document.querySelectorAll(".timeline_video");
 let timelineMm = gsap.matchMedia();
 videos.forEach((video) => {
+  const webpSource = video.querySelector("source[type='video/webm']");
+  const quicktimeSource = video.querySelector("source[type='video/quicktime']");
+  // Set the appropriate source based on the browser or device
+  if (isSafari || isIOS) {
+    // Remove the webp source if Safari or iOS
+    if (webpSource) {
+      webpSource.remove();
+    }
+  } else {
+    // Remove the quicktime source if not Safari or iOS
+    if (quicktimeSource) {
+      quicktimeSource.remove();
+    }
+  }
+
   video.pause();
 });
 function animateElements(icon, index, iconOpacity = 1) {
