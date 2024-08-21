@@ -227,12 +227,12 @@ function animateElements(icon, index, iconOpacity = 1) {
     ease: "power4.out",
   });
 
-  // Load and play the current video if not already loaded
-  if (!videos[index].hasAttribute("data-loaded")) {
-    lazyLoadVideo(videos[index]);
-    videos[index].setAttribute("data-loaded", "true");
-  }
-  videos[index].play();
+  // // Load and play the current video if not already loaded
+  // if (!videos[index].hasAttribute("data-loaded")) {
+  //   lazyLoadVideo(videos[index]);
+  //   videos[index].setAttribute("data-loaded", "true");
+  // }
+  // videos[index].play();
 
   // Pause all other videos
   videos.forEach((video, videoIndex) => {
