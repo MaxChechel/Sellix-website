@@ -180,7 +180,8 @@ timelineMm.add("(max-width: 767px)", () => {
     ".timeline_mobile-img-wrap .timeline_video"
   );
 });
-videos.forEach((video) => {
+
+const lazyLoadVideo = (video) => {
   const webpSource = video.querySelector("source[type='video/mp4']");
   const quicktimeSource = video.querySelector("source[type='video/quicktime']");
   // Set the appropriate source based on the browser or device
@@ -195,8 +196,29 @@ videos.forEach((video) => {
       quicktimeSource.remove();
     }
   }
+  video.load();
+};
+
+const observer = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        lazyLoadVideo(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    rootMargin: "0px 0px 200px 0px",
+    threshold: 0.25,
+  }
+);
+
+videos.forEach((video) => {
+  observer.observe(video);
   video.pause();
 });
+
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
     opacity: iconOpacity,
