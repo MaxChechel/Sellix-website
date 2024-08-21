@@ -139,6 +139,14 @@ introSections.forEach((section) => {
         ease: "power2.out",
       });
     },
+    onLeave: () => {
+      // Set opacity for all sections to 0.3
+      gsap.to(".home-intro_heading-wrap, .home-intro_bottom-wrap", {
+        opacity: 0.3,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    },
   });
 });
 
