@@ -165,9 +165,21 @@ const isIOS =
   (userAgent.includes("mac") && "ontouchend" in document); // iOS
 
 const timelineContent = document.querySelectorAll(".timeline_row");
-const videos = document.querySelectorAll(".timeline_video .video");
-const videosWrap = document.querySelectorAll(".timeline_video");
+let videos = document.querySelectorAll(
+  ".timeline_videos-inner-wrap .timeline_video .video"
+);
+let videosWrap = document.querySelectorAll(
+  ".timeline_videos-inner-wrap .timeline_video"
+);
 let timelineMm = gsap.matchMedia();
+timelineMm.add("(max-width: 767px)", () => {
+  videos = document.querySelectorAll(
+    ".timeline_mobile-img-wrap .timeline_video .video"
+  );
+  videosWrap = document.querySelectorAll(
+    ".timeline_mobile-img-wrap .timeline_video"
+  );
+});
 videos.forEach((video) => {
   const webpSource = video.querySelector("source[type='video/mp4']");
   const quicktimeSource = video.querySelector("source[type='video/quicktime']");
