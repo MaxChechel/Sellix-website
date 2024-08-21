@@ -26,7 +26,6 @@ function setPositions() {
   });
 
   gsap.to(items, {
-    delay: 3.4,
     opacity: 1,
     duration: 0.8,
   });
