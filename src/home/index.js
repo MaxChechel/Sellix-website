@@ -110,8 +110,8 @@ introSections.forEach((section) => {
 
   ScrollTrigger.create({
     trigger: section,
-    start: "top 60%",
-    end: "bottom 60%",
+    start: "top 50%",
+    end: "bottom 50%",
     invalidateOnRefresh: true,
     onEnter: () => {
       gsap.to(".home-intro_heading-wrap, .home-intro_bottom-wrap", {
