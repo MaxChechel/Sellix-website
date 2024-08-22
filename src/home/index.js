@@ -221,7 +221,9 @@ videos.forEach((video) => {
       quicktimeSource.remove();
     }
   }
+
   video.pause();
+  video.load();
 });
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
