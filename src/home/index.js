@@ -190,6 +190,13 @@ let videosWrap = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video"
 );
 
+function videoListner(video) {
+  console.log("Video ended");
+  video.setAttribute("playedonce", true);
+  video.currentTime = 2;
+  video.play();
+}
+
 let timelineMm = gsap.matchMedia();
 timelineMm.add("(min-width: 768px)", () => {
   document.querySelectorAll(".timeline_mobile-img-wrap").forEach((el) => {
@@ -223,6 +230,10 @@ videos.forEach((video) => {
   }
 
   video.pause();
+
+  video.setAttribute("playedonce", false);
+
+  video.addEventListener("ended", () => videoListner(video));
 });
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
@@ -244,11 +255,13 @@ function animateElements(icon, index, iconOpacity = 1) {
 
   // Play current video
   videos[index].play();
+  video[index].addEventListener("ended", () => videoListner(video[index]));
 
   // Pause all other videos
   videos.forEach((video, videoIndex) => {
     if (videoIndex !== index) {
       video.pause();
+      video.removeEventListener("ended", () => videoListner(video));
     }
   });
 }
