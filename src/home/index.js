@@ -318,11 +318,11 @@ let players = Array.from(videoElements).map((videoElement) => {
   }
 
   // Track whether the video has been played once
-  player.playedOnce = false;
+  player.setAttribute("playedonce", false);
 
   // Use the 'ended' event to mark that the video has played fully
   player.on("ended", () => {
-    player.playedOnce = true;
+    player.setAttribute("playedonce", true);
   });
 
   return player;
@@ -346,9 +346,9 @@ timelineMm.add("(max-width: 767px)", () => {
   // Reinitialize players for mobile videos
   players = Array.from(videoElements).map((videoElement) => {
     const player = videojs(videoElement);
-    player.playedOnce = false;
+    player.setAttribute("playedonce", false);
     player.on("ended", () => {
-      player.playedOnce = true;
+      player.setAttribute("playedonce", true);
     });
     return player;
   });
@@ -377,7 +377,7 @@ function animateElements(icon, index, iconOpacity = 1) {
   const player = players[index];
 
   // Adjust current time if the video has been played once
-  if (player.playedOnce) {
+  if (player.getAttribute("playedonce") === "true") {
     player.currentTime(2); // Start from the 2-second mark
   } else {
     player.currentTime(0); // Start from the beginning
