@@ -223,6 +223,9 @@ videos.forEach((video) => {
   }
   video.pause();
 
+  // Load the video to ensure it's fully ready to play
+  video.load();
+
   // Track whether the video has been played once
   video.playedOnce = false;
 
