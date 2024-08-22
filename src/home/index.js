@@ -295,6 +295,7 @@ let videosWrap = document.querySelectorAll(
 
 function videoListner(video) {
   console.log("Video ended");
+  console.log(video);
   video.setAttribute("playedonce", true);
   video.currentTime = 2;
   video.play();
