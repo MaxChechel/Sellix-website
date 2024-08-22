@@ -13,25 +13,25 @@ const navbar = document.querySelector(".navbar_component");
 const navHeight = navbar.offsetHeight;
 const navTl = gsap.timeline();
 
-// navTl.to(navbar, {
-//   duration: 0.4,
-//   scrollTrigger: {
-//     trigger: navbar,
-//     start: `+=${navHeight}`,
-//     toggleActions: "play none none reverse",
-//     invalidateOnRefresh: true,
-//     onEnter: () => {
-//       gsap.to(navbar, {
-//         "--navbar-gradient-color": "rgba(20, 20, 20, 1)",
-//       });
-//     },
-//     onLeaveBack: () => {
-//       gsap.to(navbar, {
-//         "--navbar-gradient-color": "rgba(20, 20, 20, 0)",
-//       });
-//     },
-//   },
-// });
+navTl.to(navbar, {
+  duration: 0.4,
+  scrollTrigger: {
+    trigger: navbar,
+    start: `+=10`,
+    toggleActions: "play none none reverse",
+    invalidateOnRefresh: true,
+    onEnter: () => {
+      gsap.to(navbar, {
+        "--navbar-gradient-color": "rgba(20, 20, 20, 1)",
+      });
+    },
+    onLeaveBack: () => {
+      gsap.to(navbar, {
+        "--navbar-gradient-color": "rgba(20, 20, 20, 0)",
+      });
+    },
+  },
+});
 
 // dotLottie
 // const canvas = document.querySelector(".dotlottie-canvas");
