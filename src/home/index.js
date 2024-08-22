@@ -223,9 +223,6 @@ videos.forEach((video) => {
   }
   video.pause();
 
-  // Load the video to ensure it's fully ready to play
-  // video.load();
-
   // Track whether the video has been played once
   video.setAttribute("playedonce", false);
 
@@ -233,6 +230,8 @@ videos.forEach((video) => {
   video.addEventListener("ended", () => {
     console.log("Video ended");
     video.setAttribute("playedonce", true);
+    video.currentTime = 2;
+    video.play();
   });
 });
 function animateElements(icon, index, iconOpacity = 1) {
