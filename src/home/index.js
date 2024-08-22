@@ -222,6 +222,14 @@ videos.forEach((video) => {
     }
   }
   video.pause();
+
+  // Track whether the video has been played once
+  video.playedOnce = false;
+
+  // Use the 'ended' event to mark that the video has played fully
+  video.addEventListener("ended", () => {
+    video.playedOnce = true;
+  });
 });
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
@@ -240,6 +248,13 @@ function animateElements(icon, index, iconOpacity = 1) {
     duration: 1,
     ease: "power4.out",
   });
+
+  // Adjust current time if the video has been played once
+  if (videos[index].playedOnce) {
+    videos[index].currentTime = 2; // Start from the 2-second mark
+  } else {
+    videos[index].currentTime = 0; // Start from the beginning
+  }
 
   // Play current video
   videos[index].play();
