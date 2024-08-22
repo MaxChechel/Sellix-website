@@ -227,11 +227,11 @@ videos.forEach((video) => {
   // video.load();
 
   // Track whether the video has been played once
-  video.setAttribute("playedOnce", false);
+  video.setAttribute("playedonce", false);
 
   // Use the 'ended' event to mark that the video has played fully
   video.addEventListener("ended", () => {
-    video.setAttribute("playedOnce", true);
+    video.setAttribute("playedonce", true);
   });
 });
 function animateElements(icon, index, iconOpacity = 1) {
@@ -253,7 +253,7 @@ function animateElements(icon, index, iconOpacity = 1) {
   });
 
   // Adjust current time if the video has been played once
-  if (videos[index].getAttribute("playedOnce") === "true") {
+  if (videos[index].getAttribute("playedonce") === "true") {
     videos[index].currentTime = 2; // Start from the 2-second mark
   } else {
     videos[index].currentTime = 0; // Start from the beginning
