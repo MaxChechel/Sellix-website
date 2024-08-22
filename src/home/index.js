@@ -223,7 +223,6 @@ videos.forEach((video) => {
   }
 
   video.pause();
-  video.load();
 });
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
