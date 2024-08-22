@@ -176,6 +176,114 @@ ScrollTrigger.create({
 });
 
 ////Sticky section with videos
+// const userAgent = navigator.userAgent.toLowerCase();
+// const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
+// const isIOS =
+//   /ipad|iphone|ipod/.test(userAgent) ||
+//   (userAgent.includes("mac") && "ontouchend" in document); // iOS
+
+// const timelineContent = document.querySelectorAll(".timeline_row");
+// let videos = document.querySelectorAll(
+//   ".timeline_videos-inner-wrap .timeline_video .video"
+// );
+// let videosWrap = document.querySelectorAll(
+//   ".timeline_videos-inner-wrap .timeline_video"
+// );
+
+// let timelineMm = gsap.matchMedia();
+// timelineMm.add("(min-width: 768px)", () => {
+//   document.querySelectorAll(".timeline_mobile-img-wrap").forEach((el) => {
+//     el.remove();
+//   });
+// });
+// timelineMm.add("(max-width: 767px)", () => {
+//   document.querySelector(".timeline_videos-inner-wrap").remove();
+//   videos = document.querySelectorAll(
+//     ".timeline_mobile-img-wrap .timeline_video .video"
+//   );
+//   videosWrap = document.querySelectorAll(
+//     ".timeline_mobile-img-wrap .timeline_video"
+//   );
+// });
+// gsap.set(videosWrap, { opacity: 0 });
+// videos.forEach((video) => {
+//   const webpSource = video.querySelector("source[type='video/webm']");
+//   const quicktimeSource = video.querySelector("source[type='video/quicktime']");
+//   // Set the appropriate source based on the browser or device
+//   if (isSafari || isIOS) {
+//     // Remove the webp source if Safari or iOS
+//     if (webpSource) {
+//       webpSource.remove();
+//     }
+//   } else {
+//     // Remove the quicktime source if not Safari or iOS
+//     if (quicktimeSource) {
+//       quicktimeSource.remove();
+//     }
+//   }
+//   video.pause();
+
+//   // Load the video to ensure it's fully ready to play
+//   // video.load();
+
+//   // Track whether the video has been played once
+//   video.setAttribute("playedonce", false);
+
+//   // Use the 'ended' event to mark that the video has played fully
+//   video.addEventListener("ended", () => {
+//     video.setAttribute("playedonce", true);
+//   });
+// });
+// function animateElements(icon, index, iconOpacity = 1) {
+//   gsap.to(icon, {
+//     opacity: iconOpacity,
+//     duration: 1,
+//     ease: "power4.out",
+//   });
+
+//   gsap.to(videosWrap, {
+//     opacity: 0,
+//     duration: 1,
+//     ease: "power4.out",
+//   });
+//   gsap.to(videosWrap[index], {
+//     opacity: 1,
+//     duration: 1,
+//     ease: "power4.out",
+//   });
+
+//   // Adjust current time if the video has been played once
+//   if (videos[index].getAttribute("playedonce") === "true") {
+//     videos[index].currentTime = 2; // Start from the 2-second mark
+//   } else {
+//     videos[index].currentTime = 0; // Start from the beginning
+//   }
+
+//   // Play current video
+//   videos[index].play();
+
+//   // Pause all other videos
+//   videos.forEach((video, videoIndex) => {
+//     if (videoIndex !== index) {
+//       video.pause();
+//     }
+//   });
+// }
+
+// timelineContent.forEach((content, index) => {
+//   const icon = content.querySelector(".timeline_icon-wrap");
+
+//   ScrollTrigger.create({
+//     trigger: content,
+//     start: "top 60%",
+//     end: "top 0%",
+//     onEnter: () => animateElements(icon, index, 1),
+//     onEnterBack: () => animateElements(icon, index, 1),
+//     onLeave: () => animateElements(icon, index, 0.3),
+//     onLeaveBack: () => animateElements(icon, index, 0.3),
+//   });
+// });
+//// Sticky section with videos
 const userAgent = navigator.userAgent.toLowerCase();
 const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
 const isIOS =
@@ -183,12 +291,42 @@ const isIOS =
   (userAgent.includes("mac") && "ontouchend" in document); // iOS
 
 const timelineContent = document.querySelectorAll(".timeline_row");
-let videos = document.querySelectorAll(
+let videoElements = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video .video"
 );
 let videosWrap = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video"
 );
+
+// Initialize Video.js players
+let players = Array.from(videoElements).map((videoElement) => {
+  const player = videojs(videoElement);
+
+  // Set the appropriate source based on the browser or device
+  if (isSafari || isIOS) {
+    const webpSource = player.el().querySelector("source[type='video/webm']");
+    if (webpSource) {
+      webpSource.remove();
+    }
+  } else {
+    const quicktimeSource = player
+      .el()
+      .querySelector("source[type='video/quicktime']");
+    if (quicktimeSource) {
+      quicktimeSource.remove();
+    }
+  }
+
+  // Track whether the video has been played once
+  player.playedOnce = false;
+
+  // Use the 'ended' event to mark that the video has played fully
+  player.on("ended", () => {
+    player.playedOnce = true;
+  });
+
+  return player;
+});
 
 let timelineMm = gsap.matchMedia();
 timelineMm.add("(min-width: 768px)", () => {
@@ -198,42 +336,26 @@ timelineMm.add("(min-width: 768px)", () => {
 });
 timelineMm.add("(max-width: 767px)", () => {
   document.querySelector(".timeline_videos-inner-wrap").remove();
-  videos = document.querySelectorAll(
+  videoElements = document.querySelectorAll(
     ".timeline_mobile-img-wrap .timeline_video .video"
   );
   videosWrap = document.querySelectorAll(
     ".timeline_mobile-img-wrap .timeline_video"
   );
-});
-gsap.set(videosWrap, { opacity: 0 });
-videos.forEach((video) => {
-  const webpSource = video.querySelector("source[type='video/webm']");
-  const quicktimeSource = video.querySelector("source[type='video/quicktime']");
-  // Set the appropriate source based on the browser or device
-  if (isSafari || isIOS) {
-    // Remove the webp source if Safari or iOS
-    if (webpSource) {
-      webpSource.remove();
-    }
-  } else {
-    // Remove the quicktime source if not Safari or iOS
-    if (quicktimeSource) {
-      quicktimeSource.remove();
-    }
-  }
-  video.pause();
 
-  // Load the video to ensure it's fully ready to play
-  // video.load();
-
-  // Track whether the video has been played once
-  video.setAttribute("playedonce", false);
-
-  // Use the 'ended' event to mark that the video has played fully
-  video.addEventListener("ended", () => {
-    video.setAttribute("playedonce", true);
+  // Reinitialize players for mobile videos
+  players = Array.from(videoElements).map((videoElement) => {
+    const player = videojs(videoElement);
+    player.playedOnce = false;
+    player.on("ended", () => {
+      player.playedOnce = true;
+    });
+    return player;
   });
 });
+
+gsap.set(videosWrap, { opacity: 0 });
+
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
     opacity: iconOpacity,
@@ -252,20 +374,22 @@ function animateElements(icon, index, iconOpacity = 1) {
     ease: "power4.out",
   });
 
+  const player = players[index];
+
   // Adjust current time if the video has been played once
-  if (videos[index].getAttribute("playedonce") === "true") {
-    videos[index].currentTime = 2; // Start from the 2-second mark
+  if (player.playedOnce) {
+    player.currentTime(2); // Start from the 2-second mark
   } else {
-    videos[index].currentTime = 0; // Start from the beginning
+    player.currentTime(0); // Start from the beginning
   }
 
   // Play current video
-  videos[index].play();
+  player.play();
 
   // Pause all other videos
-  videos.forEach((video, videoIndex) => {
+  players.forEach((p, videoIndex) => {
     if (videoIndex !== index) {
-      video.pause();
+      p.pause();
     }
   });
 }
