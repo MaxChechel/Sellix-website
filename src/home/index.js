@@ -23,11 +23,13 @@ navTl.to(navbar, {
     invalidateOnRefresh: true,
     onEnter: () => {
       gsap.to(navbar, {
+        duration: 0.05,
         "--navbar-gradient-color": "rgba(20, 20, 20, 1)",
       });
     },
     onLeaveBack: () => {
       gsap.to(navbar, {
+        duration: 0.05,
         "--navbar-gradient-color": "rgba(20, 20, 20, 0)",
       });
     },
