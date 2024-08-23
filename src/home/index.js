@@ -406,9 +406,8 @@ timelineContent.forEach((content, index) => {
 
   ScrollTrigger.create({
     trigger: content,
-    start: "top 65%",
-    end: "bottom 65%",
-    markers: true,
+    start: "top 35%",
+    end: "bottom 80%",
     onEnter: () => animateElements(icon, index, 1),
     onEnterBack: () => animateElements(icon, index, 1),
     onLeave: () => animateElements(icon, index, 0.3),
