@@ -7,7 +7,7 @@ import Licences from "../home-animations/licences";
 import Embed from "../home-animations/embed";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
-ScrollTrigger.normalizeScroll(true);
+
 //Nav color change
 const navbar = document.querySelector(".navbar_component");
 const navHeight = navbar.offsetHeight;
