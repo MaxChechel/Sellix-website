@@ -3,12 +3,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
 
 //Window to top on page refresh
-let isRefreshing = false;
 window.addEventListener("beforeunload", function () {
-  isRefreshing = true;
+  window.scrollTo(0, 0);
 });
-window.addEventListener("unload", function () {
-  if (isRefreshing) {
+
+window.addEventListener("pageshow", function (event) {
+  if (event.persisted) {
     window.scrollTo(0, 0);
   }
 });
