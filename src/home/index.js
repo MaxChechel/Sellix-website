@@ -14,7 +14,7 @@ const navHeight = navbar.offsetHeight;
 const navTl = gsap.timeline();
 
 navTl.to(navbar, {
-  duration: 0.1,
+  duration: 0.05,
   ease: "none",
   scrollTrigger: {
     trigger: navbar,
