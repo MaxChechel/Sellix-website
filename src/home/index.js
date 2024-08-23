@@ -14,8 +14,6 @@ const navHeight = navbar.offsetHeight;
 const navTl = gsap.timeline();
 
 navTl.to(navbar, {
-  duration: 0.05,
-  ease: "none",
   scrollTrigger: {
     trigger: navbar,
     start: `+=1`,
@@ -23,13 +21,15 @@ navTl.to(navbar, {
     invalidateOnRefresh: true,
     onEnter: () => {
       gsap.to(navbar, {
-        duration: 0.05,
+        duration: 0,
+        ease: "none",
         "--navbar-gradient-color": "rgba(20, 20, 20, 1)",
       });
     },
     onLeaveBack: () => {
       gsap.to(navbar, {
-        duration: 0.05,
+        duration: 0,
+        ease: "none",
         "--navbar-gradient-color": "rgba(20, 20, 20, 0)",
       });
     },
