@@ -14,10 +14,10 @@ const navHeight = navbar.offsetHeight;
 const navTl = gsap.timeline();
 
 navTl.to(navbar, {
-  duration: 0.4,
+  duration: 0.2,
   scrollTrigger: {
     trigger: navbar,
-    start: `+=10`,
+    start: `+=1`,
     toggleActions: "play none none reverse",
     invalidateOnRefresh: true,
     onEnter: () => {
