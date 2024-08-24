@@ -157,13 +157,14 @@ document.addEventListener("keydown", (e) => {
 });
 
 // Event listener for closing modals by clicking outside of them
-document.addEventListener("click", (e) => {
-  const activeModal = document.querySelector(".modal.is-active");
-  // Check if there is an active modal and the click is outside the modal-content area
-  if (activeModal && !e.target.closest(".modal-content")) {
-    activeModal.classList.remove("is-active");
-    document.querySelector("body").style.overflow = "auto";
-  }
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("click", function (event) {
+    const isOutside = !event.target.closest(".modal_inner-wrap");
+    if (isOutside) {
+      modal.classList.remove("is-active");
+    }
+  });
 });
 
 //End contact modal
