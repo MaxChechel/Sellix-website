@@ -158,15 +158,11 @@ document.addEventListener("keydown", (e) => {
 
 // Event listener for closing modals by clicking outside of them
 document.addEventListener("click", (e) => {
-  // Check if the click was outside any modal content area
-  if (
-    !e.target.closest(".modal-content") &&
-    e.target.closest(".modal.is-active")
-  ) {
-    document.querySelectorAll(".modal.is-active").forEach((modal) => {
-      modal.classList.remove("is-active");
-      document.querySelector("body").style.overflow = "auto";
-    });
+  const activeModal = document.querySelector(".modal.is-active");
+  // Check if there is an active modal and the click is outside the modal-content area
+  if (activeModal && !e.target.closest(".modal-content")) {
+    activeModal.classList.remove("is-active");
+    document.querySelector("body").style.overflow = "auto";
   }
 });
 
