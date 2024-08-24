@@ -155,6 +155,15 @@ document.addEventListener("keydown", (e) => {
     });
   }
 });
+//Close modal on click outside
+document.addEventListener("click", (e) => {
+  document.querySelectorAll(".modal.is-active").forEach((modal) => {
+    if (!modal.contains(e.target)) {
+      modal.classList.remove("is-active");
+      document.querySelector("body").style.overflow = "auto";
+    }
+  });
+});
 //End contact modal
 
 const contactForm = document.getElementById("wf-form-General-Contact-Form");
