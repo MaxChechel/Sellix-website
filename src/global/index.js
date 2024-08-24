@@ -155,15 +155,21 @@ document.addEventListener("keydown", (e) => {
     });
   }
 });
-//Close modal on click outside
+
+// Event listener for closing modals by clicking outside of them
 document.addEventListener("click", (e) => {
-  document.querySelectorAll(".modal.is-active").forEach((modal) => {
-    if (!modal.contains(e.target)) {
+  // Check if the click was outside any modal content area
+  if (
+    !e.target.closest(".modal-content") &&
+    e.target.closest(".modal.is-active")
+  ) {
+    document.querySelectorAll(".modal.is-active").forEach((modal) => {
       modal.classList.remove("is-active");
       document.querySelector("body").style.overflow = "auto";
-    }
-  });
+    });
+  }
 });
+
 //End contact modal
 
 const contactForm = document.getElementById("wf-form-General-Contact-Form");
