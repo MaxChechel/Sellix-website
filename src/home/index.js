@@ -3,9 +3,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
-import Licences from "../home-animations/licences";
-import Embed from "../home-animations/embed";
-
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
 //Nav color change
@@ -429,65 +426,65 @@ ScrollTrigger.create({
 });
 
 ////Platforms
-const pathSvgs = document.querySelectorAll(".pulse-group");
+// const pathSvgs = document.querySelectorAll(".pulse-group");
 
-pathSvgs.forEach((svg, i) => {
-  const path = svg.querySelector(".pulse-path");
-  const line = svg.querySelector(".pulse-line");
-  const timeToPlay = Math.floor(Math.random() * 4) + 2;
-  const timeDelay = Math.floor(Math.random() * 3) + 1;
+// pathSvgs.forEach((svg, i) => {
+//   const path = svg.querySelector(".pulse-path");
+//   const line = svg.querySelector(".pulse-line");
+//   const timeToPlay = Math.floor(Math.random() * 4) + 2;
+//   const timeDelay = Math.floor(Math.random() * 3) + 1;
 
-  // Set the transform origin and offsets before animating
-  gsap.set(line, {
-    xPercent: -50, // Center horizontally
-    yPercent: -50, // Center vertically
-    transformOrigin: "50% 50%", // Set the transform origin to the center
-  });
-  gsap.to(".pulse-line", {
-    opacity: 1,
-    duration: 0.5,
-  });
-  const tween = gsap.to(line, {
-    motionPath: {
-      path: path,
-      align: path,
-      autoRotate: true,
-      alignOrigin: [0.5, 0.5],
-      start: 1,
-      end: 0,
-    },
-    delay: 0,
-    duration: timeToPlay,
-    repeat: -1,
-    repeatDelay: timeDelay,
-    ease: "none",
-  });
-  tween.play();
-});
+//   // Set the transform origin and offsets before animating
+//   gsap.set(line, {
+//     xPercent: -50, // Center horizontally
+//     yPercent: -50, // Center vertically
+//     transformOrigin: "50% 50%", // Set the transform origin to the center
+//   });
+//   gsap.to(".pulse-line", {
+//     opacity: 1,
+//     duration: 0.5,
+//   });
+//   const tween = gsap.to(line, {
+//     motionPath: {
+//       path: path,
+//       align: path,
+//       autoRotate: true,
+//       alignOrigin: [0.5, 0.5],
+//       start: 1,
+//       end: 0,
+//     },
+//     delay: 0,
+//     duration: timeToPlay,
+//     repeat: -1,
+//     repeatDelay: timeDelay,
+//     ease: "none",
+//   });
+//   tween.play();
+// });
 
-const mainLicencesTl = Licences();
-ScrollTrigger.create({
-  trigger: ".features-gallery_card.is-lic",
-  start: "top 50%",
-  end: "bottom 50%",
-  invalidateOnRefresh: true,
-  onEnter: () => mainLicencesTl.play(),
-  onLeave: () => mainLicencesTl.pause(),
-  onEnterBack: () => mainLicencesTl.play(),
-  onLeaveBack: () => mainLicencesTl.pause(),
-});
+// const mainLicencesTl = Licences();
+// ScrollTrigger.create({
+//   trigger: ".features-gallery_card.is-lic",
+//   start: "top 50%",
+//   end: "bottom 50%",
+//   invalidateOnRefresh: true,
+//   onEnter: () => mainLicencesTl.play(),
+//   onLeave: () => mainLicencesTl.pause(),
+//   onEnterBack: () => mainLicencesTl.play(),
+//   onLeaveBack: () => mainLicencesTl.pause(),
+// });
 
-const mainEmbedTl = Embed();
-ScrollTrigger.create({
-  trigger: ".features-gallery_card.is-embed",
-  start: "top 50%",
-  end: "bottom 50%",
-  invalidateOnRefresh: true,
-  onEnter: () => mainEmbedTl.play(),
-  onLeave: () => mainEmbedTl.pause(),
-  onEnterBack: () => mainEmbedTl.play(),
-  onLeaveBack: () => mainEmbedTl.pause(),
-});
+// const mainEmbedTl = Embed();
+// ScrollTrigger.create({
+//   trigger: ".features-gallery_card.is-embed",
+//   start: "top 50%",
+//   end: "bottom 50%",
+//   invalidateOnRefresh: true,
+//   onEnter: () => mainEmbedTl.play(),
+//   onLeave: () => mainEmbedTl.pause(),
+//   onEnterBack: () => mainEmbedTl.play(),
+//   onLeaveBack: () => mainEmbedTl.pause(),
+// });
 
 ////Horizontal scroll cards
 // const slider = document.querySelector(".horizontal-scroll_track");
