@@ -331,12 +331,6 @@ function addVideoListeners() {
   });
 }
 
-function removeVideoListeners() {
-  videos.forEach((video) => {
-    video.removeEventListener("ended", handleEndedEvent);
-  });
-}
-
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
     opacity: iconOpacity,
@@ -355,7 +349,8 @@ function animateElements(icon, index, iconOpacity = 1) {
     ease: "power4.out",
   });
 
-  // Play current video
+  // Play the current video
+  console.log(videos[index].readyState);
   videos[index].play();
 
   // Remove listeners from all other videos
