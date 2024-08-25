@@ -294,8 +294,6 @@ let videosWrap = document.querySelectorAll(
 );
 
 function videoListner(video) {
-  console.log("Video ended");
-  console.log(video);
   video.setAttribute("playedonce", true);
   video.currentTime = 2;
   video.play();
@@ -350,7 +348,6 @@ function animateElements(icon, index, iconOpacity = 1) {
   });
 
   // Play the current video
-  console.log(videos[index].readyState);
   videos[index].play();
 
   // Remove listeners from all other videos
