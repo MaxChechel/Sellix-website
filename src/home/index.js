@@ -279,151 +279,6 @@ ScrollTrigger.create({
 //     onLeaveBack: () => animateElements(icon, index, 0.3),
 //   });
 // });
-// const userAgent = navigator.userAgent.toLowerCase();
-// const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
-// const isIOS =
-//   /ipad|iphone|ipod/.test(userAgent) ||
-//   (userAgent.includes("mac") && "ontouchend" in document); // iOS
-
-// const timelineContent = document.querySelectorAll(".timeline_row");
-// let videos = document.querySelectorAll(
-//   ".timeline_videos-inner-wrap .timeline_video .video"
-// );
-// let videosWrap = document.querySelectorAll(
-//   ".timeline_videos-inner-wrap .timeline_video"
-// );
-
-// function videoListner(video) {
-//   console.log("Video ended");
-//   console.log(video);
-//   video.setAttribute("playedonce", true);
-//   video.currentTime = 2;
-//   video.play();
-// }
-
-// function handleEndedEvent(e) {
-//   videoListner(e.target);
-// }
-
-// function addVideoListeners() {
-//   videos.forEach((video) => {
-//     const webpSource = video.querySelector("source[type='video/webm']");
-//     const quicktimeSource = video.querySelector(
-//       "source[type='video/quicktime']"
-//     );
-
-//     // Set the appropriate source based on the browser or device
-//     if (isSafari || isIOS) {
-//       if (webpSource) {
-//         webpSource.remove();
-//       }
-//     } else {
-//       if (quicktimeSource) {
-//         quicktimeSource.remove();
-//       }
-//     }
-
-//     video.pause();
-//     video.setAttribute("playedonce", false);
-
-//     // Add event listener for video end
-//     video.addEventListener("ended", handleEndedEvent);
-//   });
-// }
-
-// function removeVideoListeners() {
-//   videos.forEach((video) => {
-//     video.removeEventListener("ended", handleEndedEvent);
-//   });
-// }
-
-// function animateElements(icon, index, iconOpacity = 1) {
-//   gsap.to(icon, {
-//     opacity: iconOpacity,
-//     duration: 1,
-//     ease: "power4.out",
-//   });
-
-//   gsap.to(videosWrap, {
-//     opacity: 0,
-//     duration: 1,
-//     ease: "power4.out",
-//   });
-//   gsap.to(videosWrap[index], {
-//     opacity: 1,
-//     duration: 1,
-//     ease: "power4.out",
-//   });
-
-//   // Play current video
-//   videos[index].play();
-
-//   // Remove listeners from all other videos
-//   videos.forEach((video, videoIndex) => {
-//     if (videoIndex !== index) {
-//       video.pause();
-//       video.removeEventListener("ended", handleEndedEvent);
-//     }
-//   });
-
-//   // Add listener to the currently active video
-//   videos[index].addEventListener("ended", handleEndedEvent);
-// }
-
-// let timelineMm = gsap.matchMedia();
-// timelineMm.add("(min-width: 768px)", () => {
-//   document.querySelectorAll(".timeline_mobile-img-wrap").forEach((el) => {
-//     el.remove();
-//   });
-//   videos = document.querySelectorAll(
-//     ".timeline_videos-inner-wrap .timeline_video .video"
-//   );
-//   videosWrap = document.querySelectorAll(
-//     ".timeline_videos-inner-wrap .timeline_video"
-//   );
-//   addVideoListeners();
-// });
-// timelineMm.add("(max-width: 767px)", () => {
-//   document.querySelector(".timeline_videos-inner-wrap").remove();
-//   videos = document.querySelectorAll(
-//     ".timeline_mobile-img-wrap .timeline_video .video"
-//   );
-//   videosWrap = document.querySelectorAll(
-//     ".timeline_mobile-img-wrap .timeline_video"
-//   );
-//   addVideoListeners();
-// });
-
-// // Initial setup
-// addVideoListeners();
-// gsap.set(videosWrap, { opacity: 0 });
-
-// timelineContent.forEach((content, index) => {
-//   const icon = content.querySelector(".timeline_icon-wrap");
-
-//   ScrollTrigger.create({
-//     trigger: content,
-//     start: "top 35%",
-//     end: "bottom 80%",
-//     onEnter: () => animateElements(icon, index, 1),
-//     onEnterBack: () => animateElements(icon, index, 1),
-//     onLeave: () => animateElements(icon, index, 0.3),
-//     onLeaveBack: () => animateElements(icon, index, 0.3),
-//   });
-// });
-
-// ScrollTrigger.create({
-//   trigger: ".timeline_component",
-//   start: "top 30%",
-//   end: "bottom 100%",
-//   scrub: 1.2,
-//   onUpdate: (self) => {
-//     gsap.to(".timeline_progress-line", {
-//       height: self.progress * 100 + "%",
-//       ease: "none",
-//     });
-//   },
-// });
 const userAgent = navigator.userAgent.toLowerCase();
 const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
 const isIOS =
@@ -483,95 +338,93 @@ function removeVideoListeners() {
 }
 
 function animateElements(icon, index, iconOpacity = 1) {
-  // Using CSS animations instead of GSAP to simplify
-  icon.style.opacity = iconOpacity;
-
-  videosWrap.forEach((wrap, wrapIndex) => {
-    wrap.style.opacity = wrapIndex === index ? 1 : 0;
+  gsap.to(icon, {
+    opacity: iconOpacity,
+    duration: 1,
+    ease: "power4.out",
   });
 
+  gsap.to(videosWrap, {
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out",
+  });
+  gsap.to(videosWrap[index], {
+    opacity: 1,
+    duration: 1,
+    ease: "power4.out",
+  });
+
+  // Play current video
+  videos[index].play();
+
+  // Remove listeners from all other videos
   videos.forEach((video, videoIndex) => {
-    if (videoIndex === index) {
-      video.play();
-      video.addEventListener("ended", handleEndedEvent);
-    } else {
+    if (videoIndex !== index) {
       video.pause();
       video.removeEventListener("ended", handleEndedEvent);
     }
   });
+
+  // Add listener to the currently active video
+  videos[index].addEventListener("ended", handleEndedEvent);
 }
 
-// Intersection Observer callback function
-function intersectionCallback(entries, observer) {
-  entries.forEach((entry) => {
-    const index = Array.from(timelineContent).indexOf(entry.target);
-    const icon = entry.target.querySelector(".timeline_icon-wrap");
-
-    if (entry.isIntersecting) {
-      // Element is visible
-      animateElements(icon, index, 1);
-    } else {
-      // Element is not visible
-      animateElements(icon, index, 0.3);
-    }
+let timelineMm = gsap.matchMedia();
+timelineMm.add("(min-width: 768px)", () => {
+  document.querySelectorAll(".timeline_mobile-img-wrap").forEach((el) => {
+    el.remove();
   });
-}
-
-// Initialize Intersection Observer
-const options = {
-  root: null, // Use the viewport as the root
-  rootMargin: "0px",
-  threshold: 0.35, // Similar to ScrollTrigger start and end points
-};
-
-const observer = new IntersectionObserver(intersectionCallback, options);
-
-// Attach observer to each timeline content element
-timelineContent.forEach((content) => {
-  observer.observe(content);
-});
-
-// Media query handling
-let timelineMm = window.matchMedia("(min-width: 768px)");
-function handleMediaQueryChange(e) {
-  if (e.matches) {
-    document.querySelectorAll(".timeline_mobile-img-wrap").forEach((el) => {
-      el.remove();
-    });
-    videos = document.querySelectorAll(
-      ".timeline_videos-inner-wrap .timeline_video .video"
-    );
-    videosWrap = document.querySelectorAll(
-      ".timeline_videos-inner-wrap .timeline_video"
-    );
-  } else {
-    const timelineVideosInnerWrap = document.querySelector(
-      ".timeline_videos-inner-wrap"
-    );
-    if (timelineVideosInnerWrap) {
-      timelineVideosInnerWrap.remove();
-    }
-    videos = document.querySelectorAll(
-      ".timeline_mobile-img-wrap .timeline_video .video"
-    );
-    videosWrap = document.querySelectorAll(
-      ".timeline_mobile-img-wrap .timeline_video"
-    );
-  }
+  videos = document.querySelectorAll(
+    ".timeline_videos-inner-wrap .timeline_video .video"
+  );
+  videosWrap = document.querySelectorAll(
+    ".timeline_videos-inner-wrap .timeline_video"
+  );
   addVideoListeners();
-  observer.disconnect(); // Remove all previous observers
-  timelineContent.forEach((content) => {
-    observer.observe(content);
-  });
-}
-
-// Listen for changes
-timelineMm.addEventListener("change", handleMediaQueryChange);
+});
+timelineMm.add("(max-width: 767px)", () => {
+  document.querySelector(".timeline_videos-inner-wrap").remove();
+  videos = document.querySelectorAll(
+    ".timeline_mobile-img-wrap .timeline_video .video"
+  );
+  videosWrap = document.querySelectorAll(
+    ".timeline_mobile-img-wrap .timeline_video"
+  );
+  addVideoListeners();
+});
 
 // Initial setup
 addVideoListeners();
-handleMediaQueryChange(timelineMm); // Run on load
-videosWrap.forEach((wrap) => (wrap.style.opacity = 0)); // Set initial state
+gsap.set(videosWrap, { opacity: 0 });
+
+timelineContent.forEach((content, index) => {
+  const icon = content.querySelector(".timeline_icon-wrap");
+
+  ScrollTrigger.create({
+    trigger: content,
+    start: "top 50%",
+    end: "bottom 50%",
+    onEnter: () => animateElements(icon, index, 1),
+    onEnterBack: () => animateElements(icon, index, 1),
+    onLeave: () => animateElements(icon, index, 0.3),
+    onLeaveBack: () => animateElements(icon, index, 0.3),
+    markers: true,
+  });
+});
+
+ScrollTrigger.create({
+  trigger: ".timeline_component",
+  start: "top 30%",
+  end: "bottom 100%",
+  scrub: 1.2,
+  onUpdate: (self) => {
+    gsap.to(".timeline_progress-line", {
+      height: self.progress * 100 + "%",
+      ease: "none",
+    });
+  },
+});
 
 ////Platforms
 // const pathSvgs = document.querySelectorAll(".pulse-group");
