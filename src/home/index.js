@@ -412,7 +412,6 @@ timelineContent.forEach((content, index) => {
     onEnterBack: () => animateElements(icon, index, 1),
     onLeave: () => animateElements(icon, index, 0.3),
     onLeaveBack: () => animateElements(icon, index, 0.3),
-    markers: true,
   });
 });
 
