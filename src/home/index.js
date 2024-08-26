@@ -288,7 +288,7 @@ const heroVideo = document.querySelector(".hero-header_background-video video");
 const heroWebpSource = heroVideo.querySelector("source[type='video/webm']");
 const heroMp4Source = heroVideo.querySelector("source[type='video/mp4']");
 if (isSafari || isIOS) {
-  if (wheroWebpSourceebpSource) {
+  if (heroWebpSource) {
     heroWebpSource.remove();
   }
 } else {
