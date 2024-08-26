@@ -285,15 +285,19 @@ const isIOS =
   /ipad|iphone|ipod/.test(userAgent) ||
   (userAgent.includes("mac") && "ontouchend" in document); // iOS
 const heroVideo = document.querySelector(".hero-header_background-video video");
-const heroWebpSource = heroVideo.querySelector("source[type='video/webm']");
-const heroMp4Source = heroVideo.querySelector("source[type='video/mp4']");
+const heroWebpSource = heroVideo.querySelectorAll("source[type='video/webm']");
+const heroMp4Source = heroVideo.querySelectorAll("source[type='video/mp4']");
 if (isSafari || isIOS) {
   if (heroWebpSource) {
-    heroWebpSource.remove();
+    heroWebpSource.forEach((source) => {
+      source.remove();
+    });
   }
 } else {
   if (heroMp4Source) {
-    heroMp4Source.remove();
+    heroMp4Source.forEach((source) => {
+      source.remove();
+    });
   }
 }
 const timelineContent = document.querySelectorAll(".timeline_row");
