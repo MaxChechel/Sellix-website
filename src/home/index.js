@@ -284,7 +284,18 @@ const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on 
 const isIOS =
   /ipad|iphone|ipod/.test(userAgent) ||
   (userAgent.includes("mac") && "ontouchend" in document); // iOS
-
+const heroVideo = document.querySelector(".hero-header_background-video video");
+const heroWebpSource = heroVideo.querySelector("source[type='video/webm']");
+const heroMp4Source = heroVideo.querySelector("source[type='video/mp4']");
+if (isSafari || isIOS) {
+  if (wheroWebpSourceebpSource) {
+    heroWebpSource.remove();
+  }
+} else {
+  if (heroMp4Source) {
+    heroMp4Source.remove();
+  }
+}
 const timelineContent = document.querySelectorAll(".timeline_row");
 let videos = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video .video"
