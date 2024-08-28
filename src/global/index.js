@@ -157,12 +157,12 @@ document.addEventListener("keydown", (e) => {
 });
 
 // Event listener for closing modals by clicking outside of them
-
 document.querySelectorAll(".modal").forEach((modal) => {
   modal.addEventListener("click", function (event) {
     const isOutside = !event.target.closest(".modal_inner-wrap");
     if (isOutside) {
       modal.classList.remove("is-active");
+      document.querySelector("body").style.overflow = "auto";
     }
   });
 });
