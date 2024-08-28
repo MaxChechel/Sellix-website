@@ -1,5 +1,5 @@
 import gsap from "gsap";
-const heroCards = document.querySelectorAll(".pos_hero-anim-img");
+const heroCards = document.querySelectorAll(".hero-header_cards-img");
 gsap.to(heroCards, {
   delay: 3.4,
   opacity: 1,
