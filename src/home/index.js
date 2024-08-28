@@ -162,7 +162,7 @@ introLines.forEach((line) => {
     trigger: line,
     start: "top 85%",
     end: "bottom 20%",
-    markers: true,
+
     onEnter: () => {
       gsap.to(line, {
         opacity: 0,
@@ -450,6 +450,7 @@ timelineContent.forEach((content, index) => {
     trigger: content,
     start: "top 50%",
     end: "bottom 50%",
+    markers: true,
     onEnter: () => animateElements(icon, index, 1),
     onEnterBack: () => animateElements(icon, index, 1),
     onLeave: () => animateElements(icon, index, 0.3),
