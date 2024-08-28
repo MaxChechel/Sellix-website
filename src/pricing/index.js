@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+import { Flip } from "gsap/Flip";
+gsap.registerPlugin(Flip, ScrollTrigger);
 
 //change prices to annual billing on toggle click
 const btnPriceYearly = document.querySelector("[data-price-btn=yearly]");
@@ -179,3 +180,20 @@ function formSubmit(formElement, formDataFunc, endpointUrl) {
   });
 }
 formSubmit(pricingContactForm, pricingContactFormData, pricingСontactEndpoint);
+
+//Pricing toggle links
+
+const pricingToggleLinks = document.querySelectorAll(".button.is-toggle");
+
+const pricingToggleShape = document.querySelector(".pricing-toggle_link-shape");
+const pricingToggleMenu = document.querySelector(".pricing-toggle-component");
+
+hoverMm.add("(hover:hover)", () => {
+  navLinkShapePosition(
+    pricingToggleLinks,
+    pricingToggleMenu,
+    pricingToggleShape
+  );
+  //navLinkShapePosition(navDdLinks, navDdMenu, navDdLinkShape);
+});
+//End nav links
