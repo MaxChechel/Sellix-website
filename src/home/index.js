@@ -154,6 +154,31 @@ introSections.forEach((section) => {
   });
 });
 
+const introLines = document.querySelectorAll(
+  ".home-intro_horiz-line:not(:last-child)"
+);
+introLines.forEach((line) => {
+  ScrollTrigger.create({
+    trigger: line,
+    start: "top 70%",
+    end: "bottom 30%",
+    onEnter: () => {
+      gsap.to(line, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    },
+    onEnterBack: () => {
+      gsap.to(line, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    },
+  });
+});
+
 //Logo garden
 ScrollTrigger.create({
   trigger: ".section_logo-garden",
