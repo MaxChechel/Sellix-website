@@ -450,7 +450,6 @@ timelineContent.forEach((content, index) => {
     trigger: content,
     start: "top 50%",
     end: "bottom 50%",
-    markers: true,
     onEnter: () => animateElements(icon, index, 1),
     onEnterBack: () => animateElements(icon, index, 1),
     onLeave: () => animateElements(icon, index, 0.3),
