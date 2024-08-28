@@ -166,28 +166,28 @@ introLines.forEach((line) => {
     onEnter: () => {
       gsap.to(line, {
         opacity: 0,
-        duration: 0.4,
+        duration: 0.6,
         ease: "power2.out",
       });
     },
     onEnterBack: () => {
       gsap.to(line, {
         opacity: 0,
-        duration: 0.4,
+        duration: 0.6,
         ease: "power2.out",
       });
     },
     onLeave: () => {
       gsap.to(line, {
         opacity: 1,
-        duration: 0.4,
+        duration: 0.6,
         ease: "power2.out",
       });
     },
     onLeaveBack: () => {
       gsap.to(line, {
         opacity: 1,
-        duration: 0.4,
+        duration: 0.6,
         ease: "power2.out",
       });
     },
