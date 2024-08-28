@@ -160,8 +160,8 @@ const introLines = document.querySelectorAll(
 introLines.forEach((line) => {
   ScrollTrigger.create({
     trigger: line,
-    start: "top 70%",
-    end: "bottom 30%",
+    start: "top 80%",
+    end: "bottom 20%",
     onEnter: () => {
       gsap.to(line, {
         opacity: 0,
