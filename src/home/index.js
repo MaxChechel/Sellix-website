@@ -176,6 +176,20 @@ introLines.forEach((line) => {
         ease: "power2.out",
       });
     },
+    onLeave: () => {
+      gsap.to(line, {
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    },
+    onLeaveBack: () => {
+      gsap.to(line, {
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    },
   });
 });
 
