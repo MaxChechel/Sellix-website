@@ -1,6 +1,34 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+
+//change prices to annual billing on toggle click
+const btnPriceYearly = document.querySelector("[data-price-btn=yearly]");
+const btnPriceMonthly = document.querySelector("[data-price-btn=monthly]");
+
+const elements = {
+  ctaYearly: document.querySelectorAll(".cta-yearly"),
+  ctaMonthly: document.querySelectorAll(".cta-monthly"),
+  annualPrices: document.querySelectorAll(".pricing_card-price.is-yearly"),
+  monthlyPrices: document.querySelectorAll(".pricing_card-price.is-monthly"),
+};
+
+function togglePricing(showYearly) {
+  const activeBtn = showYearly ? btnPriceYearly : btnPriceMonthly;
+  const inactiveBtn = showYearly ? btnPriceMonthly : btnPriceYearly;
+
+  activeBtn.classList.add("is-active");
+  inactiveBtn.classList.remove("is-active");
+
+  Object.entries(elements).forEach(([key, elementList]) => {
+    const display = key.includes("Yearly") === showYearly ? "block" : "none";
+    elementList.forEach((element) => (element.style.display = display));
+  });
+}
+
+btnPriceYearly.addEventListener("click", () => togglePricing(true));
+btnPriceMonthly.addEventListener("click", () => togglePricing(false));
+
 //Pricing Modal
 const contactPricingBtn = document.querySelector(".pricing_item-head.is-cta a");
 const contactPricingModal = document.querySelector("#contact-modal-pricing");
