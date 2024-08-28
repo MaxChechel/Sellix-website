@@ -418,7 +418,7 @@ function animateElements(icon, index, iconOpacity = 1) {
 }
 
 let timelineMm = gsap.matchMedia();
-timelineMm.add("(min-width: 768px)", () => {
+timelineMm.add("(min-width: 992px)", () => {
   document.querySelectorAll(".timeline_mobile-img-wrap").forEach((el) => {
     el.remove();
   });
@@ -428,7 +428,7 @@ timelineMm.add("(min-width: 768px)", () => {
 
   addVideoListeners();
 });
-timelineMm.add("(max-width: 767px)", () => {
+timelineMm.add("(max-width: 991px)", () => {
   document.querySelector(".timeline_videos-inner-wrap").remove();
   videos = document.querySelectorAll(
     ".timeline_mobile-img-wrap .timeline_video .video"
