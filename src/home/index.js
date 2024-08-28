@@ -162,6 +162,7 @@ introLines.forEach((line) => {
     trigger: line,
     start: "top 80%",
     end: "bottom 20%",
+    markers: true,
     onEnter: () => {
       gsap.to(line, {
         opacity: 0,
