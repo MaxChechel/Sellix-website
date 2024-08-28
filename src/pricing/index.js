@@ -184,11 +184,13 @@ formSubmit(pricingContactForm, pricingContactFormData, pricingСontactEndpoint);
 //Pricing toggle links
 
 const pricingToggleLinks = document.querySelectorAll(".button.is-toggle");
-
 const pricingToggleShape = document.querySelector(".pricing-toggle_link-shape");
 const pricingToggleMenu = document.querySelector(".pricing-toggle-component");
 let hoverMm = gsap.matchMedia();
+
 function navLinkShapePosition(links, container, shape) {
+  let activeLink = null;
+
   links.forEach(function (link) {
     link.addEventListener("mouseenter", function () {
       const state = Flip.getState(shape, {
@@ -196,7 +198,6 @@ function navLinkShapePosition(links, container, shape) {
         simple: true,
       });
       shape.classList.add("is-active");
-
       this.appendChild(shape);
 
       Flip.from(state, {
@@ -205,6 +206,12 @@ function navLinkShapePosition(links, container, shape) {
         ease: "power2.out",
       });
     });
+
+    link.addEventListener("click", function () {
+      activeLink = this;
+      links.forEach((l) => l.classList.remove("active"));
+      this.classList.add("active");
+    });
   });
 
   container.addEventListener("mouseleave", function () {
@@ -212,7 +219,13 @@ function navLinkShapePosition(links, container, shape) {
       props: "opacity",
       simple: true,
     });
-    shape.classList.remove("is-active");
+
+    if (activeLink) {
+      activeLink.appendChild(shape);
+    } else {
+      shape.classList.remove("is-active");
+    }
+
     Flip.from(state, {
       absolute: true,
       duration: 0.3,
@@ -221,6 +234,7 @@ function navLinkShapePosition(links, container, shape) {
     });
   });
 }
+
 hoverMm.add("(hover:hover)", () => {
   navLinkShapePosition(
     pricingToggleLinks,
