@@ -187,13 +187,45 @@ const pricingToggleLinks = document.querySelectorAll(".button.is-toggle");
 
 const pricingToggleShape = document.querySelector(".pricing-toggle_link-shape");
 const pricingToggleMenu = document.querySelector(".pricing-toggle-component");
+let hoverMm = gsap.matchMedia();
+function navLinkShapePosition(links, container, shape) {
+  links.forEach(function (link) {
+    link.addEventListener("mouseenter", function () {
+      const state = Flip.getState(shape, {
+        props: "opacity",
+        simple: true,
+      });
+      shape.classList.add("is-active");
 
+      this.appendChild(shape);
+
+      Flip.from(state, {
+        absolute: true,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    });
+  });
+
+  container.addEventListener("mouseleave", function () {
+    const state = Flip.getState(shape, {
+      props: "opacity",
+      simple: true,
+    });
+    shape.classList.remove("is-active");
+    Flip.from(state, {
+      absolute: true,
+      duration: 0.3,
+      ease: "power2.out",
+      scale: true,
+    });
+  });
+}
 hoverMm.add("(hover:hover)", () => {
   navLinkShapePosition(
     pricingToggleLinks,
     pricingToggleMenu,
     pricingToggleShape
   );
-  //navLinkShapePosition(navDdLinks, navDdMenu, navDdLinkShape);
 });
 //End nav links
