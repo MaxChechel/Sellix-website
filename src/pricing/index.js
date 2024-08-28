@@ -249,12 +249,22 @@ function navLinkShapePosition(links, container, shape) {
     }
   });
 }
-
+//hover:hover media query
 hoverMm.add("(hover:hover)", () => {
   navLinkShapePosition(
     pricingToggleLinks,
     pricingToggleMenu,
     pricingToggleShape
   );
+});
+
+//not hover:hover media query
+hoverMm.add("(hover:none)", () => {
+  pricingToggleLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      links.forEach((l) => l.classList.remove("is-active"));
+      this.classList.add("is-active");
+    });
+  });
 });
 //End nav links
