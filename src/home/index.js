@@ -160,7 +160,7 @@ const introLines = document.querySelectorAll(
 introLines.forEach((line) => {
   ScrollTrigger.create({
     trigger: line,
-    start: "top 80%",
+    start: "top 85%",
     end: "bottom 20%",
     markers: true,
     onEnter: () => {
