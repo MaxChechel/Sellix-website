@@ -6,28 +6,29 @@ gsap.registerPlugin(ScrollTrigger);
 const btnPriceYearly = document.querySelector("[data-price-btn=yearly]");
 const btnPriceMonthly = document.querySelector("[data-price-btn=monthly]");
 
-const elements = {
-  ctaYearly: document.querySelectorAll(".cta-yearly"),
-  ctaMonthly: document.querySelectorAll(".cta-monthly"),
-  annualPrices: document.querySelectorAll(".pricing_card-price.is-yearly"),
-  monthlyPrices: document.querySelectorAll(".pricing_card-price.is-monthly"),
-};
+const ctaYearly = document.querySelectorAll(".cta-yearly");
+const ctaMonthly = document.querySelectorAll(".cta-monthly");
+const annualPrices = document.querySelectorAll(".pricing_card-price.is-yearly");
+const monthlyPrices = document.querySelectorAll(
+  ".pricing_card-price.is-monthly"
+);
 
-function togglePricing(showYearly) {
-  const activeBtn = showYearly ? btnPriceYearly : btnPriceMonthly;
-  const inactiveBtn = showYearly ? btnPriceMonthly : btnPriceYearly;
-
-  activeBtn.classList.add("is-active");
-  inactiveBtn.classList.remove("is-active");
-
-  Object.entries(elements).forEach(([key, elementList]) => {
-    const display = key.includes("Yearly") === showYearly ? "block" : "none";
-    elementList.forEach((element) => (element.style.display = display));
-  });
-}
-
-btnPriceYearly.addEventListener("click", () => togglePricing(true));
-btnPriceMonthly.addEventListener("click", () => togglePricing(false));
+btnPriceYearly.addEventListener("click", () => {
+  btnPriceMonthly.classList.remove("is-active");
+  btnPriceYearly.classList.add("is-active");
+  annualPrices.forEach((price) => (price.style.display = "block"));
+  monthlyPrices.forEach((price) => (price.style.display = "none"));
+  ctaYearly.forEach((cta) => (cta.style.display = "block"));
+  ctaMonthly.forEach((cta) => (cta.style.display = "none"));
+});
+btnPriceMonthly.addEventListener("click", () => {
+  btnPriceYearly.classList.remove("is-active");
+  btnPriceMonthly.classList.add("is-active");
+  annualPrices.forEach((price) => (price.style.display = "none"));
+  monthlyPrices.forEach((price) => (price.style.display = "block"));
+  ctaYearly.forEach((cta) => (cta.style.display = "none"));
+  ctaMonthly.forEach((cta) => (cta.style.display = "block"));
+});
 
 //Pricing Modal
 const contactPricingBtn = document.querySelector(".pricing_item-head.is-cta a");
