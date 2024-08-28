@@ -191,6 +191,24 @@ let hoverMm = gsap.matchMedia();
 function navLinkShapePosition(links, container, shape) {
   let activeLink = null;
 
+  // Find the initially active link
+  links.forEach(function (link) {
+    if (link.classList.contains("active")) {
+      activeLink = link;
+    }
+  });
+
+  // If no active link is found, set the first link as active
+  if (!activeLink && links.length > 0) {
+    activeLink = links[0];
+    activeLink.classList.add("active");
+  }
+
+  // Initially position the shape on the active link
+  if (activeLink) {
+    activeLink.appendChild(shape);
+  }
+
   links.forEach(function (link) {
     link.addEventListener("mouseenter", function () {
       const state = Flip.getState(shape, {
