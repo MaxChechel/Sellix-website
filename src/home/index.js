@@ -425,9 +425,9 @@ timelineMm.add("(min-width: 768px)", () => {
   videos = document.querySelectorAll(
     ".timeline_videos-inner-wrap .timeline_video .video"
   );
-  videosWrap = document.querySelectorAll(
-    ".timeline_videos-inner-wrap .timeline_video"
-  );
+  // videosWrap = document.querySelectorAll(
+  //   ".timeline_videos-inner-wrap .timeline_video"
+  // );
   addVideoListeners();
 });
 timelineMm.add("(max-width: 767px)", () => {
