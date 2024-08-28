@@ -387,18 +387,18 @@ function addVideoListeners() {
 function animateElements(icon, index, iconOpacity = 1) {
   gsap.to(icon, {
     opacity: iconOpacity,
-    duration: 1,
+    duration: 0.5,
     ease: "power4.out",
   });
 
   gsap.to(videosWrap, {
     opacity: 0,
-    duration: 1,
+    duration: 0.5,
     ease: "power4.out",
   });
   gsap.to(videosWrap[index], {
     opacity: 1,
-    duration: 1,
+    duration: 0.5,
     ease: "power4.out",
   });
 
