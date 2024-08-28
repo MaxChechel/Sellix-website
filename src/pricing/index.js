@@ -214,19 +214,21 @@ function navLinkShapePosition(links, container, shape) {
   });
 
   container.addEventListener("mouseleave", function () {
-    const state = Flip.getState(shape, {
-      props: "opacity",
-      simple: true,
-    });
+    if (activeLink) {
+      const state = Flip.getState(shape, {
+        props: "opacity",
+        simple: true,
+      });
 
-    activeLink.appendChild(shape);
+      activeLink.appendChild(shape);
 
-    Flip.from(state, {
-      absolute: true,
-      duration: 0.3,
-      ease: "power2.out",
-      scale: true,
-    });
+      Flip.from(state, {
+        absolute: true,
+        duration: 0.3,
+        ease: "power2.out",
+        scale: true,
+      });
+    }
   });
 }
 
