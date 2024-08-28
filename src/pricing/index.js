@@ -197,7 +197,6 @@ function navLinkShapePosition(links, container, shape) {
         props: "opacity",
         simple: true,
       });
-      shape.classList.add("is-active");
       this.appendChild(shape);
 
       Flip.from(state, {
@@ -220,11 +219,7 @@ function navLinkShapePosition(links, container, shape) {
       simple: true,
     });
 
-    if (activeLink) {
-      activeLink.appendChild(shape);
-    } else {
-      shape.classList.remove("is-active");
-    }
+    activeLink.appendChild(shape);
 
     Flip.from(state, {
       absolute: true,
