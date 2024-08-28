@@ -193,7 +193,7 @@ function navLinkShapePosition(links, container, shape) {
 
   // Find the initially active link
   links.forEach(function (link) {
-    if (link.classList.contains("active")) {
+    if (link.classList.contains("is-active")) {
       activeLink = link;
     }
   });
@@ -201,7 +201,7 @@ function navLinkShapePosition(links, container, shape) {
   // If no active link is found, set the first link as active
   if (!activeLink && links.length > 0) {
     activeLink = links[0];
-    activeLink.classList.add("active");
+    activeLink.classList.add("is-active");
   }
 
   // Initially position the shape on the active link
@@ -226,8 +226,8 @@ function navLinkShapePosition(links, container, shape) {
 
     link.addEventListener("click", function () {
       activeLink = this;
-      links.forEach((l) => l.classList.remove("active"));
-      this.classList.add("active");
+      links.forEach((l) => l.classList.remove("is-active"));
+      this.classList.add("is-active");
     });
   });
 
