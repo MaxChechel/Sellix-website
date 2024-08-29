@@ -34,10 +34,11 @@ function checkOpacity() {
     requestAnimationFrame(checkOpacity);
   }
 }
-
-const loaderObserver = new MutationObserver(() => {
-  requestAnimationFrame(checkOpacity);
-});
+setTimeout(() => {
+  const loaderObserver = new MutationObserver(() => {
+    requestAnimationFrame(checkOpacity);
+  });
+}, 1000);
 
 loaderObserver.observe(loader, {
   attributes: true,
