@@ -161,7 +161,7 @@ introLines.forEach((line) => {
   ScrollTrigger.create({
     trigger: line,
     start: "top 90%",
-    end: "bottom 15%",
+    end: "bottom 10%",
 
     onEnter: () => {
       gsap.to(line, {
