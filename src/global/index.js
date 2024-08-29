@@ -14,37 +14,53 @@ window.addEventListener("unload", function () {
 });
 
 //Loader
-const loader = document.querySelector(".loader");
-const body = document.body;
+// Function to initialize the MutationObserver
+function initializeObserver() {
+  // Select the loader element
+  const loader = document.querySelector(".loader");
 
-if (!loader) {
-  console.error("Loader element not found");
-  return;
-}
-
-function checkOpacity() {
-  const opacity = window.getComputedStyle(loader).getPropertyValue("opacity");
-  if (opacity === "0") {
-    loader.style.pointerEvents = "none";
-    body.style.overflow = "auto";
-    loaderObserver.disconnect();
-    console.log("Loader opacity: ", opacity);
-  } else {
-    console.log("Loader opacity: ", opacity);
-    requestAnimationFrame(checkOpacity);
+  // Return early if no loader element is found
+  if (!loader) {
+    console.error(".loader element not found");
+    return;
   }
-}
-setTimeout(() => {
-  const loaderObserver = new MutationObserver(() => {
-    requestAnimationFrame(checkOpacity);
-  });
-}, 1000);
 
-loaderObserver.observe(loader, {
-  attributes: true,
-  attributeFilter: ["style"],
-});
-checkOpacity();
+  // Callback function to execute when mutations are observed
+  const callback = (mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      // Check if the opacity has changed to 0
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "style" &&
+        getComputedStyle(loader).opacity === "0"
+      ) {
+        // Make .loader non-interactive
+        loader.style.pointerEvents = "none";
+        // Allow body to scroll
+        document.body.style.overflow = "auto";
+        // Disconnect the observer as we no longer need it
+        loaderObserver.disconnect();
+        break;
+      }
+    }
+  };
+
+  // Create an instance of MutationObserver with the callback function
+  const loaderObserver = new MutationObserver(callback);
+
+  // Configuration of the observer to watch for attribute changes
+  const config = {
+    attributes: true, // Watch for attribute changes
+    attributeFilter: ["style"], // Only watch the 'style' attribute
+  };
+
+  // Start observing the loader element for configured mutations
+  loaderObserver.observe(loader, config);
+}
+
+// Run the function when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", initializeObserver);
+
 // document.querySelector("body").style.overflow = "hidden";
 // const loaderTl = gsap.timeline();
 // loaderTl
