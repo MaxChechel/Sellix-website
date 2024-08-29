@@ -385,7 +385,7 @@ function addVideoListeners() {
 }
 
 function animateElements(icon, index, iconOpacity = 1) {
-  videosWrap[index].style.display = "block";
+  videosWrap[index].classList.remove("hide");
   gsap.to(icon, {
     opacity: iconOpacity,
     duration: 0.5,
