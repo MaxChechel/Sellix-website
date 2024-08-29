@@ -22,25 +22,26 @@ if (!loader) {
   return;
 }
 
-const loaderObserver = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if (mutation.type === "attributes" && mutation.attributeName === "style") {
-      const opacity = window
-        .getComputedStyle(loader)
-        .getPropertyValue("opacity");
-      if (opacity === "0") {
-        loader.style.pointerEvents = "none";
-        body.style.overflow = "auto";
-        observer.disconnect();
-      }
-    }
-  });
+function checkOpacity() {
+  const opacity = window.getComputedStyle(loader).getPropertyValue("opacity");
+  if (opacity === "0") {
+    loader.style.pointerEvents = "none";
+    body.style.overflow = "auto";
+    loaderObserver.disconnect();
+  } else {
+    requestAnimationFrame(checkOpacity);
+  }
+}
+
+const loaderObserver = new MutationObserver(() => {
+  requestAnimationFrame(checkOpacity);
 });
 
 loaderObserver.observe(loader, {
   attributes: true,
   attributeFilter: ["style"],
 });
+checkOpacity();
 // document.querySelector("body").style.overflow = "hidden";
 // const loaderTl = gsap.timeline();
 // loaderTl
