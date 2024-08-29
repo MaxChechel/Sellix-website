@@ -28,7 +28,9 @@ function checkOpacity() {
     loader.style.pointerEvents = "none";
     body.style.overflow = "auto";
     loaderObserver.disconnect();
+    console.log("Loader opacity: ", opacity);
   } else {
+    console.log("Loader opacity: ", opacity);
     requestAnimationFrame(checkOpacity);
   }
 }
