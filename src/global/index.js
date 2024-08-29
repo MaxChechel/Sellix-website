@@ -14,6 +14,33 @@ window.addEventListener("unload", function () {
 });
 
 //Loader
+const loader = document.querySelector(".loader");
+const body = document.body;
+
+if (!loader) {
+  console.error("Loader element not found");
+  return;
+}
+
+const loaderObserver = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === "attributes" && mutation.attributeName === "style") {
+      const opacity = window
+        .getComputedStyle(loader)
+        .getPropertyValue("opacity");
+      if (opacity === "0") {
+        loader.style.pointerEvents = "none";
+        body.style.overflow = "auto";
+        observer.disconnect();
+      }
+    }
+  });
+});
+
+loaderObserver.observe(loader, {
+  attributes: true,
+  attributeFilter: ["style"],
+});
 // document.querySelector("body").style.overflow = "hidden";
 // const loaderTl = gsap.timeline();
 // loaderTl
