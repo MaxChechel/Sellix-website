@@ -14,37 +14,37 @@ window.addEventListener("unload", function () {
 });
 
 //Loader
-document.querySelector("body").style.overflow = "hidden";
-const loaderTl = gsap.timeline();
-loaderTl
-  .to(".loader_logo, .loader_spinner", {
-    duration: 0.6,
-    opacity: 1,
-    ease: "power4.out",
-  })
-  .to(
-    ".loader_spinner",
-    {
-      rotate: "360deg",
-      duration: 1.6,
-      ease: "none",
-      repeat: -1,
-    },
-    0
-  )
-  .to(
-    ".loader",
-    {
-      duration: 0.5,
-      opacity: 0,
-      ease: "power4.out",
-      pointerEvents: "none",
-    },
-    3
-  )
-  .add(() => {
-    document.querySelector("body").style.overflow = "auto";
-  });
+// document.querySelector("body").style.overflow = "hidden";
+// const loaderTl = gsap.timeline();
+// loaderTl
+//   .to(".loader_logo, .loader_spinner", {
+//     duration: 0.6,
+//     opacity: 1,
+//     ease: "power4.out",
+//   })
+//   .to(
+//     ".loader_spinner",
+//     {
+//       rotate: "360deg",
+//       duration: 1.6,
+//       ease: "none",
+//       repeat: -1,
+//     },
+//     0
+//   )
+//   .to(
+//     ".loader",
+//     {
+//       duration: 0.5,
+//       opacity: 0,
+//       ease: "power4.out",
+//       pointerEvents: "none",
+//     },
+//     3
+//   )
+//   .add(() => {
+//     document.querySelector("body").style.overflow = "auto";
+//   });
 
 gsap.registerPlugin(Flip, ScrollTrigger);
 
