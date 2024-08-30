@@ -352,3 +352,26 @@ if (window.innerWidth > 991) {
     });
   }
 }
+
+// Function to check if an element has a vertical scrollbar
+function hasVerticalScrollbar(element) {
+  return element.scrollHeight > element.clientHeight;
+}
+
+// Function to apply the appropriate class
+function updateScrollbarPadding(element) {
+  if (hasVerticalScrollbar(element)) {
+    element.classList.add("has-scrollbar");
+  } else {
+    element.classList.remove("has-scrollbar");
+  }
+}
+
+// Get the element you want to check (replace with your selector)
+const formInnerWraps = document.querySelectorAll(".form_inner-wrap");
+
+// Initial check
+formInnerWraps.forEach((el) => updateScrollbarPadding(el));
+
+// Optional: Add a resize event listener to recheck on window resize
+window.addEventListener("resize", () => formInnerWraps.forEach((el) => updateScrollbarPadding(el)););
