@@ -20,7 +20,7 @@ window.addEventListener("unload", function () {
 function initializeObserver() {
   // Select the loader element
   const loader = document.querySelector(".loader");
-
+  document.body.classList.add(".lenis-stopped");
   // Return early if no loader element is found
   if (!loader) {
     console.error(".loader element not found");
@@ -39,7 +39,7 @@ function initializeObserver() {
         // Make .loader non-interactive
         loader.style.pointerEvents = "none";
         // Allow body to scroll
-        document.body.style.overflow = "auto";
+        document.body.classList.remove(".lenis-stopped");
         // Disconnect the observer as we no longer need it
         loaderObserver.disconnect();
         break;
