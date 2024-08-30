@@ -61,20 +61,6 @@ gatewaysLinks.forEach((link) => {
   });
 });
 gatewaysModals.forEach((modal) => {
-  const slug = modal.getAttribute("data-gateway-modal");
-  const cardsContainer = modal.querySelector(".gateway-modal_cards-container");
-  fetch("/gateways/" + slug)
-    .then((response) => response.text())
-    .then(function (data) {
-      const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = data;
-      const cards = tempDiv.querySelector(".gateway-modal_cards-wrap");
-      cardsContainer.appendChild(cards);
-    })
-    .catch(function (error) {
-      console.error("Error:", error);
-    });
-
   const closeBtn = modal.querySelector(".modal_close-btn");
   closeBtn.addEventListener("click", () => {
     modal.classList.remove("is-active");
