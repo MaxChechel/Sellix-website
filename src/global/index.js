@@ -367,11 +367,12 @@ function updateScrollbarPadding(element) {
   }
 }
 
-// Get the element you want to check (replace with your selector)
 const formInnerWraps = document.querySelectorAll(".form_inner-wrap");
 
 // Initial check
 formInnerWraps.forEach((el) => updateScrollbarPadding(el));
 
 // Optional: Add a resize event listener to recheck on window resize
-window.addEventListener("resize", () => formInnerWraps.forEach((el) => updateScrollbarPadding(el)););
+window.addEventListener("resize", () =>
+  formInnerWraps.forEach((el) => updateScrollbarPadding(el))
+);
