@@ -215,110 +215,6 @@ ScrollTrigger.create({
   },
 });
 
-////Sticky section with videos
-// const userAgent = navigator.userAgent.toLowerCase();
-// const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
-// const isIOS =
-//   /ipad|iphone|ipod/.test(userAgent) ||
-//   (userAgent.includes("mac") && "ontouchend" in document); // iOS
-
-// const timelineContent = document.querySelectorAll(".timeline_row");
-// let videos = document.querySelectorAll(
-//   ".timeline_videos-inner-wrap .timeline_video .video"
-// );
-// let videosWrap = document.querySelectorAll(
-//   ".timeline_videos-inner-wrap .timeline_video"
-// );
-
-// function videoListner(video) {
-//   console.log("Video ended");
-//   video.setAttribute("playedonce", true);
-//   video.currentTime = 2;
-//   video.play();
-// }
-
-// let timelineMm = gsap.matchMedia();
-// timelineMm.add("(min-width: 768px)", () => {
-//   document.querySelectorAll(".timeline_mobile-img-wrap").forEach((el) => {
-//     el.remove();
-//   });
-// });
-// timelineMm.add("(max-width: 767px)", () => {
-//   document.querySelector(".timeline_videos-inner-wrap").remove();
-//   videos = document.querySelectorAll(
-//     ".timeline_mobile-img-wrap .timeline_video .video"
-//   );
-//   videosWrap = document.querySelectorAll(
-//     ".timeline_mobile-img-wrap .timeline_video"
-//   );
-// });
-// gsap.set(videosWrap, { opacity: 0 });
-// videos.forEach((video) => {
-//   const webpSource = video.querySelector("source[type='video/webm']");
-//   const quicktimeSource = video.querySelector("source[type='video/quicktime']");
-//   // Set the appropriate source based on the browser or device
-//   if (isSafari || isIOS) {
-//     // Remove the webp source if Safari or iOS
-//     if (webpSource) {
-//       webpSource.remove();
-//     }
-//   } else {
-//     // Remove the quicktime source if not Safari or iOS
-//     if (quicktimeSource) {
-//       quicktimeSource.remove();
-//     }
-//   }
-
-//   video.pause();
-
-//   video.setAttribute("playedonce", false);
-
-//   video.addEventListener("ended", () => videoListner(video));
-// });
-// function animateElements(icon, index, iconOpacity = 1) {
-//   gsap.to(icon, {
-//     opacity: iconOpacity,
-//     duration: 1,
-//     ease: "power4.out",
-//   });
-
-//   gsap.to(videosWrap, {
-//     opacity: 0,
-//     duration: 1,
-//     ease: "power4.out",
-//   });
-//   gsap.to(videosWrap[index], {
-//     opacity: 1,
-//     duration: 1,
-//     ease: "power4.out",
-//   });
-
-//   // Play current video
-//   videos[index].play();
-//   video[index].addEventListener("ended", () => videoListner(video[index]));
-
-//   // Pause all other videos
-//   videos.forEach((video, videoIndex) => {
-//     if (videoIndex !== index) {
-//       video.pause();
-//       video.removeEventListener("ended", () => videoListner(video));
-//     }
-//   });
-// }
-
-// timelineContent.forEach((content, index) => {
-//   const icon = content.querySelector(".timeline_icon-wrap");
-
-//   ScrollTrigger.create({
-//     trigger: content,
-//     start: "top 60%",
-//     end: "top 0%",
-//     onEnter: () => animateElements(icon, index, 1),
-//     onEnterBack: () => animateElements(icon, index, 1),
-//     onLeave: () => animateElements(icon, index, 0.3),
-//     onLeaveBack: () => animateElements(icon, index, 0.3),
-//   });
-// });
 const userAgent = navigator.userAgent.toLowerCase();
 const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on macOS and iOS
 const isIOS =
@@ -449,8 +345,8 @@ timelineContent.forEach((content, index) => {
 
   ScrollTrigger.create({
     trigger: content,
-    start: "top 50%",
-    end: "bottom 50%",
+    start: "top 40%",
+    end: "bottom 40%",
     onEnter: () => animateElements(icon, index, 1),
     onEnterBack: () => animateElements(icon, index, 1),
     onLeave: () => animateElements(icon, index, 0.3),
