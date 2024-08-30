@@ -11,7 +11,7 @@ commerceTickerTl.to(".hero-commerce_massonry-grid", {
 });
 
 gsap.to(heroCards, {
-  delay: 3.4,
+  delay: 2.3,
   opacity: 1,
   y: 0,
   duration: 0.6,

@@ -9,7 +9,7 @@ let mm = gsap.matchMedia();
 const revealTl = gsap.timeline();
 revealTl
   .from(items, {
-    delay: 3.4,
+    delay: 2.3,
     width: 0,
     top: "auto",
     right: "auto",

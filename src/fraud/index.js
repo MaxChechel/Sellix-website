@@ -22,7 +22,7 @@ const heroCards = document.querySelectorAll(".fraud_hero-grid-img");
 const cardsTl = gsap.timeline();
 cardsTl
   .to(heroCards, {
-    delay: 3.5,
+    delay: 2.3,
     opacity: 1,
     y: 0,
     duration: 0.6,
