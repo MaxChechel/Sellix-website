@@ -46,17 +46,6 @@ contactPricingClose.addEventListener("click", () => {
   document.body.style.overflow = "auto";
 });
 
-const heroCards = document.querySelectorAll(
-  ".pricing_inner-wrap, .pricing_banner"
-);
-gsap.to(heroCards, {
-  delay: 3.4,
-  opacity: 1,
-  y: 0,
-  duration: 0.6,
-  ease: "circ.out",
-  stagger: { each: 0.075 },
-});
 ///Gateways modal
 const gatewaysLinks = document.querySelectorAll(".gateways_item-link");
 const gatewaysModals = document.querySelectorAll(".modal[data-gateway-modal]");
