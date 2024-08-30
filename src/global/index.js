@@ -20,7 +20,7 @@ window.addEventListener("unload", function () {
 function initializeObserver() {
   // Select the loader element
   const loader = document.querySelector(".loader");
-  document.body.classList.add(".lenis-stopped");
+
   // Return early if no loader element is found
   if (!loader) {
     console.error(".loader element not found");
@@ -39,7 +39,7 @@ function initializeObserver() {
         // Make .loader non-interactive
         loader.style.pointerEvents = "none";
         // Allow body to scroll
-        document.body.classList.remove(".lenis-stopped");
+        document.body.style.overflow = "auto";
         // Disconnect the observer as we no longer need it
         loaderObserver.disconnect();
         break;
@@ -62,16 +62,6 @@ function initializeObserver() {
 
 // Run the function when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initializeObserver);
-
-const lenis = new Lenis();
-
-lenis.on("scroll", ScrollTrigger.update);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
-
-gsap.ticker.lagSmoothing(0);
 
 // document.querySelector("body").style.overflow = "hidden";
 // const loaderTl = gsap.timeline();
