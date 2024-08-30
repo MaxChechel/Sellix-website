@@ -2,6 +2,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
 
+import Lenis from "lenis";
+
 //Window to top on page refresh
 let isRefreshing = false;
 window.addEventListener("beforeunload", function () {
@@ -60,6 +62,16 @@ function initializeObserver() {
 
 // Run the function when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initializeObserver);
+
+const lenis = new Lenis();
+
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
 
 // document.querySelector("body").style.overflow = "hidden";
 // const loaderTl = gsap.timeline();
