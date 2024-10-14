@@ -220,10 +220,12 @@ const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent); // Safari on 
 const isIOS =
   /ipad|iphone|ipod/.test(userAgent) ||
   (userAgent.includes("mac") && "ontouchend" in document); // iOS
+const isFirefox = userAgent.includes("firefox"); // Firefox detection
 const heroVideo = document.querySelector(".hero-header_background-video video");
 const heroWebpSource = heroVideo.querySelectorAll("source[type='video/webm']");
 const heroMp4Source = heroVideo.querySelectorAll("source[type='video/mp4']");
-if (isSafari || isIOS) {
+
+if (isSafari || isIOS || isFirefox) {
   if (heroWebpSource) {
     heroWebpSource.forEach((source) => {
       source.remove();
@@ -236,6 +238,7 @@ if (isSafari || isIOS) {
     });
   }
 }
+
 const timelineContent = document.querySelectorAll(".timeline_row");
 let videos = document.querySelectorAll(
   ".timeline_videos-inner-wrap .timeline_video .video"
@@ -262,7 +265,7 @@ function addVideoListeners() {
     );
 
     // Set the appropriate source based on the browser or device
-    if (isSafari || isIOS) {
+    if (isSafari || isIOS || isFirefox) {
       if (webpSource) {
         webpSource.remove();
       }
