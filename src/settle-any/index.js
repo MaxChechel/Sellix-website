@@ -39,8 +39,6 @@ function animationVisibility(i) {
     opacity: 1,
     duration: 0.5,
   });
-  console.log(settleAnimations);
-  console.log(settleAnimations[i]);
 }
 
 timelineContent.forEach((content, index) => {
