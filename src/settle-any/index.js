@@ -29,7 +29,7 @@ pathSvgs.forEach((svg, i) => {
 //Timeline
 
 const timelineContent = document.querySelectorAll(".timeline_row");
-const settleAnimations = document.querySelectorAll(".settle-anim");
+const settleAnimations = document.querySelectorAll(".settle-anim:not(.is-mob)");
 function animationVisibility(i) {
   gsap.to(settleAnimations, {
     opacity: 0,
@@ -39,6 +39,8 @@ function animationVisibility(i) {
     opacity: 1,
     duration: 0.5,
   });
+  console.log(settleAnimations);
+  console.log(settleAnimations[i]);
 }
 
 timelineContent.forEach((content, index) => {
