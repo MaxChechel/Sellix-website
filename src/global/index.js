@@ -2,8 +2,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
 
-import Lenis from "lenis";
-
 //Window to top on page refresh
 let isRefreshing = false;
 window.addEventListener("beforeunload", function () {
@@ -147,10 +145,6 @@ hoverMm.add("(hover:hover)", () => {
   //navLinkShapePosition(navDdLinks, navDdMenu, navDdLinkShape);
 });
 //End nav links
-
-const navDdContactLink = document.querySelector("#dd-contact-link");
-const navDdList = document.querySelector(".navbar_dd-list");
-navDdList.append(navDdContactLink);
 
 //Contact modal
 const formSuccessWrap = document.querySelector(".success-message");
