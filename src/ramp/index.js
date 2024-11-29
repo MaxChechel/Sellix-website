@@ -23,7 +23,7 @@ pathSvgs.forEach((svg) => {
       .fromTo(
         svg,
         { ease: "none", drawSVG: "100% 100%", duration: 2 },
-        { drawSVG: "85% 100%", ease: "sine.in" }
+        { drawSVG: "0% 100%", ease: "sine.in" }
       )
       .to(svg, { drawSVG: "0% 0%", duration: 1 });
   } else {
@@ -31,7 +31,7 @@ pathSvgs.forEach((svg) => {
       .fromTo(
         svg,
         { ease: "none", drawSVG: 0, duration: 2 },
-        { drawSVG: "0% 15%", ease: "sine.in" }
+        { drawSVG: "0% 100%", ease: "sine.in" }
       )
       .to(svg, { drawSVG: "100% 100%", duration: 1 });
   }
