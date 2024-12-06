@@ -6,23 +6,37 @@ gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
 const pathSvgs = document.querySelectorAll(".line-pulse");
 
-pathSvgs.forEach((svg, i) => {
+pathSvgs.forEach((svg) => {
+  const isReversed = svg.classList.contains("reverse");
+  const isDelayed = svg.classList.contains("delayed");
+  let delay = 0;
+  if (isDelayed) {
+    delay = 2.75;
+  }
   const tween = gsap.timeline({
     repeat: -1,
     repeatDelay: 0,
+    delay: delay,
   });
 
-  tween
-    .fromTo(
-      svg,
-      {
-        ease: "none",
-        drawSVG: 0,
-        duration: 2,
-      },
-      { drawSVG: "0% 15%", ease: "sine.in" }
-    )
-    .to(svg, { drawSVG: "100% 100%", duration: 1 });
+  if (isReversed) {
+    tween
+      .fromTo(
+        svg,
+        { ease: "none", drawSVG: "100% 100%", duration: 2 },
+        { drawSVG: "0% 100%", ease: "sine.in" }
+      )
+      .to(svg, { drawSVG: "0% 0%", duration: 1 });
+  } else {
+    tween
+      .fromTo(
+        svg,
+        { ease: "none", drawSVG: 0, duration: 2 },
+        { drawSVG: "0% 100%", ease: "sine.in" }
+      )
+      .to(svg, { drawSVG: "100% 100%", duration: 1 });
+  }
+
   tween.play();
 });
 
