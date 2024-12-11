@@ -13,7 +13,7 @@ pathSvgs.forEach((svg) => {
 
   let delay = 0;
   if (isDelayed) {
-    delay = 2.75;
+    delay = 4;
   }
   if (ranDelay) {
     delay = gsap.utils.random(0.5, 2.5);
