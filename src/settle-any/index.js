@@ -9,11 +9,19 @@ const pathSvgs = document.querySelectorAll(".line-pulse");
 pathSvgs.forEach((svg) => {
   const isReversed = svg.classList.contains("reverse");
   const isDelayed = svg.classList.contains("delayed");
+  const smDelay = svg.classList.contains("sm-delay");
+  const lgDelay = svg.classList.contains("lg-delay");
   const ranDelay = svg.classList.contains("ran-delay");
 
   let delay = 0;
   if (isDelayed) {
-    delay = 4;
+    delay = 4.5;
+  }
+  if (smDelay) {
+    delay = 1;
+  }
+  if (lgDelay) {
+    delay = 5.5;
   }
   if (ranDelay) {
     delay = gsap.utils.random(1, 3);
