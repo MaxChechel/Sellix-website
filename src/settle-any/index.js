@@ -16,11 +16,11 @@ pathSvgs.forEach((svg) => {
     delay = 4;
   }
   if (ranDelay) {
-    delay = gsap.utils.random(0.5, 2.5);
+    delay = gsap.utils.random(1, 3);
   }
   const tween = gsap.timeline({
     repeat: -1,
-    repeatDelay: 0,
+    repeatDelay: 0.75,
     delay: delay,
   });
 
