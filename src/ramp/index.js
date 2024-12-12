@@ -8,13 +8,15 @@ const pathSvgs = document.querySelectorAll(".line-pulse");
 
 pathSvgs.forEach((svg) => {
   const isReversed = svg.classList.contains("reverse");
+
   let delay = 0;
   if (isReversed) {
     delay = 4.5;
   }
+
   const tween = gsap.timeline({
     repeat: -1,
-    repeatDelay: 0,
+    repeatDelay: 1,
     delay: delay,
   });
 
