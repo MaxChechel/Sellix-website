@@ -55,7 +55,7 @@ pathSvgs.forEach((svg) => {
 
 //Timeline
 
-const timelineContent = document.querySelectorAll(".timeline_row");
+const timelineContent = document.querySelectorAll(".settle-timeline_row");
 const settleAnimations = document.querySelectorAll(".settle-anim:not(.is-mob)");
 function animationVisibility(i) {
   gsap.to(settleAnimations, {

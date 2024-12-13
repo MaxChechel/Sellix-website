@@ -11,12 +11,12 @@ pathSvgs.forEach((svg) => {
 
   let delay = 0;
   if (isReversed) {
-    delay = 4.5;
+    delay = 2.5;
   }
 
   const tween = gsap.timeline({
     repeat: -1,
-    repeatDelay: 1,
+    repeatDelay: 0,
     delay: delay,
   });
 
