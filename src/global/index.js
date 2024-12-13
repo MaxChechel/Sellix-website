@@ -372,3 +372,8 @@ formInnerWraps.forEach((el) => updateScrollbarPadding(el));
 window.addEventListener("resize", () =>
   formInnerWraps.forEach((el) => updateScrollbarPadding(el))
 );
+
+//Footer date update
+const currentYear = new Date().getFullYear();
+const dateParagraph = document.querySelector("#current-year");
+dateParagraph.textContent = currentYear;

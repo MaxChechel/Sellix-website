@@ -22,17 +22,17 @@ pathSvgs.forEach((svg) => {
   if (smDelay) {
   }
   if (mdDelay) {
-    delay = 2;
+    delay = 1;
   }
   if (lgDelay) {
-    delay = 4;
+    delay = 2;
   }
   if (ranDelay) {
     delay = gsap.utils.random(1, 3);
   }
   const tween = gsap.timeline({
     repeat: -1,
-    repeatDelay: 4,
+    repeatDelay: 3,
     delay: delay,
   });
 
