@@ -10,25 +10,29 @@ pathSvgs.forEach((svg) => {
   const isReversed = svg.classList.contains("reverse");
   const isDelayed = svg.classList.contains("delayed");
   const smDelay = svg.classList.contains("sm-delay");
+  const mdDelay = svg.classList.contains("md-delay");
   const lgDelay = svg.classList.contains("lg-delay");
   const ranDelay = svg.classList.contains("ran-delay");
 
   let delay = 0;
+
   if (isDelayed) {
     delay = 4.5;
   }
   if (smDelay) {
-    delay = 1;
+  }
+  if (mdDelay) {
+    delay = 2;
   }
   if (lgDelay) {
-    delay = 5.5;
+    delay = 4;
   }
   if (ranDelay) {
     delay = gsap.utils.random(1, 3);
   }
   const tween = gsap.timeline({
     repeat: -1,
-    repeatDelay: 0.75,
+    repeatDelay: 4,
     delay: delay,
   });
 
