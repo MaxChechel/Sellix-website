@@ -8,15 +8,38 @@ const pathSvgs = document.querySelectorAll(".line-pulse");
 
 pathSvgs.forEach((svg) => {
   const isReversed = svg.classList.contains("reverse");
-
+  const isDelayed1 = svg.classList.contains("delayed-1");
+  const isDelayed2 = svg.classList.contains("delayed-2");
+  const isRepeatDel = svg.classList.contains("rep-delay");
+  const isBatch1 = svg.classList.contains("batch-1");
+  const isBatch2 = svg.classList.contains("batch-2");
+  const isBatch3 = svg.classList.contains("batch-3");
   let delay = 0;
-  if (isReversed) {
-    delay = 2.5;
+  let repeatDelay = 0;
+  if (isDelayed1) {
+    delay = 1.5;
+  }
+  if (isDelayed2) {
+    delay = 1.5;
+  }
+  if (isRepeatDel) {
+    repeatDelay = 1.5;
+  }
+  if (isBatch1) {
+    repeatDelay = 7;
+  }
+  if (isBatch2) {
+    delay = 4;
+    repeatDelay = 7;
+  }
+  if (isBatch3) {
+    delay = 5.5;
+    repeatDelay = 7;
   }
 
   const tween = gsap.timeline({
     repeat: -1,
-    repeatDelay: 0,
+    repeatDelay: repeatDelay,
     delay: delay,
   });
 
