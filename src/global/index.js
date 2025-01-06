@@ -182,7 +182,7 @@ contactSalesBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
     contactSaleModal.classList.add("is-active");
     document.querySelector("body").style.overflow = "hidden";
-    observer.observe(formSuccessWrap, observerOptions);
+    //observer.observe(formSuccessWrap, observerOptions);
   });
 });
 contactSaleClose.addEventListener("click", () => {
