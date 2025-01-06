@@ -158,7 +158,7 @@ const mutationCallback = (mutationsList, observer) => {
         setTimeout(() => {
           contactSaleModal.classList.remove("is-active");
           document.querySelector("body").style.overflow = "auto";
-        }, 3000);
+        }, 15000);
         observer.disconnect();
       }
     }
